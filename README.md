@@ -1,2 +1,3 @@
 # zuiyou-demo
-仿写最右app demo的server端
+仿写最右app 的server端以及pc端
+
