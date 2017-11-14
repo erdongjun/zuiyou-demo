@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>后台登录</title>
+    <link rel="stylesheet" type="text/css" href="/public/static/lib/layui/css/layui.css">
+    <link rel="stylesheet" type="text/css" href="/public/static/admin/css/base.css">
+    <script type="text/javascript" src='/public/static/lib/jquery.js'></script>
+    <script type="text/javascript" src='/public/static/lib/layui/layui.js'></script>
+    <style type="text/css">
+        .verify{
+            float: right;
+            width: 150px;
+            height: 36px;
+            margin-left: 10px;
+            border: 1px solid #ccc;
+        }
+        .content{
+            width: 500px;
+            margin: 50px auto;
+        }
+    </style>
+</head>
+<body style="padding: 15px;">
+<!-- 内容主体区域 -->
+<div class="content">
+    <fieldset class="layui-elem-field layui-field-title">
+        <legend>登录</legend>
+    </fieldset>
+    <div class="layui-form layui-form-pane">
+        <div class="layui-form-item">
+            <label class="layui-form-label">账号</label>
+            <div class="layui-input-block">
+                <input type="text" name="name" lay-verify="name" autocomplete="off" placeholder="请输入账号" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">密码</label>
+            <div class="layui-input-block">
+                <input type="password" name="password" lay-verify="password" autocomplete="off" placeholder="请输入密码" class="layui-input">
+            </div>
+        </div>
+         <div class="layui-form-item">
+            <label class="layui-form-label">验证码</label>
+            <div class="layui-input-block">
+                <input type="text" name="verify" style="width:200px;float:left;"  lay-verify="verify" autocomplete="off" placeholder="请输入验证" class="layui-input">
+
+                <img class="verify" src="/public/index.php/captcha.html">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit="" lay-filter="add">添加</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+$('.verify').click(function(){
+    $(this).attr('src','/public/index.php/captcha.html?t='+new Date().getTime());
+})
+
+layui.use(['form', 'laydate', 'element'], function() {
+    var form = layui.form,
+        layer = layui.layer,
+        element = layui.element;
+
+    //自定义验证规则
+    form.verify({
+        name: function(value) {
+            if (value.length < 5) {
+                return '请输入用户名且大于5个字符';
+            }
+        },
+        verify: function(value) {
+            if (!value) {
+                return '请输入验证码';
+            }
+        },
+        password: [/(.+){6,12}$/, '密码必须6到12位'],
+    });
+    //监听提交
+    form.on('submit(add)', function(data) {
+      $.ajax({
+        url:'/public/index.php/admin/login/login',
+        data:data.field,
+        type:'post',
+        success:function(data){
+          layer.msg(data.msg,{time:1000},function(){
+            if(data.status == 1){
+                window.location.href='/public/index.php/admin/index/index';
+            }else {
+                $('.verify').click()
+            }
+          });
+           
+        }
+      })
+    });
+
+})
+
+
+
+
+
+</script>
+</body>
+</html>

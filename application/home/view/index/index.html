@@ -1,0 +1,69 @@
+<!-- 引入布局模板 -->
+{layout name='/layout/common'}
+<!-- 主区域代码 -->
+<div class="layui-main ym-main layui-clear">
+	<!-- 主区域左侧 -->
+	<div class="content-left">
+		<div class="ym-list">
+			<div class="ym-item">
+				<div class="ym-item-tit">
+					<img src="/Public/static/base/img/biu.jpg">
+					<span>稀饭</span><span class="layui-badge">vip</span>
+				</div>
+				<div class="ym-item-bd">
+					<p>
+					老公：记得结婚前，分工明确，我负责做饭，你负责洗衣服，收拾家里，蛮好的。
+					老婆：嗯……
+					老公：结婚后，分工不同了，我负责做饭、洗衣服，你负责收拾，还说得过去。
+					老婆：嗯……
+					老公：可是现在呢？我全都是我负责了！
+					老婆：这就叫时位之移人！
+					老公：啥意思？难道你的地位变了？
+					老婆：当然了，当初我是小姑娘，后来我是你老婆，现在有孩子了是老娘！你说我的地位是不是变了？
+					</p>
+					<div class="imgbox">
+						<img src="/Public/static/static/base/img/biu.jpg">
+					</div>
+				</div>
+			</div>
+			<div class="ym-item">
+				<div class="ym-item-tit">
+					<img src="/Public/static/base/img/biu.jpg">
+					<span>稀饭</span><span class="layui-badge">vip</span>
+				</div>
+				<div class="ym-item-bd">
+					<p>测试</p>
+
+					<div class="imgbox">
+						<img src="/Public/static/base/img/biu.jpg">
+					</div>
+				</div>
+			</div>
+			<div class="ym-item">
+				<div class="ym-item-tit">
+					<img src="/Public/static/base/img/biu.jpg">
+					<span>稀饭</span><span class="layui-badge">vip</span>
+				</div>
+				<div class="ym-item-bd">
+					<div class="videobox">
+						<video src="http://www.zhangxinxu.com/study/media/cat.mp4" controls="" width="100%" autobuffer=""></video>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="pagebox" class="pagebox"></div>
+	</div>
+	
+<script>
+// 分页
+layui.use('laypage', function(){
+  var laypage = layui.laypage;
+  
+  //执行一个laypage实例
+  laypage.render({
+    elem: 'pagebox' //注意，这里的 test1 是 ID，不用加 # 号
+    ,count: 50 //数据总数，从服务端得到
+  });
+});
+
+</script> 

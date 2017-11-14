@@ -1,0 +1,21 @@
+<!-- 引入布局模板 -->
+{layout name='/layout/common'}
+
+<div class="layui-body">
+<!-- 内容主体区域 -->
+	<iframe id="iframe" class="ym_iframe" src="/public/index.php/home/system/index" width="100%" height="100%" frameborder="0" scrolling="yes"></iframe>
+</div>
+<script type="text/javascript">
+// 更新iframe后设置高度
+function setHeight(height) {
+	$('#iframe').css({'height':height+'px'});
+};
+// 设置iframe的链接
+function setFrameUrl(url){
+	console.log(url)
+	$('#iframe').attr('src',url)
+}
+
+</script>
+
+

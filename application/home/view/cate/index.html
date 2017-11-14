@@ -1,0 +1,60 @@
+<include file="Layout/common/header" title="夜猫趣" keywords="夜猫子兴趣狂欢社区" />
+<!-- 主区域代码 -->
+<div class="layui-main ym-main layui-clear">
+    <!-- 主区域左侧 -->
+    <div class="content-left ym-circle">
+        <h2 class="ym-circle-title">热门圈子<span class="layui-badge">hot</span></h2>
+        <div class="ym-circle-list ym-list layui-clear">
+            <div class="ym-circle-item ym-item">
+                <div class="ym-circle-info">
+                    <img class="cir-logo" src="/Public/base/img/biu.jpg">
+                    <p class="cir-tit">八卦</p>
+                    <p class="cir-count">
+                        <span>关注204.1万</span>
+                        <span>话题16.8万</span>
+                    </p>
+                    <p class="cir-intro">无聊的大帅哥</p>
+                    <div class="cir-focus">关注</div>
+                </div>
+            </div>
+            <div class="ym-circle-item ym-item">
+                <div class="ym-circle-info">
+                    <img class="cir-logo" src="/Public/base/img/biu.jpg">
+                    <p class="cir-tit">八卦</p>
+                    <p class="cir-count">
+                        <span>关注204.1万</span>
+                        <span>话题16.8万</span>
+                    </p>
+                    <p class="cir-intro">无聊的大帅哥</p>
+                    <div class="cir-focus layui-bg-red">已关注</div>
+                </div>
+            </div>
+            <div class="ym-circle-item ym-item">
+                <div class="ym-circle-info">
+                    <img class="cir-logo" src="/Public/base/img/biu.jpg">
+                    <p class="cir-tit">八卦</p>
+                    <p class="cir-count">
+                        <span>关注204.1万</span>
+                        <span>话题16.8万</span>
+                    </p>
+                    <p class="cir-intro">无聊的大帅哥</p>
+                    <div class="cir-focus">关注</div>
+                </div>
+            </div>
+        </div>
+        <div id="pagebox" class="pagebox"></div>
+    </div>
+<include file="Layout/common/footer" />
+<script>
+// 分页
+layui.use('laypage', function() {
+    var laypage = layui.laypage;
+
+    //执行一个laypage实例
+    laypage.render({
+        elem: 'pagebox' //注意，这里的 test1 是 ID，不用加 # 号
+            ,
+        count: 50 //数据总数，从服务端得到
+    });
+});
+</script>

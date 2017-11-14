@@ -1,0 +1,22 @@
+<!-- 引入布局模板 -->
+{layout name='/layout/iframe'}
+<!-- 内容主体区域 -->
+		<fieldset class="layui-elem-field layui-field-title">
+		  <legend>系统信息</legend>
+		</fieldset>
+		<table class="layui-table" lay-skin='line'>
+			<thead>
+				<tr>
+					<th width="30%">系统信息</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				{volist name="list" id="vo"}
+		          <tr>
+		            <td>{$key}</td>
+		            <td>{$vo}</td>
+		          </tr>
+           		{/volist} 
+			</tbody>
+		</table>

@@ -1,0 +1,35 @@
+
+</div>
+<!-- 底部固定区域 -->
+<div class="layui-footer layui-main">
+    © 2017 - yemaoqu.com - 
+</div>
+
+<script>
+//JavaScript代码区域
+layui.use(['element','layer'], function(){
+  var element = layui.element;
+  var layer = layui.layer;
+
+	// 退出登录
+	$('.logout').click(function(){
+		$.ajax({
+			url:'/public/index.php/home/user/logout',
+			type:'get',
+			success:function(data){
+
+				layer.msg(data.msg,{time:1000},function(){
+		            if(data.status == 1){
+		                window.location.href='/public/index.php/home/index/index';
+		            }
+		         })
+				
+			}
+		})
+	})
+});
+
+</script>
+
+</body>
+</html>
