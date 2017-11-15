@@ -4,7 +4,8 @@
 <div class="layui-main ym-main layui-clear">
     <!-- 主区域左侧 -->
     <div class="c_content">
-        <form class="layui-form" action="">
+        <form class="layui-form" id="c_form" action="">
+            <input type="hidden" name="parent_id" value="0">
             <div class="layui-form-item">
                 <label class="layui-form-label">标题</label>
                 <div class="layui-input-block">
@@ -31,37 +32,51 @@
             <div class="layui-form-item layui-form-text c_upload">
                 <label class="layui-form-label">内容</label>
                 <div class="layui-input-block">
-                    <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
-                    <div class="layui-btn-group">
+                    <textarea placeholder="请输入内容" name="content" class="layui-textarea"></textarea>
+                    <div class="layui-btn-group selectUpload" >
+                        <input type="hidden" name="type" value="0">
                         <a class="layui-btn" href="javascript:;" id="imgBtn">图片</a>
-                        <a class="layui-btn ">视频</a>
-                        <a class="layui-btn">音乐</a>
+                        <a class="layui-btn" href="javascript:;" id="videoBtn" >视频</a>
+                        <a class="layui-btn" href="javascript:;" id="audioBtn" >音乐</a>
                     </div>
                     <div id="uploader" class="wu-example">
                         <!-- 图片上传 -->
                         <div class="upbox imgbox">
                             <div class="imglist" id="imglist">
                                 <div class="imgitem addimgbtn" ><i class="layui-icon">&#xe654;</i>
-                                    
                                     <div id="addimgbtn"></div>
 
                                 </div>
                             </div>
                         </div>
                         <!-- 视频上传 -->
-                        <div class="upbox videobox">
-                            
+                        <div class="upbox videobox" >
+                            <p class="layui-clear">
+                                <span class="tip">提示:<em>上传中...</em></span>
+                                <i class="layui-icon fr">&#xe640;</i>
+                                <input type="hidden" name="video" value="">
+                            </p>
+                            <div class="layui-progress layui-progress-big" lay-filter="video" lay-showPercent="yes">
+                              <div class="layui-progress-bar layui-bg-green" lay-percent="0%"></div>
+                            </div>
                         </div>
                         <!-- 音频上传 -->
                         <div class="upbox audiobox">
-                            
+                            <p class="layui-clear">
+                                <span class="tip">提示:<em>上传中...</em></span>
+                                <i class="layui-icon fr">&#xe640;</i>
+                                <input type="hidden" name="audio" value="">
+                            </p>
+                            <div class="layui-progress layui-progress-big" lay-filter="audio" lay-showPercent="yes">
+                              <div class="layui-progress-bar layui-bg-green" lay-percent="0%"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="layui-form-item">
                 <div class="layui-input-block">
-                    <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+                    <button class="layui-btn" lay-submit="" lay-filter="add">立即提交</button>
                     <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                 </div>
             </div>
@@ -69,22 +84,95 @@
     </div>
     <script>
 
-    var uploadObj ={
-        type:0,
-        imgList:[],
-        video:'',
-        music:'',
+    $('body ').on('click','.webuploader-container',function(e){
+        if($(this).hasClass('layui-disabled')){
+            e.stopPropagation();
+        e.preventDefault();
+        }
+        
+        
+    })
+    // 上传完成展示图片
+    function showImg(res){
+        var html = '';
+        if (res.status !=1) {
+            layer.msg(res.msg)
+            html += '<div class="imgitem"><i class="layui-icon">&#x1007;</i>  <p class="tip">预览出错</p></div>';
+        } else {
+            $('.upbox').hide();
+            $('.imgbox').show();
+            html += '<div class="imgitem"><input type="hidden" name="img[]" value="'+res.url+'" /> <i class="layui-icon">&#x1007;</i><img src="'+res.url+'" /></div>';
+        }
+        $('#imglist .addimgbtn').before(html);
+        $('#addimgbtn').css({
+            'height':'100%'
+        }).find('.webuploader-pick').next().css({
+            'height':'100%',
+            'width':'100%'
+        })
     };
 
+    // 设置资源上传按钮不可选
+    function setUploadBtn(val){
+        $('[name=type]').val(val);
+        $('.selectUpload a').addClass('layui-disabled');
 
 
-    layui.use(['layer'], function() {
+        if(val==0){
+        //普通
+            $('.selectUpload a').removeClass('layui-disabled');
+             $('[name=video]').val('');
+             $('[name=audio]').val('');
+        }else if(val==1){
+        //图片
+            $('.selectUpload a').eq(val-1).removeClass('layui-disabled')
+        }else if(val==2){
+        //视频
+            $('.upbox').hide();
+            $('.videobox').show();
+        }else {
+        //音频
+            $('.upbox').hide();
+            $('.audiobox').show();
+        }
+    };
+
+    //删除图片操作
+    $('.imgbox ').on('click','.imgitem>.layui-icon',function(){
+        $(this).parents('.imgitem').remove();
+        var len = $('.imgbox').find('.imgitem').length;
+        if(len==1){
+            $('.upbox').hide();
+            setUploadBtn(0)
+        }
+    });
+
+    layui.use(['layer','form','element'], function() {
         var layer = layui.layer;
+        var form = layui.form;
+        var element = layui.element;
 
-        var uploader = WebUploader.create({
+
+        //删除视频操作
+        $('.videobox ').on('click','.layui-icon',function(){
+             $('.videobox .tip em').html('上传中...');
+             element.progress('video', '0%');
+            $('.upbox').hide();
+            setUploadBtn(0);
+        });
+         //删除视频操作
+        $('.audiobox ').on('click','.layui-icon',function(){
+             $('.audiobox .tip em').html('上传中...');
+             element.progress('audio', '0%');
+            $('.upbox').hide();
+            setUploadBtn(0);
+        });
+
+
+        // 实例化图片上传
+        var uploaderImg = WebUploader.create({
             // swf文件路径
             swf: '/Public/static/lib/webuploader/Uploader.swf',
-
             // 文件接收服务端。
             server: '/public/index.php/home/home/upload',
 
@@ -93,6 +181,7 @@
             pick: '#imgBtn',
             // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
             resize: false,
+            duplicate :true ,//重复上传
             accept:{
                 title: 'Images',
                 extensions: 'gif,jpg,jpeg,bmp,png',
@@ -100,79 +189,204 @@
             }
         });
         //添加图片的btn
-        uploader.addButton({
+        uploaderImg.addButton({
             id: '#addimgbtn',
         });
 
-        
-        // 当有文件被添加进队列的时候
-        uploader.on('fileQueued', function(file) {
-             uploader.upload();
-        });
-        // 展示img
-        function showImg(res){
-            var html = '';
-            if (res.status !=1) {
-                html += '<div class="imgitem"><i class="layui-icon">&#x1007;</i>  <p class="tip">预览出错</p></div>';
-            } else {
-                $('.upbox').hide();
-                $('.imgbox').show();
-
-                html += '<div class="imgitem"><i class="layui-icon">&#x1007;</i><img src="'+res.url+'" /></div>';
+        // 当有图片文件被添加进队列之前
+        uploaderImg.on('beforeFileQueued', function(file) {
+            var len = $('.imgbox').find('.imgitem').length;
+            if(len>9){
+                layer.msg('最多添加9个图片');
+                return false
             }
-            $('#imglist .addimgbtn').before(html);
-             // uploader.refresh(); 
-
-            $('#addimgbtn').css({
-                'height':'100%'
-            }).find('.webuploader-pick').next().css({
-                'height':'100%',
-                'width':'100%'
-            })
-        };
-
-        // var curr =null;
-
-        // // 文件上传过程中创建进度条实时显示。
-        // uploader.on('uploadProgress', function(file, percentage) {
-        //     if(!curr){
-        //          curr = layer.load();
-        //     }
-            // var $li = $('#' + file.id),
-            //     $percent = $li.find('.progress .progress-bar');
-
-            // // 避免重复创建
-            // if (!$percent.length) {
-            //     $percent = $('<div class="progress progress-striped active">' +
-            //         '<div class="progress-bar" role="progressbar" style="width: 0%">' +
-            //         '</div>' +
-            //         '</div>').appendTo($li).find('.progress-bar');
-            // }
-
-            // $li.find('p.state').text('上传中');
-
-            // $percent.css('width', percentage * 100 + '%');
-        // });
-
-        uploader.on('uploadSuccess', function(file,res) {
-            // $('#' + file.id).find('p.state').text('已上传');
-            console.log('已上传');
+        });
+        // 当有图片文件被添加进队列的时候
+        uploaderImg.on('fileQueued', function(file) {
+            setUploadBtn(1)
+             uploaderImg.upload();
+        });
+        uploaderImg.on('uploadSuccess', function(file,res) {
            showImg(res)
         });
-
-        uploader.on('uploadError', function(file) {
+        uploaderImg.on('uploadError', function(file) {
             // $('#' + file.id).find('p.state').text('上传出错');
             layer.msg('上传出错了',{time:500});
         });
 
-        // uploader.on('uploadComplete', function(file) {
-        //     console.log('uploadComplete')
-        //         layer.close(curr);  
-        //         curr = null;
-        //     // $('#' + file.id).find('.progress').fadeOut();
-        // });
+
+        // 实例化视频上传
+        var uploaderVideo = WebUploader.create({
+            // swf文件路径
+            swf: '/Public/static/lib/webuploader/Uploader.swf',
+            // 文件接收服务端。
+            server: '/public/index.php/home/home/upload',
+
+            // 选择文件的按钮。可选。
+            // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+            pick: {
+                id:'#videoBtn',
+                multiple:false
+            },
+            // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+            resize: false,
+            duplicate :true ,//重复上传
+            accept:{
+                title: 'Images',
+                extensions: 'mp4,webm,ogg',
+                mimeTypes: 'video/*'
+            }
+        });
+        // 当有视频文件被添加进队列的时候
+        uploaderVideo.on('fileQueued', function(file) {
+            setUploadBtn(2);
+            uploaderVideo.upload();
+        });
+
+        //视频上传成功
+        uploaderVideo.on('uploadSuccess', function(file,res) {
+            if(res.status ==1){
+                $('.videobox .tip em').html('上传服务器成功!');
+                $('[name=video]').val(res.url)
+            }else {
+                layer.msg(res.msg);
+            }
+           
+        });
+         //视频上传出错
+        uploaderVideo.on('uploadError', function(file) {
+            layer.msg('上传出错了',{time:500});
+        });
+        //视频上传进度条
+        uploaderVideo.on('uploadProgress', function(file, percentage) {
+            if(percentage<1){
+                $('.videobox .tip em').html('上传中...')
+            }else {
+                $('.videobox .tip em').html('上传完成')
+            }
+            var percent = parseInt(percentage * 100) + '%';
+            element.progress('video', percent);
+        });
 
 
+        // 实例化音频上传
+        var uploaderAudio = WebUploader.create({
+            // swf文件路径
+            swf: '/Public/static/lib/webuploader/Uploader.swf',
+            // 文件接收服务端。
+            server: '/public/index.php/home/home/upload',
+
+            // 选择文件的按钮。可选。
+            // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+             pick: {
+                id:'#audioBtn',
+                multiple:false
+            },
+            // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+            resize: false,
+            duplicate :true ,//重复上传
+            accept:{
+                title: 'Images',
+                extensions: 'mp3',
+                mimeTypes: 'audio/*'
+            }
+        });
+        // 当有音频文件被添加进队列的时候
+        uploaderAudio.on('fileQueued', function(file) {
+            setUploadBtn(3);
+             uploaderAudio.upload();
+        });
+         //音频上传成功
+        uploaderAudio.on('uploadSuccess', function(file,res) {
+            if(res.status ==1){
+                $('.audiobox .tip em').html('上传服务器成功!');
+                $('[name=audio]').val(res.url)
+            }else {
+                layer.msg(res.msg);
+            }
+        });
+         //音频上传出错
+        uploaderAudio.on('uploadError', function(file) {
+            layer.msg('上传出错了',{time:500});
+        });
+        //音频上传进度条
+        uploaderAudio.on('uploadProgress', function(file, percentage) {
+            if(percentage<1){
+                $('.audiobox.tip em').html('上传中...')
+            }else {
+                $('.audiobox.tip em').html('上传完成')
+            }
+            var percent = parseInt(percentage * 100) + '%';
+            element.progress('audio', percent);
+        });
+
+//自定义验证规则
+    form.verify({
+       
+    });
+    //监听提交
+    form.on('submit(add)', function(data) {
+        var _data =$('#c_form').serialize()
+        console.log(data.field);
+        console.log(_data);
+
+        var isPost = true;
+
+       var type = $('[name=type]').val();
+       var cate_id = $('[name=cate_id]').val();
+       if(!cate_id){
+            layer.msg('请选择话题',{time:500});
+            return false;
+        }
+
+
+        if(type==1){
+            var len = $('.imgbox').find('.imgitem').length;
+            if(len<2){
+                isPost = false;
+                layer.msg('请选择图片',{time:500})
+
+            }
+        }else if(type==2){
+            if(!$('[name=video]').val()){
+                isPost = false;
+                layer.msg('请选择视频文件',{time:500})
+
+            }
+            
+        }else if(type==3){
+            if(!$('[name=audio]').val()){
+                isPost = false;
+                layer.msg('请选择音频文件',{time:500})
+
+            }
+        }else{
+             if(data.field.content.length<1){
+                isPost = false;
+                layer.msg('请输入内容',{time:500})
+            }
+        }
+        if(!isPost){
+            return false;
+        }
+
+      $.ajax({
+        url:'/public/index.php/home/user/contribute',
+        data:_data,
+        type:'post',
+        success:function(data){
+            return false;
+          layer.msg(data.msg,{time:1000},function(){
+            if(data.status == 1){
+                window.location.href='/public/index.php/admin/index/index';
+            }
+          });
+           
+        }
+      })
+
+      return false;
+    });
 
 
 

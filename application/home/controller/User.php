@@ -2,6 +2,7 @@
 namespace app\home\controller;
 
 use app\home\model\User as UserModel;
+use app\home\model\Post as Post;
 use app\admin\model\Cate as Cate;
 use think\validate;
 use think\Request;
@@ -74,9 +75,58 @@ class User extends Home
     public function contribute()
     {
 
+        if(!session('user_uid')){
+            $this->redirect('User/login');
+        }
         $cate = new Cate();
+
         $list = $cate->getTree();
+
+
         $this->assign('list',$list);
+        if($this->request->isPost()){
+
+            $post_data = $this->request->post();
+            // dump($$post_data('title'));die;
+            $data=[];
+            $data['title'] = $post_data['title'];
+            $data['cate_id'] = $post_data['cate_id'];
+            $data['content'] = $post_data['content'];
+            $data['type'] = $post_data['type'];
+            if($post_data['parent_id']){
+                $data['parent_id'] = $post_data['parent_id'];
+            }else{
+                $data['parent_id'] =0;
+
+            }
+            $data['uid'] = session('user_uid');
+
+
+            if($post_data['type']==0){
+                // 文字
+                $data['resource'] ='';
+            }
+            if($post_data['type']==1){
+                //图片
+                $imgStr = implode(',',$post_data['img']);
+                $data['resource'] =$imgStr;
+            }
+            if($post_data['type']==2){
+                //视频
+                $data['resource'] = $post_data['video'];
+            }
+            if($post_data['type']==3){
+                //音频
+                $data['resource'] = $post_data['audio'];
+            }
+            if (!Post::create($data)) {
+                return ['status'=>'0','msg'=>$this->getError()];
+            }
+            return ['status'=>'1','msg'=>'发布成功'];
+
+
+            // dump($post_data);die;
+        }
         return $this->fetch();
     }
 }
