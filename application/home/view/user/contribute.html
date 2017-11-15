@@ -28,21 +28,33 @@
                     </div>
                 </div>
             </div>
-            <div class="layui-form-item layui-form-text">
+            <div class="layui-form-item layui-form-text c_upload">
                 <label class="layui-form-label">内容</label>
                 <div class="layui-input-block">
+                    <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
                     <div class="layui-btn-group">
-                        <a class="layui-btn" href="javascript:;" id="tupian">图片</a>
+                        <a class="layui-btn" href="javascript:;" id="imgBtn">图片</a>
                         <a class="layui-btn ">视频</a>
                         <a class="layui-btn">音乐</a>
                     </div>
-                    <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
                     <div id="uploader" class="wu-example">
-                        <!--用来存放文件信息-->
-                        <div id="thelist" class="uploader-list"></div>
-                        <div class="btns">
-                            <div id="picker">选择文件</div>
-                            <button id="ctlBtn" class="btn btn-default">开始上传</button>
+                        <!-- 图片上传 -->
+                        <div class="upbox imgbox">
+                            <div class="imglist" id="imglist">
+                                <div class="imgitem addimgbtn" ><i class="layui-icon">&#xe654;</i>
+                                    
+                                    <div id="addimgbtn"></div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 视频上传 -->
+                        <div class="upbox videobox">
+                            
+                        </div>
+                        <!-- 音频上传 -->
+                        <div class="upbox audiobox">
+                            
                         </div>
                     </div>
                 </div>
@@ -56,6 +68,16 @@
         </form>
     </div>
     <script>
+
+    var uploadObj ={
+        type:0,
+        imgList:[],
+        video:'',
+        music:'',
+    };
+
+
+
     layui.use(['layer'], function() {
         var layer = layui.layer;
 
@@ -68,54 +90,87 @@
 
             // 选择文件的按钮。可选。
             // 内部根据当前运行是创建，可能是input元素，也可能是flash.
-            pick: '#picker',
-
+            pick: '#imgBtn',
             // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
-            resize: false
+            resize: false,
+            accept:{
+                title: 'Images',
+                extensions: 'gif,jpg,jpeg,bmp,png',
+                mimeTypes: 'image/*'
+            }
         });
+        //添加图片的btn
+        uploader.addButton({
+            id: '#addimgbtn',
+        });
+
+        
         // 当有文件被添加进队列的时候
         uploader.on('fileQueued', function(file) {
-            $('#thelist').append('<div id="' + file.id + '" class="item">' +
-                '<h4 class="info">' + file.name + '</h4>' +
-                '<p class="state">等待上传...</p>' +
-                '</div>');
              uploader.upload();
         });
+        // 展示img
+        function showImg(res){
+            var html = '';
+            if (res.status !=1) {
+                html += '<div class="imgitem"><i class="layui-icon">&#x1007;</i>  <p class="tip">预览出错</p></div>';
+            } else {
+                $('.upbox').hide();
+                $('.imgbox').show();
 
-
-
-
-
-
-        // 文件上传过程中创建进度条实时显示。
-        uploader.on('uploadProgress', function(file, percentage) {
-            var $li = $('#' + file.id),
-                $percent = $li.find('.progress .progress-bar');
-
-            // 避免重复创建
-            if (!$percent.length) {
-                $percent = $('<div class="progress progress-striped active">' +
-                    '<div class="progress-bar" role="progressbar" style="width: 0%">' +
-                    '</div>' +
-                    '</div>').appendTo($li).find('.progress-bar');
+                html += '<div class="imgitem"><i class="layui-icon">&#x1007;</i><img src="'+res.url+'" /></div>';
             }
+            $('#imglist .addimgbtn').before(html);
+             // uploader.refresh(); 
 
-            $li.find('p.state').text('上传中');
+            $('#addimgbtn').css({
+                'height':'100%'
+            }).find('.webuploader-pick').next().css({
+                'height':'100%',
+                'width':'100%'
+            })
+        };
 
-            $percent.css('width', percentage * 100 + '%');
-        });
+        // var curr =null;
 
-        uploader.on('uploadSuccess', function(file) {
-            $('#' + file.id).find('p.state').text('已上传');
+        // // 文件上传过程中创建进度条实时显示。
+        // uploader.on('uploadProgress', function(file, percentage) {
+        //     if(!curr){
+        //          curr = layer.load();
+        //     }
+            // var $li = $('#' + file.id),
+            //     $percent = $li.find('.progress .progress-bar');
+
+            // // 避免重复创建
+            // if (!$percent.length) {
+            //     $percent = $('<div class="progress progress-striped active">' +
+            //         '<div class="progress-bar" role="progressbar" style="width: 0%">' +
+            //         '</div>' +
+            //         '</div>').appendTo($li).find('.progress-bar');
+            // }
+
+            // $li.find('p.state').text('上传中');
+
+            // $percent.css('width', percentage * 100 + '%');
+        // });
+
+        uploader.on('uploadSuccess', function(file,res) {
+            // $('#' + file.id).find('p.state').text('已上传');
+            console.log('已上传');
+           showImg(res)
         });
 
         uploader.on('uploadError', function(file) {
-            $('#' + file.id).find('p.state').text('上传出错');
+            // $('#' + file.id).find('p.state').text('上传出错');
+            layer.msg('上传出错了',{time:500});
         });
 
-        uploader.on('uploadComplete', function(file) {
-            $('#' + file.id).find('.progress').fadeOut();
-        });
+        // uploader.on('uploadComplete', function(file) {
+        //     console.log('uploadComplete')
+        //         layer.close(curr);  
+        //         curr = null;
+        //     // $('#' + file.id).find('.progress').fadeOut();
+        // });
 
 
 
