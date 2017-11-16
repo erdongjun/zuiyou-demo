@@ -5,14 +5,21 @@ use app\admin\model\Cate as CateModel;
 
 class Cate extends Home
 {
-    public function index()
+	//分类列表
+    public function list()
     {
 
     	$cate = new CateModel();
         $list = $cate->getTree();
-        // dump($list);
-        
         $this->assign('list',$list);
+        return $this->fetch();
+    }
+    //分类首页
+     public function index()
+    {
+    	
+    	$cate = new CateModel();
+
         return $this->fetch();
     }
     

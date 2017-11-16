@@ -1,0 +1,39 @@
+<!-- 引入布局模板 -->
+{layout name='/layout/common'}
+<!-- 主区域代码 -->
+<div class="layui-main ym-main layui-clear">
+    <!-- 主区域左侧 -->
+    <div class="content-left ym-circle">
+    <div class="layui-tab">
+  <ul class="layui-tab-title">
+    {foreach name="list" id="vo"}
+        <li  class="{eq name='key' value='0'}layui-this{/eq}" >{$vo.name}</li>
+    {/foreach}
+  </ul>
+  <div class="layui-tab-content"> 
+    {foreach name="list" id="vo"}
+       <div class="layui-tab-item {eq name='key' value='0'}layui-show{/eq}">
+            <div class="ym-circle-list ym-list layui-clear">
+                {foreach name="vo['son']" id="vb"}
+                <div class="ym-circle-item ym-item" data-id="{$vb.id}">
+                    <div class="ym-circle-info">
+                        <img class="cir-logo" src="{$vb.icon}">
+                        <p class="cir-tit"><a href="/public/index.php/home/cate/index/id/{$vb.id}">{$vb.name}</a></p>
+                        <p class="cir-count">
+                            <span>关注204.1万</span>
+                            <span>话题16.8万</span>
+                        </p>
+                        <p class="cir-intro">{$vb.des}</p>
+                        <div class="cir-focus">关注</div>
+                    </div>
+                </div>
+                {/foreach}
+            </div>
+        </div>
+     {/foreach}
+  </div>
+</div>
+
+    
+    </div>
+<include file="Layout/common/footer" />
