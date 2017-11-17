@@ -5,10 +5,10 @@
 	<div class="bar-top">
 		<div class="maskbg"><div class="mask"></div></div>
 		<div class="cate-info">
-			<img class="cateimg" src="https://p.qpic.cn/qqconadmin/0/c480d6ccec3e40948dcf3e85904ff62d/0" />
+			<img class="cateimg" src="{$info.icon}" />
 			<div class="intro">
-				<p class="p1">分类名称</p>
-				<p class="p2">分类描述</p>
+				<p class="p1">{$info.name}</p>
+				<p class="p2">{$info.des}</p>
 				<div class="p3">
 					<span class="type">话题</span> <span class="num">212123</span>
 					<span class="type">关注</span><span class="num">212123</span>
@@ -19,65 +19,58 @@
 	<!-- 主区域左侧 -->
 	<div class="content-left">
 		<div class="ym-list">
-			<div class="ym-item">
-				<div class="ym-item-tit">
-					<img src="/Public/static/base/img/biu.jpg">
-					<span>稀饭</span><span class="layui-badge">vip</span>
-				</div>
-				<div class="ym-item-bd">
-					<p>
-					老公：记得结婚前，分工明确，我负责做饭，你负责洗衣服，收拾家里，蛮好的。
-					老婆：嗯……
-					老公：结婚后，分工不同了，我负责做饭、洗衣服，你负责收拾，还说得过去。
-					老婆：嗯……
-					老公：可是现在呢？我全都是我负责了！
-					老婆：这就叫时位之移人！
-					老公：啥意思？难道你的地位变了？
-					老婆：当然了，当初我是小姑娘，后来我是你老婆，现在有孩子了是老娘！你说我的地位是不是变了？
-					</p>
-					<div class="imgbox">
-						<img src="/Public/static/static/base/img/biu.jpg">
-					</div>
-				</div>
-			</div>
-			<div class="ym-item">
-				<div class="ym-item-tit">
-					<img src="/Public/static/base/img/biu.jpg">
-					<span>稀饭</span><span class="layui-badge">vip</span>
-				</div>
-				<div class="ym-item-bd">
-					<p>测试</p>
 
-					<div class="imgbox">
-						<img src="/Public/static/base/img/biu.jpg">
-					</div>
+			{empty name='list'}
+				<div class="ym-item" style="text-align:center"> 
+				暂无帖子 <a style="color:#5FB878" href="/public/index.php/home/user/contribute">去发帖</a>
 				</div>
-			</div>
-			<div class="ym-item">
+			{/empty}
+			{volist name='list' id="vo"}
+				<div class="ym-item">
 				<div class="ym-item-tit">
-					<img src="/Public/static/base/img/biu.jpg">
-					<span>稀饭</span><span class="layui-badge">vip</span>
+					<img src="{$vo.avatar}">
+					<span>{$vo.nick}</span><span class="layui-badge">vip</span>
 				</div>
 				<div class="ym-item-bd">
-					<div class="videobox">
-						<video src="http://www.zhangxinxu.com/study/media/cat.mp4" controls="" width="100%" autobuffer=""></video>
-					</div>
+					<p>{$vo.content}</p>
+
+					{switch name="vo.type" }
+					    {case value="1"}
+							<div class="imgbox">
+							{volist name='vo.resource' id="vb"}
+								<img src="{$vb}">
+							{/volist}
+							</div>
+					    {/case}
+					    {case value="2"}
+								<div class="videobox">
+									<video src="{$vo.resource}" controls="" autobuffer=""></video>
+								</div>
+					    {/case}
+					    {case value="3"}
+					    	<div class="audiobox">
+									<audio src="{$vo.resource}" controls="" autobuffer=""></audio>
+								</div>
+
+					    {/case}
+					    {default /}
+					{/switch}
 				</div>
 			</div>
+
+			{/volist}
+
 		</div>
-		<div id="pagebox" class="pagebox"></div>
-	</div>
-	
-<script>
-// 分页
-layui.use('laypage', function(){
-  var laypage = layui.laypage;
-  
-  //执行一个laypage实例
-  laypage.render({
-    elem: 'pagebox' //注意，这里的 test1 是 ID，不用加 # 号
-    ,count: 50 //数据总数，从服务端得到
-  });
-});
+		{$page}
 
-</script> 
+
+		<div id="pagebox" class="pagebox">
+					
+
+		</div>
+	</div>
+
+	<style type="text/css">
+
+	</style>
+	

@@ -72,5 +72,20 @@ class Cate extends Model
 	    	return $arr;
 	    	
 	    }
+	    //获取该分类下的帖子
+	    public function getPost()
+	    {
+	    	return $this->hasMany("post","id","id");
+	    }
+
+
+
+
+
+
+
+
+
+
 
 }

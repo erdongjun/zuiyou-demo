@@ -375,10 +375,9 @@
         data:_data,
         type:'post',
         success:function(data){
-            return false;
           layer.msg(data.msg,{time:1000},function(){
             if(data.status == 1){
-                window.location.href='/public/index.php/admin/index/index';
+                window.location.reload();
             }
           });
            
