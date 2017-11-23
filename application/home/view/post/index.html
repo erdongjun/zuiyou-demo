@@ -1,0 +1,75 @@
+<!-- 引入布局模板 -->
+{layout name='/layout/common'}
+<!-- 主区域代码 -->
+<div class="layui-main ym-main layui-clear">
+    <div class="bar-top">
+        <div class="maskbg"><div class="mask"></div></div>
+        <div class="cate-info">
+            <img class="cateimg" src="{$info.icon}" />
+            <div class="intro">
+                <p class="p1">{$info.name}</p>
+                <p class="p2">{$info.des}</p>
+                <div class="p3">
+                    <span class="type">话题</span> <span class="num">212123</span>
+                    <span class="type">关注</span><span class="num">212123</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 主区域左侧 -->
+    <div class="content-left">
+        <div class="ym-list">
+            {empty name='list'}
+                <div class="ym-item" style="text-align:center"> 
+                暂无帖子 <a style="color:#5FB878" href="/public/index.php/home/user/contribute">去发帖</a>
+                </div>
+            {/empty}
+            {volist name='list' id="vo"}
+                <div class="ym-item">
+                <div class="ym-item-tit">
+                    <img src="{$vo.avatar}">
+                    <span>{$vo.nick}</span><span class="layui-badge">vip</span>
+                </div>
+                <div class="ym-item-bd">
+                    <p>{$vo.content}</p>
+
+                    {switch name="vo.type" }
+                        {case value="1"}
+                            <div class="imgbox">
+                            {volist name='vo.resource' id="vb"}
+                                <img src="{$vb}">
+                            {/volist}
+                            </div>
+                        {/case}
+                        {case value="2"}
+                                <div class="videobox">
+                                    <video src="{$vo.resource}" controls="" autobuffer=""></video>
+                                </div>
+                        {/case}
+                        {case value="3"}
+                            <div class="audiobox">
+                                    <audio src="{$vo.resource}" controls="" autobuffer=""></audio>
+                                </div>
+
+                        {/case}
+                        {default /}
+                    {/switch}
+                </div>
+            </div>
+
+            {/volist}
+
+        </div>
+        {$page}
+
+
+        <div id="pagebox" class="pagebox">
+                    
+
+        </div>
+    </div>
+
+    <style type="text/css">
+
+    </style>
+    
