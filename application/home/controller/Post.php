@@ -14,28 +14,33 @@ class Post extends Home
     public function index()
     {
     	$id = input('id');
-    	$cateres = CateModel::get($id);
+        // $postres = PostModel::get($id);
 
-    	$list = Db::table('ym_cate')
-    			->alias('c')
-    			->join('ym_post p','c.id = p.cate_id')
+        // $cate_id =  $postres['cate_id'];
+
+    	// $cateres = CateModel::get($id);
+
+    	$postinfo = Db::table('ym_post')
+    			->alias('p')
+    			->join('ym_cate c','p.cate_id = c.id')
     			->join('ym_user u','p.uid = u.uid')
-    			->where('cate_id','=',$id)
-    			->field('p.*,nick,avatar')
-    			->paginate(10);
-    	// 处理后的图片数组
-    	$arr =[];
-    	foreach ($list as $v) {
-    		if($v['type']==1){
-    			$imgs = explode(',',$v['resource']);
-    			$v['resource'] = $imgs;
-    		};
-    		$arr[]=$v;
-    	}
-    	$this->assign('page',$list->render());
+    			->where('p.id','=',$id)
+    			->field('p.*,name,nick,avatar')
+    			->find();
+        // dump($postinfo);
 
-    	$this->assign('info',$cateres);
-    	$this->assign('list',$arr);
+    	
+    	
+    		if($postinfo['type']==1){
+    			$imgs = explode(',',$postinfo['resource']);
+    			$postinfo['resource'] = $imgs;
+    		};
+    	
+
+        
+
+
+    	$this->assign('postinfo',$postinfo);
         return $this->fetch();
     }
 		

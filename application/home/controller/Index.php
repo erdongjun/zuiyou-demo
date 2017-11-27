@@ -22,6 +22,7 @@ class Index extends Home
     	}
     	$this->assign('page',$list->render());
     	$this->assign('list',$arr);
+        // dump($arr);
         return $this->fetch();
     }
     public function test()

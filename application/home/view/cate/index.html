@@ -31,7 +31,7 @@
 					<img src="{$vo.avatar}">
 					<span>{$vo.nick}</span><span class="layui-badge">vip</span>
 				</div>
-				<div class="ym-item-bd">
+				<a href="/public/index.php/home/post/index/id/{$vo.id}" class="ym-item-bd">
 					<p>{$vo.content}</p>
 
 					{switch name="vo.type" }
@@ -55,7 +55,7 @@
 					    {/case}
 					    {default /}
 					{/switch}
-				</div>
+				</a>
 			</div>
 
 			{/volist}
