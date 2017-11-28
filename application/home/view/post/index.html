@@ -6,27 +6,24 @@
     <div class="content-left">
 
         <div class="ym-list">
-
-         <div class="ym-item" style="margin-bottom: 0;"> 
-            <span class="layui-breadcrumb" lay-separator=">" >
+            <div class="ym-item" style="margin-bottom: 0;"> 
+                <span class="layui-breadcrumb" lay-separator=">" >
               <a href="/public/index.php/home">首页</a>
               <a href="/public/index.php/home/cate/index/id/{$postinfo.cate_id}">{$postinfo.name}</a>
-            </span>
-         </div>
+                </span>
+            </div>
             {empty name='postinfo'}
-                <div class="ym-item" style="text-align:center"> 
-                    帖子消失在虚空中了 
-                    <a style="color:#5FB878" href="/public/index.php/home/user/contribute">去发帖</a>
-                </div>
+            <div class="ym-item" style="text-align:center"> 
+                帖子消失在虚空中了 
+                <a style="color:#5FB878" href="/public/index.php/home/user/contribute">去发帖</a>
+            </div>
             {/empty}
-
-
             <div class="ym-item">
                 <div class="ym-item-tit">
                     <img src="{$postinfo.avatar}">
                     <span>{$postinfo.nick}</span><span class="layui-badge">vip</span>
                 </div>
-                <a href="/public/index.php/home/post/index/id/{$postinfo.id}" class="ym-item-bd">
+                <div class="ym-item-bd">
                     <p>{$postinfo.content}</p>
 
                     {switch name="postinfo.type" }
@@ -50,11 +47,49 @@
                         {/case}
                         {default /}
                     {/switch}
-                </a>
+                </div>
             </div>
-
-
         </div>
+        <div class="ym-list">
+            <div class="ym-item" style="margin-bottom: 0;"> 
+                <span>全部评论</span>
+                <span>只看楼主</span>
+                <span>倒序查看</span>
+            </div>
+            <div class="ym-item">
+                <div class="ym-item-tit">
+                    <img src="{$postinfo.avatar}">
+                    <span>{$postinfo.nick}</span><span class="layui-badge">vip</span>
+                </div>
+                <div class="ym-item-bd">
+                    <p>{$postinfo.content}</p>
+
+                    {switch name="postinfo.type" }
+                        {case value="1"}
+                            <div class="imgbox">
+                            {volist name='postinfo.resource' id="vb"}
+                                <img src="{$vb}">
+                            {/volist}
+                            </div>
+                        {/case}
+                        {case value="2"}
+                                <div class="videobox">
+                                    <video src="{$postinfo.resource}" controls="" autobuffer=""></video>
+                                </div>
+                        {/case}
+                        {case value="3"}
+                            <div class="audiobox">
+                                    <audio src="{$postinfo.resource}" controls="" autobuffer=""></audio>
+                                </div>
+
+                        {/case}
+                        {default /}
+                    {/switch}
+                </div>
+            </div>
+        </div>
+
+
 
 
         <div id="pagebox" class="pagebox">

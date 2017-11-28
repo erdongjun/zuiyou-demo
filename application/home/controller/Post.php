@@ -14,12 +14,6 @@ class Post extends Home
     public function index()
     {
     	$id = input('id');
-        // $postres = PostModel::get($id);
-
-        // $cate_id =  $postres['cate_id'];
-
-    	// $cateres = CateModel::get($id);
-
     	$postinfo = Db::table('ym_post')
     			->alias('p')
     			->join('ym_cate c','p.cate_id = c.id')
@@ -27,19 +21,10 @@ class Post extends Home
     			->where('p.id','=',$id)
     			->field('p.*,name,nick,avatar')
     			->find();
-        // dump($postinfo);
-
-    	
-    	
-    		if($postinfo['type']==1){
-    			$imgs = explode(',',$postinfo['resource']);
-    			$postinfo['resource'] = $imgs;
-    		};
-    	
-
-        
-
-
+		if($postinfo['type']==1){
+			$imgs = explode(',',$postinfo['resource']);
+			$postinfo['resource'] = $imgs;
+		};
     	$this->assign('postinfo',$postinfo);
         return $this->fetch();
     }
