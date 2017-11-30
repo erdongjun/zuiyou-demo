@@ -3,6 +3,7 @@ namespace app\home\controller;
 
 use app\admin\model\Cate as CateModel;
 use app\home\model\Post as PostModel;
+use app\home\model\Comment as CommentModel;
 use  think\Request;
 use think\Db;
 /**
@@ -25,6 +26,8 @@ class Post extends Home
 			$imgs = explode(',',$postinfo['resource']);
 			$postinfo['resource'] = $imgs;
 		};
+        $comment= CommentModel::where('post_id',$id)->select();
+        $this->assign('comment',$comment);
     	$this->assign('postinfo',$postinfo);
         return $this->fetch();
     }

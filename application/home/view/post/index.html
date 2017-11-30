@@ -20,7 +20,7 @@
             {/empty}
             <div class="ym-item">
                 <div class="ym-item-tit">
-                    <img src="{$postinfo.avatar}">
+                    <img src="{$postinfo.avatar}">{$postinfo.id}
                     <span>{$postinfo.nick}</span><span class="layui-badge">vip</span>
                 </div>
                 <div class="ym-item-bd">
@@ -56,37 +56,46 @@
                 <span>只看楼主</span>
                 <span>倒序查看</span>
             </div>
-            <div class="ym-item">
+            {empty name='comment'}
+                <div class="ym-item" style="text-align:center"> 暂无评论</div>
+            {/empty}
+            {volist name='comment' id="vo"}
+                <div class="ym-item">
                 <div class="ym-item-tit">
-                    <img src="{$postinfo.avatar}">
-                    <span>{$postinfo.nick}</span><span class="layui-badge">vip</span>
+                    <img src="{$vo.comment_uid}">
+                    <span>{$vo.comment_uid}</span><span class="layui-badge">vip</span>
                 </div>
-                <div class="ym-item-bd">
-                    <p>{$postinfo.content}</p>
+                <a href="/public/index.php/home/post/index/id/{$vo.id}" class="ym-item-bd">
+                    <p>{$vo.content}</p>
 
-                    {switch name="postinfo.type" }
+                    {switch name="vo.content_type" }
                         {case value="1"}
                             <div class="imgbox">
-                            {volist name='postinfo.resource' id="vb"}
+                            {volist name='vo.resource' id="vb"}
                                 <img src="{$vb}">
                             {/volist}
                             </div>
                         {/case}
                         {case value="2"}
                                 <div class="videobox">
-                                    <video src="{$postinfo.resource}" controls="" autobuffer=""></video>
+                                    <video src="{$vo.resource}" controls="" autobuffer=""></video>
                                 </div>
                         {/case}
                         {case value="3"}
                             <div class="audiobox">
-                                    <audio src="{$postinfo.resource}" controls="" autobuffer=""></audio>
+                                    <audio src="{$vo.resource}" controls="" autobuffer=""></audio>
                                 </div>
 
                         {/case}
                         {default /}
                     {/switch}
-                </div>
+                </a>
             </div>
+
+            {/volist}
+
+
+
         </div>
 
 
@@ -96,9 +105,363 @@
                     
 
         </div>
+
+        <div class="commentPost">
+            <form class="layui-form" id="c_form" action="">
+            <input type="hidden" value="{$postinfo.id}" name="post_id">
+            <input type="hidden" value="{$Think.session.user_uid}" name="comment_uid">
+
+            <div class="layui-form-item layui-form-text c_upload">
+                <div class="layui-input-block">
+                    <textarea placeholder="说点什么吧" name="content" class="layui-textarea"></textarea>
+                    <div class="layui-btn-group selectUpload" >
+                        <input type="hidden" name="content_type" value="0">
+                        <a class="layui-btn" href="javascript:;" id="imgBtn">图片</a>
+                        <a class="layui-btn" href="javascript:;" id="videoBtn" >视频</a>
+                        <a class="layui-btn" href="javascript:;" id="audioBtn" >音乐</a>
+                    </div>
+                    <div id="uploader" class="wu-example">
+                        <!-- 图片上传 -->
+                        <div class="upbox imgbox">
+                            <div class="imglist" id="imglist">
+                                <div class="imgitem addimgbtn" ><i class="layui-icon">&#xe654;</i>
+                                    <div id="addimgbtn"></div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 视频上传 -->
+                        <div class="upbox videobox" >
+                            <p class="layui-clear">
+                                <span class="tip">提示:<em>上传中...</em></span>
+                                <i class="layui-icon fr">&#xe640;</i>
+                                <input type="hidden" name="video" value="">
+                            </p>
+                            <div class="layui-progress layui-progress-big" lay-filter="video" lay-showPercent="yes">
+                              <div class="layui-progress-bar layui-bg-green" lay-percent="0%"></div>
+                            </div>
+                        </div>
+                        <!-- 音频上传 -->
+                        <div class="upbox audiobox">
+                            <p class="layui-clear">
+                                <span class="tip">提示:<em>上传中...</em></span>
+                                <i class="layui-icon fr">&#xe640;</i>
+                                <input type="hidden" name="audio" value="">
+                            </p>
+                            <div class="layui-progress layui-progress-big" lay-filter="audio" lay-showPercent="yes">
+                              <div class="layui-progress-bar layui-bg-green" lay-percent="0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit="" lay-filter="add">发布评论</button>
+                </div>
+            </div>
+        </form>
+        </div>
     </div>
 
-    <style type="text/css">
+        <script>
+    $('body ').on('click', '.webuploader-container', function(e) {
+        if ($(this).hasClass('layui-disabled')) {
+            e.stopPropagation();
+            e.preventDefault();
+        }
+    })
+    // 上传完成展示图片
+    function showImg(res) {
+        var html = '';
+        if (res.status != 1) {
+            layer.msg(res.msg)
+            html += '<div class="imgitem"><i class="layui-icon">&#x1007;</i>  <p class="tip">预览出错</p></div>';
+        } else {
+            $('.upbox').hide();
+            $('.imgbox').show();
+            html += '<div class="imgitem"><input type="hidden" name="img[]" value="' + res.url + '" /> <i class="layui-icon">&#x1007;</i><img src="' + res.url + '" /></div>';
+        }
+        $('#imglist .addimgbtn').before(html);
+        $('#addimgbtn').css({
+            'height': '100%'
+        }).find('.webuploader-pick').next().css({
+            'height': '100%',
+            'width': '100%'
+        })
+    };
 
-    </style>
+    // 设置资源上传按钮不可选
+    function setUploadBtn(val) {
+        $('[name=type]').val(val);
+        $('.selectUpload a').addClass('layui-disabled');
+
+
+        if (val == 0) {
+            //普通
+            $('.selectUpload a').removeClass('layui-disabled');
+            $('[name=video]').val('');
+            $('[name=audio]').val('');
+        } else if (val == 1) {
+            //图片
+            $('.selectUpload a').eq(val - 1).removeClass('layui-disabled')
+        } else if (val == 2) {
+            //视频
+            $('.upbox').hide();
+            $('.videobox').show();
+        } else {
+            //音频
+            $('.upbox').hide();
+            $('.audiobox').show();
+        }
+    };
+
+    //删除图片操作
+    $('.imgbox ').on('click', '.imgitem>.layui-icon', function() {
+        $(this).parents('.imgitem').remove();
+        var len = $('.imgbox').find('.imgitem').length;
+        if (len == 1) {
+            $('.upbox').hide();
+            setUploadBtn(0)
+        }
+    });
+
+    layui.use(['layer', 'form', 'element'], function() {
+        var layer = layui.layer;
+        var form = layui.form;
+        var element = layui.element;
+
+
+        //删除视频操作
+        $('.videobox ').on('click', '.layui-icon', function() {
+            $('.videobox .tip em').html('上传中...');
+            element.progress('video', '0%');
+            $('.upbox').hide();
+            setUploadBtn(0);
+        });
+        //删除视频操作
+        $('.audiobox ').on('click', '.layui-icon', function() {
+            $('.audiobox .tip em').html('上传中...');
+            element.progress('audio', '0%');
+            $('.upbox').hide();
+            setUploadBtn(0);
+        });
+
+
+        // 实例化图片上传
+        var uploaderImg = WebUploader.create({
+            // swf文件路径
+            swf: '/Public/static/lib/webuploader/Uploader.swf',
+            // 文件接收服务端。
+            server: '/public/index.php/home/home/upload',
+
+            // 选择文件的按钮。可选。
+            // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+            pick: '#imgBtn',
+            // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+            resize: false,
+            duplicate: true, //重复上传
+            accept: {
+                title: 'Images',
+                extensions: 'gif,jpg,jpeg,bmp,png',
+                mimeTypes: 'image/*'
+            }
+        });
+        //添加图片的btn
+        uploaderImg.addButton({
+            id: '#addimgbtn',
+        });
+
+        // 当有图片文件被添加进队列之前
+        uploaderImg.on('beforeFileQueued', function(file) {
+            var len = $('.imgbox').find('.imgitem').length;
+            if (len > 9) {
+                layer.msg('最多添加9个图片');
+                return false
+            }
+        });
+        // 当有图片文件被添加进队列的时候
+        uploaderImg.on('fileQueued', function(file) {
+            setUploadBtn(1)
+            uploaderImg.upload();
+        });
+        uploaderImg.on('uploadSuccess', function(file, res) {
+            showImg(res)
+        });
+        uploaderImg.on('uploadError', function(file) {
+            // $('#' + file.id).find('p.state').text('上传出错');
+            layer.msg('上传出错了', { time: 500 });
+        });
+
+
+        // 实例化视频上传
+        var uploaderVideo = WebUploader.create({
+            // swf文件路径
+            swf: '/Public/static/lib/webuploader/Uploader.swf',
+            // 文件接收服务端。
+            server: '/public/index.php/home/home/upload',
+
+            // 选择文件的按钮。可选。
+            // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+            pick: {
+                id: '#videoBtn',
+                multiple: false
+            },
+            // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+            resize: false,
+            duplicate: true, //重复上传
+            accept: {
+                title: 'Images',
+                extensions: 'mp4,webm,ogg',
+                mimeTypes: 'video/*'
+            }
+        });
+        // 当有视频文件被添加进队列的时候
+        uploaderVideo.on('fileQueued', function(file) {
+            setUploadBtn(2);
+            uploaderVideo.upload();
+        });
+
+        //视频上传成功
+        uploaderVideo.on('uploadSuccess', function(file, res) {
+            if (res.status == 1) {
+                $('.videobox .tip em').html('上传服务器成功!');
+                $('[name=video]').val(res.url)
+            } else {
+                layer.msg(res.msg);
+            }
+
+        });
+        //视频上传出错
+        uploaderVideo.on('uploadError', function(file) {
+            layer.msg('上传出错了', { time: 500 });
+        });
+        //视频上传进度条
+        uploaderVideo.on('uploadProgress', function(file, percentage) {
+            if (percentage < 1) {
+                $('.videobox .tip em').html('上传中...')
+            } else {
+                $('.videobox .tip em').html('上传完成')
+            }
+            var percent = parseInt(percentage * 100) + '%';
+            element.progress('video', percent);
+        });
+
+
+        // 实例化音频上传
+        var uploaderAudio = WebUploader.create({
+            // swf文件路径
+            swf: '/Public/static/lib/webuploader/Uploader.swf',
+            // 文件接收服务端。
+            server: '/public/index.php/home/home/upload',
+
+            // 选择文件的按钮。可选。
+            // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+            pick: {
+                id: '#audioBtn',
+                multiple: false
+            },
+            // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+            resize: false,
+            duplicate: true, //重复上传
+            accept: {
+                title: 'Images',
+                extensions: 'mp3',
+                mimeTypes: 'audio/*'
+            }
+        });
+        // 当有音频文件被添加进队列的时候
+        uploaderAudio.on('fileQueued', function(file) {
+            setUploadBtn(3);
+            uploaderAudio.upload();
+        });
+        //音频上传成功
+        uploaderAudio.on('uploadSuccess', function(file, res) {
+            if (res.status == 1) {
+                $('.audiobox .tip em').html('上传服务器成功!');
+                $('[name=audio]').val(res.url)
+            } else {
+                layer.msg(res.msg);
+            }
+        });
+        //音频上传出错
+        uploaderAudio.on('uploadError', function(file) {
+            layer.msg('上传出错了', { time: 500 });
+        });
+        //音频上传进度条
+        uploaderAudio.on('uploadProgress', function(file, percentage) {
+            if (percentage < 1) {
+                $('.audiobox.tip em').html('上传中...')
+            } else {
+                $('.audiobox.tip em').html('上传完成')
+            }
+            var percent = parseInt(percentage * 100) + '%';
+            element.progress('audio', percent);
+        });
+
+        //自定义验证规则
+        form.verify({
+
+        });
+        //监听提交
+        form.on('submit(add)', function(data) {
+            var _data = $('#c_form').serialize()
+            console.log(data.field);
+
+
+
+            console.log(_data);
+
+            var isPost = true;
+
+            var type = $('[name=content_type]').val();
+
+            if (type == 1) {
+                var len = $('.imgbox').find('.imgitem').length;
+                if (len < 2) {
+                    isPost = false;
+                    layer.msg('请选择图片', { time: 500 })
+
+                }
+            } else if (type == 2) {
+                if (!$('[name=video]').val()) {
+                    isPost = false;
+                    layer.msg('请选择视频文件', { time: 500 })
+
+                }
+
+            } else if (type == 3) {
+                if (!$('[name=audio]').val()) {
+                    isPost = false;
+                    layer.msg('请选择音频文件', { time: 500 })
+
+                }
+            } else {
+                if (data.field.content.length < 1) {
+                    isPost = false;
+                    layer.msg('请输入内容', { time: 500 })
+                }
+            }
+            if (!isPost) {
+                return false;
+            }
+
+            $.ajax({
+                url: '/public/index.php/home/comment/create',
+                data: _data,
+                type: 'post',
+                success: function(data) {
+                    layer.msg(data.msg, { time: 1000 }, function() {
+                        if (data.status == 1) {
+                            // window.location.reload();
+                        }
+                    });
+
+                }
+            })
+
+            return false;
+        });
+    });
+    </script>
     
