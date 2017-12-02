@@ -42,11 +42,11 @@ class Comment extends Home
             $data['content_type'] = $post_data['content_type'];
             $data['comment_uid'] = session('user_uid');
 
+            dump($post_data['comment_pid']);die;
 
 
-
-            // $data['comment_pid'] = $post_data['comment_pid'] ? $post_data['comment_pid']:0;
-            // $data['replyed_uid'] = $post_data['replyed_uid']?$post_data['replyed_uid']:0;
+            $data['comment_pid'] = $post_data['comment_pid'] ? $post_data['comment_pid']:0;
+            $data['replyed_uid'] = $post_data['replyed_uid'] ? $post_data['replyed_uid']:0;
 
 
 
@@ -69,9 +69,11 @@ class Comment extends Home
                 //音频
                 $data['resource'] = $post_data['audio'];
             }
-            // dump($data);die;
 
-            
+
+            dump($data);die;
+
+
 
             if (!CommentModel::create($data)) {
                 return ['status'=>'0','msg'=>$this->getError()];
