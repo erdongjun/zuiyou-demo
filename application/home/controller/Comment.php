@@ -2,6 +2,7 @@
 namespace app\home\controller;
 
 use app\home\model\Comment as CommentModel;
+use app\home\model\User as UserModel;
 use  think\Request;
 use think\Db;
 /**
@@ -33,20 +34,36 @@ class Comment extends Home
     {
 
         if($this->request->isPost()){
-            dump('222');
+            // dump('222');
 
             $post_data = $this->request->post();
+            $uid = session('user_uid');
+            $user_info =  UserModel::where('uid',$uid)->field('nick,avatar')->find();
+            // dump($user_info );
+            if(!$user_info){
+                return [
+                    'status'=>0,
+                    'msg'=>$this->getError()
+                ];
+            }
+
             $data=[];
             $data['post_id'] = $post_data['post_id'];
             $data['content'] = $post_data['content'];
             $data['content_type'] = $post_data['content_type'];
-            $data['comment_uid'] = session('user_uid');
+            $data['comment_uid'] = $uid;
+            $data['comment_nick'] = $user_info['nick'];
+            $data['comment_avatar'] = $user_info['avatar'];
 
-            dump($post_data['comment_pid']);die;
 
 
-            $data['comment_pid'] = $post_data['comment_pid'] ? $post_data['comment_pid']:0;
-            $data['replyed_uid'] = $post_data['replyed_uid'] ? $post_data['replyed_uid']:0;
+
+
+            // dump($post_data);die;
+
+
+            // $data['comment_pid'] = $post_data['comment_pid'] ? $post_data['comment_pid']:0;
+            // $data['replyed_uid'] = $post_data['replyed_uid'] ? $post_data['replyed_uid']:0;
 
 
 
@@ -71,7 +88,7 @@ class Comment extends Home
             }
 
 
-            dump($data);die;
+            // dump($data);die;
 
 
 
@@ -80,8 +97,6 @@ class Comment extends Home
             }
 
             return ['status'=>'1','msg'=>'发布成功'];
-
-
             // dump($post_data);die;
         }
 

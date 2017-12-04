@@ -27,6 +27,27 @@ class Post extends Home
 			$postinfo['resource'] = $imgs;
 		};
         $comment= CommentModel::where('post_id',$id)->select();
+        foreach ($comment as $v) {
+
+
+            if(!$v['resource']){
+                $resource=[];
+            }else {  
+                $resource = explode(',',$v['resource']);
+            }
+            $v['resource'] = $resource;
+                dump($resource);
+
+
+        }
+        
+        
+
+
+
+        // dump($comment);die;
+
+
         $this->assign('comment',$comment);
     	$this->assign('postinfo',$postinfo);
         return $this->fetch();

@@ -62,16 +62,17 @@
             {volist name='comment' id="vo"}
                 <div class="ym-item">
                 <div class="ym-item-tit">
-                    <img src="{$vo.comment_uid}">
-                    <span>{$vo.comment_uid}</span><span class="layui-badge">vip</span>
+                    <img src="{$vo.comment_avatar}">
+                    <span>{$vo.comment_nick}</span><span class="layui-badge">vip</span>
                 </div>
                 <a href="/public/index.php/home/post/index/id/{$vo.id}" class="ym-item-bd">
-                    <p>{$vo.content}</p>
+                    <p>{$vo.content} {$vo.content_type}</p>
+
 
                     {switch name="vo.content_type" }
                         {case value="1"}
                             <div class="imgbox">
-                            {volist name='vo.resource' id="vb"}
+                            {volist name='vo["resource"]' id="vb"}
                                 <img src="{$vb}">
                             {/volist}
                             </div>
@@ -193,7 +194,7 @@
 
     // 设置资源上传按钮不可选
     function setUploadBtn(val) {
-        $('[name=type]').val(val);
+        $('[name=content_type]').val(val);
         $('.selectUpload a').addClass('layui-disabled');
 
 
