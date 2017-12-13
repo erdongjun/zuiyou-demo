@@ -32,43 +32,36 @@ class Comment extends Home
 
     public function create()
     {
-
         if($this->request->isPost()){
-            // dump('222');
-
             $post_data = $this->request->post();
             $uid = session('user_uid');
             $user_info =  UserModel::where('uid',$uid)->field('nick,avatar')->find();
-            // dump($user_info );
             if(!$user_info){
                 return [
                     'status'=>0,
                     'msg'=>$this->getError()
                 ];
             }
-
             $data=[];
+            //评论内容的主体
             $data['post_id'] = $post_data['post_id'];
             $data['content'] = $post_data['content'];
             $data['content_type'] = $post_data['content_type'];
             $data['comment_uid'] = $uid;
             $data['comment_nick'] = $user_info['nick'];
             $data['comment_avatar'] = $user_info['avatar'];
+            // 评论层级 1 一级评论 2 二级评论
+            $data['level'] = isset($post_data['level'])?$post_data['level']:1;
+            //是否是一级评论
+            $isLevelOne = $data['level'] == 1? true :false;
+            $data['comment_pid'] = isset($post_data['comment_pid'])?$post_data['comment_pid']:'';
+            $data['replyed_uid'] = isset($post_data['replyed_uid'])?$post_data['replyed_uid']:'';
 
-
-
-
-
-            // dump($post_data);die;
-
-
-            // $data['comment_pid'] = $post_data['comment_pid'] ? $post_data['comment_pid']:0;
-            // $data['replyed_uid'] = $post_data['replyed_uid'] ? $post_data['replyed_uid']:0;
-
-
-
-
-
+            if(!!$data['replyed_uid']){
+                 $replyed_info =  UserModel::where('uid',$data['replyed_uid'])->field('nick,avatar')->find();
+                $data['replyed_nick'] = $replyed_info['nick'];
+                $data['replyed_avatar'] = $replyed_info['avatar'];
+            }
             if($post_data['content_type']==0){
                 // 文字
                 $data['resource'] ='';
@@ -86,6 +79,8 @@ class Comment extends Home
                 //音频
                 $data['resource'] = $post_data['audio'];
             }
+
+
 
 
             // dump($data);die;

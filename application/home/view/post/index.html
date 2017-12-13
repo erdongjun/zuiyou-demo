@@ -48,6 +48,7 @@
                         {default /}
                     {/switch}
                 </div>
+                 <div class="replyedBtn" data-level="1">回复</div>
             </div>
         </div>
         <div class="ym-list">
@@ -60,13 +61,13 @@
                 <div class="ym-item" style="text-align:center"> 暂无评论</div>
             {/empty}
             {volist name='comment' id="vo"}
-                <div class="ym-item">
+            <div class="ym-item">
                 <div class="ym-item-tit">
                     <img src="{$vo.comment_avatar}">
                     <span>{$vo.comment_nick}</span><span class="layui-badge">vip</span>
                 </div>
-                <a href="/public/index.php/home/post/index/id/{$vo.id}" class="ym-item-bd">
-                    <p>{$vo.content} {$vo.content_type}</p>
+                <div class="ym-item-bd">
+                    <p>{$vo.content}</p>
 
 
                     {switch name="vo.content_type" }
@@ -90,7 +91,43 @@
                         {/case}
                         {default /}
                     {/switch}
-                </a>
+                </div>
+                <div class="replyedBtn"  data-level="2" data-pid="{$vo.id}">回复</div>
+                <div>
+                    <h2>子评论框</h2>
+                    {volist name='vo.son' id="vb"}
+                    <p>
+                        {$vb.comment_nick}:{notempty name='vb.replyed_nick'}@{$vb.replyed_nick}{/notempty}  {$vb.content}
+                    </p>
+                        {switch name="vb.content_type" }
+                            {case value="1"}
+                                <div class="imgbox">
+                                {volist name='vb.resource' id="vc"}
+                                    <img src="{$vc}">
+                                {/volist}
+                                </div>
+                            {/case}
+                            {case value="2"}
+                                    <div class="videobox">
+                                        <video src="{$vb.resource}" controls="" autobuffer=""></video>
+                                    </div>
+                            {/case}
+                            {case value="3"}
+                                <div class="audiobox">
+                                        <audio src="{$vb.resource}" controls="" autobuffer=""></audio>
+                                    </div>
+
+                            {/case}
+                            {default /}
+                        {/switch}
+                    <div class="replyedBtn"  data-level="2" data-replyedid="{$vb.comment_uid}" data-pid="{$vo.id}">针对回复</div>
+                    {/volist}
+                    
+
+                </div>
+
+
+
             </div>
 
             {/volist}
@@ -111,6 +148,9 @@
             <form class="layui-form" id="c_form" action="">
             <input type="hidden" value="{$postinfo.id}" name="post_id">
             <input type="hidden" value="{$Think.session.user_uid}" name="comment_uid">
+            <input type="hidden" value="" name="replyed_uid">
+            <input type="hidden" value="" name="comment_pid">
+            <input type="hidden" value="1" name="level">
 
             <div class="layui-form-item layui-form-text c_upload">
                 <div class="layui-input-block">
@@ -171,6 +211,17 @@
             e.stopPropagation();
             e.preventDefault();
         }
+    })
+
+    //回复评论
+    $('.replyedBtn').click(function(){
+        var self =  $(this);
+        var level = self.data('level');
+        var comment_pid = self.data('pid');
+        var replyed_uid = self.data('replyedid');
+        $("[name=comment_pid]").val(comment_pid);
+        $("[name=level]").val(level);
+        $("[name=replyed_uid]").val(replyed_uid);
     })
     // 上传完成展示图片
     function showImg(res) {

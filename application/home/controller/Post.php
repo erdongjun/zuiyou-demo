@@ -26,29 +26,46 @@ class Post extends Home
 			$imgs = explode(',',$postinfo['resource']);
 			$postinfo['resource'] = $imgs;
 		};
-        $comment= CommentModel::where('post_id',$id)->select();
+        $comment= CommentModel::where(['post_id'=>$id])->select();
+
+        $commentDate = array();
         foreach ($comment as $v) {
 
+            if($v['level'] == 1){
+                if($v['content_type']==1){
+                    if(!$v['resource']){
+                        $resource=[];
+                    }else { 
+                        $resource = explode(',',$v['resource']);
+                    }
+                    $v['resource'] = $resource;
+               };
 
-            if(!$v['resource']){
-                $resource=[];
-            }else {  
-                $resource = explode(',',$v['resource']);
+               $son = [];
+
+                foreach ($comment as $b) {
+                    if($b['comment_pid'] == $v['id']){
+                        if($b['content_type']==1){
+                            if(!$b['resource']){
+                                $sonresource=[];
+                            }else { 
+                                $sonresource = explode(',',$b['resource']);
+                            }
+                            $b['resource'] = $sonresource;
+                       };
+                        $son[] = $b;
+                    }
+                }
+                $v['son'] = $son;
+                $commentDate[] = $v;
             }
-            $v['resource'] = $resource;
-                dump($resource);
-
 
         }
-        
-        
+        // dump($commentDate);
+
+        $this->assign('comment',$commentDate);
 
 
-
-        // dump($comment);die;
-
-
-        $this->assign('comment',$comment);
     	$this->assign('postinfo',$postinfo);
         return $this->fetch();
     }
