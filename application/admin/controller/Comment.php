@@ -9,7 +9,7 @@ class Comment extends Admin
 	 public function lis()
         {
            
-            $list= CommentModel::where([])->paginate(10);
+            $list= CommentModel::paginate(10);
         	// 处理后的图片数组
         	$arr =[];
         	foreach ($list as $v) {

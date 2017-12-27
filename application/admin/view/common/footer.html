@@ -4,30 +4,8 @@
     © layui.com - 底部固定区域
   </div>
 </div>
-<script>
-//JavaScript代码区域
-layui.use(['element','layer'], function(){
-  var element = layui.element;
-  var layer = layui.layer;
-
-	// 退出登录
-	$('.logout').click(function(){
-		$.ajax({
-			url:'/public/index.php/admin/login/logout',
-			type:'get',
-			success:function(data){
-
-				layer.msg(data.msg,{time:1000},function(){
-		            if(data.status == 1){
-		                window.location.href='/public/index.php/admin/index/index';
-		            }
-		         })
-				
-			}
-		})
-	})
-});
-
-</script>
+<script type="text/javascript" src='/public/static/lib/jquery.js'></script>
+<script type="text/javascript" src='/public/static/lib/layui/layui.js'></script>
+<script type="text/javascript" src='/public/static/admin/js/base.js'></script>
 </body>
 </html>

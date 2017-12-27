@@ -4,36 +4,36 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>后台</title>
+    <title>darkantking后台管理</title>
     <link rel="stylesheet" type="text/css" href="/public/static/lib/layui/css/layui.css">
-    <link rel="stylesheet" href="/public/static/base/css/global.css">
-
-    <link rel="stylesheet" type="text/css" href="/public/static/admin/css/base.css">
-    <script type="text/javascript" src='/public/static/lib/jquery.js'></script>
-    <script type="text/javascript" src='/public/static/lib/layui/layui.js'></script>
+      <link rel="stylesheet" type="text/css"  href="/public/static/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css"  href="/public/static/base/css/global.css">
+    <link rel="stylesheet" type="text/css"  href="/public/static/admin/css/base.css">
+  
 </head>
-
 <body class="layui-layout-body">
     <div class="layui-layout layui-layout-admin">
         <div class="layui-header">
-            <div class="layui-logo">后台</div>
-            <!-- 头部区域（可配合layui已有的水平导航） -->
-            <ul class="layui-nav layui-layout-left">
-                <li class="layui-nav-item"><a href="">首页</a></li>
-                <li class="layui-nav-item"><a href="">系统管理</a></li>
-                <li class="layui-nav-item"><a href="">圈子管理</a></li>
+            <div class="layui-logo">darkantking后台管理</div>
+            <!-- 头部区域 -->
+            <ul class="layui-nav layui-layout-left" lay-filter="topNav" >
+                <li class="layui-nav-item layui-this"><a href="javascript:;"><i class="fa fa-deviantart"></i>功能开发中</a></li>
+                <li class="layui-nav-item"><a href="javascript:;"><i class="fa fa-home"></i>管理首页</a></li>
+                <li class="layui-nav-item"><a href="javascript:;"><i class="fa fa-cog"></i>系统管理</a></li>
+                <li class="layui-nav-item"><a href="javascript:;"><i class="fa fa-th-large"></i>模块管理</a></li>
+                <li class="layui-nav-item"><a href="javascript:;"><i class="fa fa-cogs"></i>运营管理</a></li>
+                <li class="layui-nav-item"><a href="javascript:;"><i class="fa fa-line-chart"></i>数据管理</a></li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;">其它系统</a>
+                    <a href="javascript:;"><i class="fa fa-th-list"></i>其它系统</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="">邮件管理</a></dd>
-                        <dd><a href="">消息管理</a></dd>
-                        <dd><a href="">授权管理</a></dd>
+                        <dd><a href="javascript:;"><i class="fa fa-envelope"></i>邮件管理</a></dd>
+                        <dd><a href="javascript:;"><i class="fa fa-commenting"></i>消息管理</a></dd>
+                        <dd><a href="javascript:;"><i class="fa fa-cogs"></i>授权管理</a></dd>
                     </dl>
                 </li>
             </ul>
           
             <ul class="layui-nav layui-layout-right">
-               
                 <li class="layui-nav-item">
                     <a href="javascript:;" name='{$Think.session.admin_uid} '>
                       <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
@@ -48,12 +48,21 @@
             </ul>
         </div>
         <div class="layui-side layui-bg-black">
-            <div class="layui-side-scroll">
-                <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-                <ul class="layui-nav layui-nav-tree" lay-filter="test">
-                    <li class="layui-nav-item layui-nav-itemed">
+            <div class="layui-side-scroll" id="leftNav">
+                <!-- 左侧导航区域 -->
+                <!-- 功能开发中 -->
+                <ul class="layui-nav layui-nav-tree dk-nav-tree">
+                    <li class="layui-nav-item  layui-nav-itemed">
                         <a class="" href="javascript:;">系统管理</a>
+
                         <dl class="layui-nav-child">
+                            <dd class="dk-nav-child">
+                                <a href="javascript:;">分类管理</a>
+                                <dl>
+                                    <dd><a href="javascript:;">分类添加</a></dd>
+                                    <dd><a href="javascript:;">分类列表</a></dd>
+                                </dl>
+                            </dd>
                             <dd><a onclick="setFrameUrl('/public/index.php/admin/system/index')" href="javascript:;">系统信息</a></dd>
                             <dd><a onclick="setFrameUrl('/public/index.php/admin/user/index')" href="javascript:;">管理员管理</a></dd>
                             <dd><a href="javascript:;">权限管理</a></dd>
@@ -62,6 +71,7 @@
                     <li class="layui-nav-item">
                         <a href="javascript:;">分类管理</a>
                         <dl class="layui-nav-child">
+
                             <dd><a onclick="setFrameUrl('/public/index.php/admin/cate/index')"  href="javascript:;">分类列表</a></dd>
                         </dl>
                     </li>
@@ -87,5 +97,251 @@
                     <li class="layui-nav-item"><a href="">云市场</a></li>
                     <li class="layui-nav-item"><a href="">发布商品</a></li>
                 </ul>
+
+                <!-- 快捷菜单 -->
+                <ul class="layui-nav layui-nav-tree dk-nav-tree layui-hide" >
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;"><i class="fa fa-home"></i>快捷菜单</a>
+                        <dl class="layui-nav-child">
+                            <dd><a onclick="setFrameUrl('/public/index.php/admin/system/index')" href="javascript:;">系统信息</a></dd>
+                            <dd><a onclick="setFrameUrl('/public/index.php/admin/user/index')" href="javascript:;">管理员管理</a></dd>
+                            <dd><a href="javascript:;">权限管理</a></dd>
+                        </dl>
+                    </li>
+                </ul>
+                <!-- 系统管理 -->
+                <ul class="layui-nav layui-nav-tree dk-nav-tree layui-hide">
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;">网站设置</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">基本设置</a></dd>
+                            <dd><a href="javascript:;">API管理</a></dd>
+                            <dd><a href="javascript:;">域名设置</a></dd>
+                            <dd><a href="javascript:;">邮件设置</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;">权限管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">新增权限</a></dd>
+                            <dd><a href="javascript:;">权限列表</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;">账号管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">账号列表</a></dd>
+                            <dd><a href="javascript:;">新增账号</a></dd>
+                            <dd><a href="javascript:;">修改密码</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;">安全管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">登录记录</a></dd>
+                            <dd><a href="javascript:;">请求日志</a></dd>
+                            <dd><a href="javascript:;">操作记录</a></dd>
+                            <dd><a href="javascript:;">邮件日志</a></dd>
+                        </dl>
+                    </li>
+                </ul>
+                <!-- 模块管理 -->
+                <ul class="layui-nav layui-nav-tree dk-nav-tree layui-hide">
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;">小说模块</a>
+                        <dl class="layui-nav-child">
+                            <dd class="dk-nav-tree">
+                                <a href="javascript:;">分类管理</a>
+                                <dl>
+                                    <dd><a href="javascript:;">分类添加</a></dd>
+                                    <dd><a href="javascript:;">分类列表</a></dd>
+                                </dl>
+                            </dd>
+                            <dd><a href="javascript:;">小说管理</a></dd>
+                            <dd><a href="javascript:;">章节管理</a></dd>
+                            <dd><a href="javascript:;">模块设置</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;">文章模块</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">分类管理</a></dd>
+                            <dd><a href="javascript:;">文章管理</a></dd>
+                            <dd><a href="javascript:;">模块设置</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;">图集模块</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">分类管理</a></dd>
+                            <dd><a href="javascript:;">图集管理</a></dd>
+                            <dd><a href="javascript:;">模块设置</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;">应用模块</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">分类管理</a></dd>
+                            <dd><a href="javascript:;">应用管理</a></dd>
+                            <dd><a href="javascript:;">厂商管理</a></dd>
+                            <dd><a href="javascript:;">模块设置</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;">原创模块</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">作家管理</a></dd>
+                            <dd><a href="javascript:;">原创小说</a></dd>
+                            <dd><a href="javascript:;">文章投稿</a></dd>
+                            <dd><a href="javascript:;">打赏道具</a></dd>
+                            <dd><a href="javascript:;">模块设置</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;">友链模块</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">分类管理</a></dd>
+                            <dd><a href="javascript:;">友链管理</a></dd>
+                            <dd><a href="javascript:;">模块设置</a></dd>
+                        </dl>
+                    </li>
+                </ul>
+                <!-- 用户管理 -->
+                <ul class="layui-nav layui-nav-tree dk-nav-tree layui-hide">
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;">用户管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">用户列表</a></dd>
+                            <dd><a href="javascript:;">添加用户</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;">预设管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">预设头像</a></dd>
+                            <dd><a href="javascript:;">等级配置</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;">互动管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">签到记录</a></dd>
+                            <dd><a href="javascript:;">发送私信</a></dd>
+                            <dd><a href="javascript:;">私信列表</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;">模块设置</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">用户配置</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;">财务管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">提现申请</a></dd>
+                            <dd><a href="javascript:;">资金纪录</a></dd>
+                            <dd><a href="javascript:;">充值纪录</a></dd>
+                            <dd><a href="javascript:;">充值等级</a></dd>
+                            <dd><a href="javascript:;">财务设置</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;">卡密管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">卡密列表</a></dd>
+                            <dd><a href="javascript:;">添加卡密</a></dd>
+                            <dd><a href="javascript:;">使用记录</a></dd>
+                            <dd><a href="javascript:;">卡密下载</a></dd>
+                        </dl>
+                    </li>
+                </ul>
+                <!-- 运营管理 -->
+                <ul class="layui-nav layui-nav-tree dk-nav-tree layui-hide">
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;">评论管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">评论列表</a></dd>
+                            <dd><a href="javascript:;">待审评论</a></dd>
+                            <dd><a href="javascript:;">评论配置</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;">搜索管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">全部搜索</a></dd>
+                            <dd><a href="javascript:;">标题搜索</a></dd>
+                            <dd><a href="javascript:;">标签搜索</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;">互动管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">顶踩记录</a></dd>
+                            <dd><a href="javascript:;">评分记录</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;">幻灯片管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">分类列表</a></dd>
+                            <dd><a href="javascript:;">添加分类</a></dd>
+                            <dd><a href="javascript:;">幻灯片列表</a></dd>
+                            <dd><a href="javascript:;">添加幻灯片</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;">留言管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">留言列表</a></dd>
+                            <dd><a href="javascript:;">留言配置</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;">单页管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">单页列表</a></dd>
+                            <dd><a href="javascript:;">添加单页</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;">统计管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">统计代码</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;">广告管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">分类列表</a></dd>
+                            <dd><a href="javascript:;">添加分类</a></dd>
+                            <dd><a href="javascript:;">广告列表</a></dd>
+                            <dd><a href="javascript:;">添加广告</a></dd>
+                        </dl>
+                    </li>
+                </ul>
+                <!-- 数据管理 -->
+                <ul class="layui-nav layui-nav-tree dk-nav-tree layui-hide">
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;">数据库管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">数据库表</a></dd>
+                            <dd><a href="javascript:;">执行SQL</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;">文件管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">文件列表</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;">数据统计</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">图形数据</a></dd>
+                        </dl>
+                    </li>
+                </ul>
+                <!-- 其他管理 -->
             </div>
         </div>

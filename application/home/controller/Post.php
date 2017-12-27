@@ -19,7 +19,8 @@ class Post extends Home
     			->alias('p')
     			->join('ym_cate c','p.cate_id = c.id')
     			->join('ym_user u','p.uid = u.uid')
-    			->where('p.id','=',$id)
+    			->where('p.id',$id)
+                ->where('p.status',1)
     			->field('p.*,name,nick,avatar')
     			->find();
 		if($postinfo['type']==1){
