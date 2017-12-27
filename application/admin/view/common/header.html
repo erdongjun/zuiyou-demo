@@ -17,10 +17,10 @@
             <div class="layui-logo">darkantking后台管理</div>
             <!-- 头部区域 -->
             <ul class="layui-nav layui-layout-left" lay-filter="topNav" >
-                <li class="layui-nav-item layui-this"><a href="javascript:;"><i class="fa fa-deviantart"></i>功能开发中</a></li>
-                <li class="layui-nav-item"><a href="javascript:;"><i class="fa fa-home"></i>管理首页</a></li>
+                <li class="layui-nav-item layui-this"><a href="javascript:;"><i class="fa fa-home"></i>管理首页</a></li>
                 <li class="layui-nav-item"><a href="javascript:;"><i class="fa fa-cog"></i>系统管理</a></li>
                 <li class="layui-nav-item"><a href="javascript:;"><i class="fa fa-th-large"></i>模块管理</a></li>
+                <li class="layui-nav-item"><a href="javascript:;"><i class="fa fa-users"></i>用户管理</a></li>
                 <li class="layui-nav-item"><a href="javascript:;"><i class="fa fa-cogs"></i>运营管理</a></li>
                 <li class="layui-nav-item"><a href="javascript:;"><i class="fa fa-line-chart"></i>数据管理</a></li>
                 <li class="layui-nav-item">
@@ -50,56 +50,8 @@
         <div class="layui-side layui-bg-black">
             <div class="layui-side-scroll" id="leftNav">
                 <!-- 左侧导航区域 -->
-                <!-- 功能开发中 -->
-                <ul class="layui-nav layui-nav-tree dk-nav-tree">
-                    <li class="layui-nav-item  layui-nav-itemed">
-                        <a class="" href="javascript:;">系统管理</a>
-
-                        <dl class="layui-nav-child">
-                            <dd class="dk-nav-child">
-                                <a href="javascript:;">分类管理</a>
-                                <dl>
-                                    <dd><a href="javascript:;">分类添加</a></dd>
-                                    <dd><a href="javascript:;">分类列表</a></dd>
-                                </dl>
-                            </dd>
-                            <dd><a onclick="setFrameUrl('/public/index.php/admin/system/index')" href="javascript:;">系统信息</a></dd>
-                            <dd><a onclick="setFrameUrl('/public/index.php/admin/user/index')" href="javascript:;">管理员管理</a></dd>
-                            <dd><a href="javascript:;">权限管理</a></dd>
-                        </dl>
-                    </li>
-                    <li class="layui-nav-item">
-                        <a href="javascript:;">分类管理</a>
-                        <dl class="layui-nav-child">
-
-                            <dd><a onclick="setFrameUrl('/public/index.php/admin/cate/index')"  href="javascript:;">分类列表</a></dd>
-                        </dl>
-                    </li>
-                    <li class="layui-nav-item">
-                        <a href="javascript:;">用户管理</a>
-                        <dl class="layui-nav-child">
-                            <dd><a href="javascript:;"  onclick="setFrameUrl('/public/index.php/admin/homeuser/index')" >用户列表</a></dd>
-                            <dd><a href="javascript:;">用户等级</a></dd>
-                        </dl>
-                    </li>
-                    <li class="layui-nav-item">
-                        <a href="javascript:;" >帖子管理</a>
-                        <dl class="layui-nav-child">
-                            <dd><a href="javascript:;" onclick="setFrameUrl('/public/index.php/admin/post/lis')">帖子列表</a></dd>
-                        </dl>
-                    </li>
-                    <li class="layui-nav-item">
-                        <a href="javascript:;" >评论管理</a>
-                        <dl class="layui-nav-child">
-                            <dd><a href="javascript:;" onclick="setFrameUrl('/public/index.php/admin/comment/lis')">评论列表</a></dd>
-                        </dl>
-                    </li>
-                    <li class="layui-nav-item"><a href="">云市场</a></li>
-                    <li class="layui-nav-item"><a href="">发布商品</a></li>
-                </ul>
-
                 <!-- 快捷菜单 -->
-                <ul class="layui-nav layui-nav-tree dk-nav-tree layui-hide" >
+                <ul class="layui-nav layui-nav-tree dk-nav-tree" >
                     <li class="layui-nav-item">
                         <a class="" href="javascript:;"><i class="fa fa-home"></i>快捷菜单</a>
                         <dl class="layui-nav-child">
@@ -111,6 +63,8 @@
                 </ul>
                 <!-- 系统管理 -->
                 <ul class="layui-nav layui-nav-tree dk-nav-tree layui-hide">
+                    <li class="layui-nav-item"><a onclick="setFrameUrl('/public/index.php/admin/system/index')" href="javascript:;">系统信息</a></li>
+
                     <li class="layui-nav-item">
                         <a class="" href="javascript:;">网站设置</a>
                         <dl class="layui-nav-child">
@@ -148,6 +102,27 @@
                 <!-- 模块管理 -->
                 <ul class="layui-nav layui-nav-tree dk-nav-tree layui-hide">
                     <li class="layui-nav-item">
+                        <a class="" href="javascript:;">圈子模块</a>
+                        <dl class="layui-nav-child">
+
+                            <dd class="dk-nav-child">
+                                <a href="javascript:;">分类管理</a>
+                                <dl>
+                                    <dd><a href="javascript:;">分类添加</a></dd>
+                                    <dd><a onclick="setFrameUrl('/public/index.php/admin/cate/index')"  href="javascript:;">分类列表</a></dd>
+                                </dl>
+                            </dd>
+                            <dd class="dk-nav-child">
+                                <a href="javascript:;">帖子管理</a>
+                                <dl>
+                                    <dd><a href="javascript:;">分类添加</a></dd>
+                                    <dd><a href="javascript:;" onclick="setFrameUrl('/public/index.php/admin/post/lis')">帖子列表</a></dd>
+                                </dl>
+                            </dd>
+                            <dd><a href="javascript:;">模块设置</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
                         <a class="" href="javascript:;">小说模块</a>
                         <dl class="layui-nav-child">
                             <dd class="dk-nav-tree">
@@ -162,6 +137,7 @@
                             <dd><a href="javascript:;">模块设置</a></dd>
                         </dl>
                     </li>
+                    
                     <li class="layui-nav-item">
                         <a class="" href="javascript:;">文章模块</a>
                         <dl class="layui-nav-child">
@@ -211,7 +187,7 @@
                     <li class="layui-nav-item">
                         <a class="" href="javascript:;">用户管理</a>
                         <dl class="layui-nav-child">
-                            <dd><a href="javascript:;">用户列表</a></dd>
+                            <dd><a onclick="setFrameUrl('/public/index.php/admin/user/index')" href="javascript:;">用户列表</a></dd>
                             <dd><a href="javascript:;">添加用户</a></dd>
                         </dl>
                     </li>
@@ -261,7 +237,7 @@
                     <li class="layui-nav-item">
                         <a class="" href="javascript:;">评论管理</a>
                         <dl class="layui-nav-child">
-                            <dd><a href="javascript:;">评论列表</a></dd>
+                            <dd><a href="javascript:;" onclick="setFrameUrl('/public/index.php/admin/comment/lis')">评论列表</a></dd>
                             <dd><a href="javascript:;">待审评论</a></dd>
                             <dd><a href="javascript:;">评论配置</a></dd>
                         </dl>
