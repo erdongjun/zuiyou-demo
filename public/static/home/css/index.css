@@ -1,0 +1,377 @@
+/*
+ *home端css
+ */
+/*base*/
+
+html,body{
+	font-size: 16px;	
+}
+em,span{
+	font-style: normal;
+	font-size: 12px;
+}
+.pagebox{
+	text-align: center;
+}
+.fr{
+
+	float: right;
+}
+.fl{
+
+	float: left;
+}
+
+
+
+.wrap{
+	position: relative;
+	width: 1000px;
+	margin:0 auto;
+}
+
+/*body*/
+.header{
+	height: 59px;
+    border-bottom: 1px solid #393D49;
+    background-color: #393D49;
+}
+.header-logo{
+	width: 150px;
+	height: 60px;
+}
+.header-nav{
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+.header-search{
+	position: absolute;
+	left: 200px;
+	top: 10px;
+	width: 150px;
+	height: 60px;
+	z-index: 2;
+}
+.layui-footer{
+	height: 60px;
+	line-height: 60px;
+	color: #666;
+	text-align: center;
+	border-top: 1px solid #f1f1f1;
+}
+/* 主区域 */
+.ym-main{
+	min-height: 400px;
+	margin-top: 15px;
+}
+.content-left{
+	width: 800px;
+	float: left;
+}
+.content-right{
+	width: 325px;
+	float: right;
+	margin-left: 15px;
+	background: #fff;
+	border-radius: 5px;
+}
+.content-right .layui-tab{
+	margin: 0 20px;
+}
+.content-right .layui-tab .layui-tab-title li{
+	font-size: 16px;
+	color: #6a3906;
+}
+.ym-item{
+	margin-bottom: 15px;
+	padding: 18px 20px;
+	background: #fff;
+	border-radius: 5px;
+}
+.ym-item-tit{
+	height: 35px;
+	line-height: 35px;
+	color: #9b8878;
+	position: relative;
+	padding-left: 40px;
+	margin-bottom: 10px;
+}
+.ym-item-tit>img{
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 2;
+	display: block;
+	width: 35px;
+	height: 35px;
+	border-radius: 50%;
+}
+.ym-item-tit>span{
+	margin-right: 5px;
+}
+.ym-item-bd{
+	display: block;
+}
+.ym-item-bd .imgbox>img{
+	display: block;
+	width: 100%;
+	margin-top: 5px;
+}
+
+/*排行榜*/
+.ym-rank{
+
+}
+.ym-rank-item{
+	display: block;
+	line-height: 30px;
+}
+.ym-rank-item>span{
+	color: #FF5722;
+	margin-right:8px;
+}
+/*圈子列表*/
+.ym-circle{
+	background: #fff;
+	border-radius: 5px;
+}
+.ym-circle-title{
+	font-size: 18px;
+	font-style: normal;
+	line-height: 65px;
+	padding-left: 20px;
+}
+.ym-circle-item {
+	width: 350px;
+	float: left;
+	height: 90px;
+	overflow: hidden;
+	margin-bottom: 0;
+	
+}
+
+.ym-circle-info{
+	padding-left: 95px;
+	position: relative;
+	height: 90px;
+}
+.ym-circle-item .cir-logo{
+	display: block;
+	width: 90px;
+	height: 90px;
+	position: absolute;
+	left:0;
+	top: 0;
+
+}
+.ym-circle-item .cir-tit{
+	font-size: 18px;
+	display: block;
+	height: 22px;
+	line-height: 22px;
+}
+.ym-circle-item .cir-count{
+	font-size: 12px;
+	height: 18px;
+	line-height: 18px;
+}
+.ym-circle-item .cir-intro{
+	font-size: 12px;
+	height: 36px;
+	line-height: 18px;
+	color: #868686;
+    overflow: hidden;
+    margin-top: 6px;
+    width: 160px;
+}
+.ym-circle-item .cir-focus{
+	position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -13px;
+    width: 50px;
+    height: 26px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    font-size: 12px;
+    color: #000;
+    text-align: center;
+    line-height: 26px;
+
+}
+/*投稿*/
+.c_content{
+	background: #fff;
+	border-radius: 3px;
+	padding: 20px 0;
+}
+.c_content .layui-form{
+	width: 650px;
+	margin: 0 auto;
+}
+/*上传样式*/
+.c_upload .webuploader-pick{
+	padding: 0 18px;
+	background: none;
+}
+.wu-example{
+	margin-top: 20px;
+}
+.c_upload  .webuploader-container{
+	// padding: 0;
+}
+.c_upload .upbox{
+	display: none;
+}
+
+.imgitem{
+	position: relative;
+	float: left;
+	width: 80px;
+	height: 80px;
+	margin: 0 20px 20px 0;
+	border: 1px dashed #ccc; 
+}
+.imgitem>img{
+	display: block;
+	width: 80px;
+	height: 80px;
+}
+.c_upload .imgitem .layui-icon{
+	position: absolute;
+	right: -11px;
+	top:-11px;
+	font-size: 22px;
+	color: #ccc;
+	cursor:pointer;
+	z-index: 99;
+}
+.c_upload .imgitem:hover .layui-icon{
+	color: #FD4C86;
+}
+.c_upload  .addimgbtn .layui-icon{
+	left: 0;
+    text-align: center;
+    top: 0;
+    right: 0;
+    line-height: 80px;
+    font-size: 50px;
+    bottom: 0;
+    z-index: 0;
+}
+.c_upload  .webuploader-container.layui-disabled{
+	background: #393D49;
+}
+.c_upload .videobox{
+	border-radius: 6px;
+    border: 1px solid #f0f0f0;
+    margin: 10px ;
+    position: relative;
+   padding: 5px 15px;
+}
+.tip,.c_upload .videobox .layui-icon,.tip,.c_upload .audiobox .layui-icon{
+	color: #FF5722;
+	cursor:pointer;
+}
+/*分类首页*/
+.bar-top{
+	height: 340px;
+	border: 1px solid #f1f1f1;
+	background: #fff;
+	margin-bottom: 20px;
+}
+.bar-top .maskbg{
+	position: relative;
+	height: 280px;
+	width: 100%;
+	background: url('https://s.url.cn/qqun/xiaoqu/buluo/p/js/images/2.f3b03c479767b892ec20d1fec38efdd5.jpg ') no-repeat center center;
+	background-size: 100%;
+}
+.bar-top .maskbg .mask{
+position: absolute;
+    z-index: 2;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 118px;
+    background: 0 0;
+    background: linear-gradient(to bottom,transparent,rgba(0,0,0,.7));
+}
+.bar-top .cate-info{
+	position: absolute;
+    z-index: 3;
+    top: 150px;
+    left: 0;
+    width: 100%;
+}
+.bar-top .cate-info .cateimg{
+	width: 160px;
+	height: 160px;
+	margin: 3px  20px; 
+	float: left;
+	border-radius: 3px;
+}
+.bar-top .cate-info  .intro .p1{
+	margin-top: 30px;
+    font-size: 36px;
+    font-weight: 500;
+    color: #fff;
+}
+.bar-top .cate-info  .intro .p2{
+	font-size: 16px;
+    width: 540px;
+    margin-top: 10px;
+    height: 21px;
+    color: #ccc
+}
+.bar-top .cate-info  .intro .p3{
+	margin-top: 40px;
+    color: #868686;
+    font-size: 14px;
+}
+.bar-top .cate-info  .intro .type{
+	margin-right: 7px;
+}
+.bar-top .cate-info  .intro .num{
+	font-weight: 600;
+    font-size: 18px;
+    margin-right: 20px;
+    color: #000;
+}
+
+/*帖子*/
+.ym-item .imgbox,.ym-item .videobox,.ym-item .audiobox{
+	overflow: hidden;
+	margin-top: 10px;
+}
+.ym-item .imgbox>img{
+	float: left;
+	width: 150px;
+	height: 150px;
+	margin:0 10px 10px 0;
+	border: 1px solid #ccc;
+}	
+.ym-item .videobox>video{
+	float: left;
+	width: 300px;
+	height: 300px;
+	margin:0 10px 10px 0;
+}	
+.ym-item .audiobox>audio{
+	float: left;
+	width: 300px;
+	height: 50px;
+	margin:0 10px 10px 0;
+}	
+/*帖子评论*/
+
+.commentPost .layui-input-block{
+	margin-left: 0;
+}
+
+
+
+
+

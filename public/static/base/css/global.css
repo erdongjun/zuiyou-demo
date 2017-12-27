@@ -1,0 +1,43 @@
+/*全局css*/
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}
+.pl10{
+	padding-left: 10px;
+}
+
+/*字体图标*/
+body i.fa{
+	margin-right: 5px;
+}
+
+
+/*分页样式*/
+.pagination{
+	overflow: hidden;
+	text-align: center;
+}
+.pagination>li{
+	display: inline-block;
+    vertical-align: middle;
+   
+}
+.pagination>li.active span{
+	background-color: #009688;
+	color: #fff;
+}
+.pagination>li>a,.pagination>li>span{
+	box-sizing: content-box;
+	display: block;
+	 padding: 0 15px;
+    height: 30px;
+    line-height: 30px;
+    margin: 0 -1px 0 0;
+    border: 1px solid #e2e2e2;
+    color: #333;
+    font-size: 12px;
+    background: #fff;
+}

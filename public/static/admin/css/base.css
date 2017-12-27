@@ -1,0 +1,24 @@
+.ym_iframe{
+	width: 100%;
+	height: 100%;
+}
+/*操作栏*/
+.page-toolbar{
+	height: 40px;
+	overflow: hidden;
+}
+/*多级左侧竖导航*/
+
+.dk-nav-tree .dk-nav-child dd>a{
+	padding-left: 40px;
+}
+
+.dk-nav-tree .layui-nav-child a{
+	padding-left: 30px;
+}
+.dk-nav-tree  .dk-nav-child.layui-this,.dk-nav-tree  .dk-nav-child.layui-this>a,.layui-nav-tree .layui-nav-child dd.layui-this a{
+	background: rgba(0, 0,0 ,0) !important;
+}
+
+
+aaa
