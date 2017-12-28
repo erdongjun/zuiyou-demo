@@ -29,5 +29,17 @@ layui.use(['element','layer','form'], function(){
 	  	$('#leftNav>.layui-nav-tree').addClass('layui-hide').eq(index).removeClass('layui-hide');
 	  }
 	});
-
 });
+// 二级分类树展开
+$('.dk-nav-child').click(function(e){
+	e.stopPropagation();
+	e.preventDefault();
+	$(this).children('dl').toggle();
+})
+// 子分类点击
+$('.dk-nav-child>dl>dd').click(function(e){
+	e.stopPropagation();
+	e.preventDefault();
+	$(this).parents('.dk-nav-tree').find('dd').removeClass('layui-this');
+	$(this).addClass('layui-this')
+})

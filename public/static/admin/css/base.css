@@ -7,6 +7,9 @@
 	height: 40px;
 	overflow: hidden;
 }
+.layui-nav .layui-nav-item a{
+	padding: 0 15px;
+}
 /*多级左侧竖导航*/
 
 .dk-nav-tree .dk-nav-child dd>a{
@@ -18,5 +21,8 @@
 }
 .dk-nav-tree  .dk-nav-child.layui-this,.dk-nav-tree  .dk-nav-child.layui-this>a,.layui-nav-tree .layui-nav-child dd.layui-this a{
 	background: rgba(0, 0,0 ,0) !important;
+}
+.dk-nav-tree  .dk-nav-child>dl{
+	display: none;
 }
 
