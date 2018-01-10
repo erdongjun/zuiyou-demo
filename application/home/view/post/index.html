@@ -8,14 +8,14 @@
         <div class="ym-list">
             <div class="ym-item" style="margin-bottom: 0;"> 
                 <span class="layui-breadcrumb" lay-separator=">" >
-              <a href="/public/index.php/home">首页</a>
-              <a href="/public/index.php/home/cate/index/id/{$postinfo.cate_id}">{$postinfo.name}</a>
+              <a href="/home">首页</a>
+              <a href="/home/cate/index/id/{$postinfo.cate_id}">{$postinfo.name}</a>
                 </span>
             </div>
             {empty name='postinfo'}
             <div class="ym-item" style="text-align:center"> 
                 帖子消失在虚空中了 
-                <a style="color:#5FB878" href="/public/index.php/home/user/contribute">去发帖</a>
+                <a style="color:#5FB878" href="/home/user/contribute">去发帖</a>
             </div>
             {/empty}
             <div class="ym-item">
@@ -303,9 +303,9 @@
         // 实例化图片上传
         var uploaderImg = WebUploader.create({
             // swf文件路径
-            swf: '/Public/static/lib/webuploader/Uploader.swf',
+            swf: '/static/lib/webuploader/Uploader.swf',
             // 文件接收服务端。
-            server: '/public/index.php/home/home/upload',
+            server: '/home/home/upload',
 
             // 选择文件的按钮。可选。
             // 内部根据当前运行是创建，可能是input元素，也可能是flash.
@@ -349,9 +349,9 @@
         // 实例化视频上传
         var uploaderVideo = WebUploader.create({
             // swf文件路径
-            swf: '/Public/static/lib/webuploader/Uploader.swf',
+            swf: '/static/lib/webuploader/Uploader.swf',
             // 文件接收服务端。
-            server: '/public/index.php/home/home/upload',
+            server: '/home/home/upload',
 
             // 选择文件的按钮。可选。
             // 内部根据当前运行是创建，可能是input元素，也可能是flash.
@@ -403,9 +403,9 @@
         // 实例化音频上传
         var uploaderAudio = WebUploader.create({
             // swf文件路径
-            swf: '/Public/static/lib/webuploader/Uploader.swf',
+            swf: '/static/lib/webuploader/Uploader.swf',
             // 文件接收服务端。
-            server: '/public/index.php/home/home/upload',
+            server: '/home/home/upload',
 
             // 选择文件的按钮。可选。
             // 内部根据当前运行是创建，可能是input元素，也可能是flash.
@@ -499,7 +499,7 @@
             }
 
             $.ajax({
-                url: '/public/index.php/home/comment/create',
+                url: '/home/comment/create',
                 data: _data,
                 type: 'post',
                 success: function(data) {

@@ -64,13 +64,13 @@ layui.use(['form', 'laydate', 'element'], function() {
         // return;
 
       $.ajax({
-        url:'/public/index.php/admin/cate/edit',
+        url:'/admin/cate/edit',
         data:_data,
         type:'post',
         success:function(data){
           layer.msg(data.msg,{time:1000},function(){
             if(data.status == 1){
-              parent.setFrameUrl('/public/index.php/admin/cate/index')
+              parent.setFrameUrl('/admin/cate/index')
             }
           });
            

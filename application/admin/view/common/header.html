@@ -5,10 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>darkantking后台管理</title>
-    <link rel="stylesheet" type="text/css" href="/public/static/lib/layui/css/layui.css">
-      <link rel="stylesheet" type="text/css"  href="/public/static/lib/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css"  href="/public/static/base/css/global.css">
-    <link rel="stylesheet" type="text/css"  href="/public/static/admin/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/static/lib/layui/css/layui.css">
+      <link rel="stylesheet" type="text/css"  href="/static/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css"  href="/static/base/css/global.css">
+    <link rel="stylesheet" type="text/css"  href="/static/admin/css/base.css">
   
 </head>
 <body class="layui-layout-body">
@@ -55,15 +55,15 @@
                     <li class="layui-nav-item  layui-nav-itemed">
                         <a class="" href="javascript:;"><i class="fa fa-star"></i>快捷菜单</a>
                         <dl class="layui-nav-child">
-                            <dd><a onclick="setFrameUrl('/public/index.php/admin/system/index')" href="javascript:;"><i class="fa fa-cc"></i>系统信息</a></dd>
-                            <dd><a onclick="setFrameUrl('/public/index.php/admin/user/index')" href="javascript:;"><i class="fa fa-cc"></i>管理员管理</a></dd>
+                            <dd><a onclick="setFrameUrl('/admin/system/index')" href="javascript:;"><i class="fa fa-cc"></i>系统信息</a></dd>
+                            <dd><a onclick="setFrameUrl('/admin/user/index')" href="javascript:;"><i class="fa fa-cc"></i>管理员管理</a></dd>
                             <dd><a href="javascript:;"><i class="fa fa-cc"></i>权限管理</a></dd>
                         </dl>
                     </li>
                 </ul>
                 <!-- 系统管理 -->
                 <ul class="layui-nav layui-nav-tree dk-nav-tree layui-hide">
-                    <li class="layui-nav-item"><a onclick="setFrameUrl('/public/index.php/admin/system/index')" href="javascript:;"><i class="fa fa-cog"></i>系统信息</a></li>
+                    <li class="layui-nav-item"><a onclick="setFrameUrl('/admin/system/index')" href="javascript:;"><i class="fa fa-cog"></i>系统信息</a></li>
 
                     <li class="layui-nav-item">
                         <a class="" href="javascript:;"><i class="fa fa-cc"></i>网站设置</a>
@@ -107,14 +107,14 @@
                             <dd class="dk-nav-child">
                                 <a href="javascript:;"><i class="fa fa-folder"></i>分类管理</a>
                                 <dl>
-                                    <dd><a onclick="setFrameUrl('/public/index.php/admin/cate/index')"  href="javascript:;"><i class="fa fa-caret-right"></i>分类列表</a></dd>
+                                    <dd><a onclick="setFrameUrl('/admin/cate/index')"  href="javascript:;"><i class="fa fa-caret-right"></i>分类列表</a></dd>
                                     <dd><a href="javascript:;"><i class="fa fa-caret-right"></i>分类添加</a></dd>
                                 </dl>
                             </dd>
                             <dd class="dk-nav-child">
                                 <a href="javascript:;"><i class="fa fa-folder"></i>帖子管理</a>
                                 <dl>
-                                    <dd><a href="javascript:;" onclick="setFrameUrl('/public/index.php/admin/post/lis')">帖子列表</a></dd>
+                                    <dd><a href="javascript:;" onclick="setFrameUrl('/admin/post/lis')">帖子列表</a></dd>
                                 </dl>
                             </dd>
                             <dd class="dk-nav-child">
@@ -316,7 +316,7 @@
                     <li class="layui-nav-item">
                         <a class="" href="javascript:;"><i class="fa fa-cc"></i>用户管理</a>
                         <dl class="layui-nav-child">
-                            <dd><a onclick="setFrameUrl('/public/index.php/admin/user/index')" href="javascript:;">用户列表</a></dd>
+                            <dd><a onclick="setFrameUrl('/admin/user/index')" href="javascript:;">用户列表</a></dd>
                             <dd><a href="javascript:;"><i class="fa fa-cc"></i>添加用户</a></dd>
                         </dl>
                     </li>
@@ -366,7 +366,7 @@
                     <li class="layui-nav-item">
                         <a class="" href="javascript:;"><i class="fa fa-cc"></i>评论管理</a>
                         <dl class="layui-nav-child">
-                            <dd><a href="javascript:;" onclick="setFrameUrl('/public/index.php/admin/comment/lis')">评论列表</a></dd>
+                            <dd><a href="javascript:;" onclick="setFrameUrl('/admin/comment/lis')">评论列表</a></dd>
                             <dd><a href="javascript:;"><i class="fa fa-cc"></i>待审评论</a></dd>
                             <dd><a href="javascript:;"><i class="fa fa-cc"></i>评论配置</a></dd>
                         </dl>

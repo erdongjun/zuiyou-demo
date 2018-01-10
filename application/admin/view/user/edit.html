@@ -68,13 +68,13 @@ layui.use(['form', 'laydate', 'element'], function() {
         var _data = data.field;
         _data.uid = {$info.uid};
       $.ajax({
-        url:'/public/index.php/admin/user/edit',
+        url:'/admin/user/edit',
         data:_data,
         type:'post',
         success:function(data){
           layer.msg(data.msg,{time:1000},function(){
             if(data.status==1){
-                parent.setFrameUrl('/public/index.php/admin/user/index')
+                parent.setFrameUrl('/admin/user/index')
             }
           });
         }

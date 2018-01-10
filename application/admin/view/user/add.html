@@ -71,13 +71,13 @@ layui.use(['form', 'laydate', 'element'], function() {
     //监听提交
     form.on('submit(add)', function(data) {
       $.ajax({
-        url:'/public/index.php/admin/user/add',
+        url:'/admin/user/add',
         data:data.field,
         type:'post',
         success:function(data){
           layer.msg(data.msg,{time:1000},function(){
             if(data.status == 1){
-              parent.setFrameUrl('/public/index.php/admin/user/index')
+              parent.setFrameUrl('/admin/user/index')
             }
           });
            

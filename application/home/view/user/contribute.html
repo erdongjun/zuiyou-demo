@@ -172,9 +172,9 @@
         // 实例化图片上传
         var uploaderImg = WebUploader.create({
             // swf文件路径
-            swf: '/Public/static/lib/webuploader/Uploader.swf',
+            swf: '/static/lib/webuploader/Uploader.swf',
             // 文件接收服务端。
-            server: '/public/index.php/home/home/upload',
+            server: '/home/home/upload',
 
             // 选择文件的按钮。可选。
             // 内部根据当前运行是创建，可能是input元素，也可能是flash.
@@ -218,9 +218,9 @@
         // 实例化视频上传
         var uploaderVideo = WebUploader.create({
             // swf文件路径
-            swf: '/Public/static/lib/webuploader/Uploader.swf',
+            swf: '/static/lib/webuploader/Uploader.swf',
             // 文件接收服务端。
-            server: '/public/index.php/home/home/upload',
+            server: '/home/home/upload',
 
             // 选择文件的按钮。可选。
             // 内部根据当前运行是创建，可能是input元素，也可能是flash.
@@ -272,9 +272,9 @@
         // 实例化音频上传
         var uploaderAudio = WebUploader.create({
             // swf文件路径
-            swf: '/Public/static/lib/webuploader/Uploader.swf',
+            swf: '/static/lib/webuploader/Uploader.swf',
             // 文件接收服务端。
-            server: '/public/index.php/home/home/upload',
+            server: '/home/home/upload',
 
             // 选择文件的按钮。可选。
             // 内部根据当前运行是创建，可能是input元素，也可能是flash.
@@ -371,7 +371,7 @@
         }
 
       $.ajax({
-        url:'/public/index.php/home/user/contribute',
+        url:'/home/user/contribute',
         data:_data,
         type:'post',
         success:function(data){

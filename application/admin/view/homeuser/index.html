@@ -62,8 +62,8 @@
                 <td>
                     <div class="layui-btn-group">
                         <div class="layui-btn-group">
-                            <a href="/public/index.php/admin/user/edit/uid/{$vo.uid}" class="layui-btn layui-btn-primary layui-btn-small" title="查看操作日志"><i class="layui-icon"></i></a>
-                            <a data-href="/public/index.php/admin/homeuser/del/uid/{$vo.uid}" class="layui-btn layui-btn-primary layui-btn-small table-del"><i class="layui-icon"></i></a>
+                            <a href="/admin/user/edit/uid/{$vo.uid}" class="layui-btn layui-btn-primary layui-btn-small" title="查看操作日志"><i class="layui-icon"></i></a>
+                            <a data-href="/admin/homeuser/del/uid/{$vo.uid}" class="layui-btn layui-btn-primary layui-btn-small table-del"><i class="layui-icon"></i></a>
                         </div>
                     </div>
                 </td>
@@ -129,7 +129,7 @@ layui.use(['form', 'layedit', 'laydate','element'], function(){
             success:function (data) {
                 layer.msg(data.msg,{time:1000},function(){
                     if(data.status ==1){
-                       parent.setFrameUrl('/public/index.php/admin/homeuser/index')
+                       parent.setFrameUrl('/admin/homeuser/index')
                     }
                 })
             }

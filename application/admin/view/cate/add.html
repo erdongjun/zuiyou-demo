@@ -58,13 +58,13 @@ layui.use(['form', 'laydate', 'element'], function() {
     //监听提交
     form.on('submit(add)', function(data) {
       $.ajax({
-        url:'/public/index.php/admin/cate/add',
+        url:'/admin/cate/add',
         data:data.field,
         type:'post',
         success:function(data){
           layer.msg(data.msg,{time:1000},function(){
             if(data.status == 1){
-              parent.setFrameUrl('/public/index.php/admin/cate/index')
+              parent.setFrameUrl('/admin/cate/index')
             }
           });
            

@@ -14,13 +14,13 @@ layui.use(['element','layer'], function(){
 	// 退出登录
 	$('.logout').click(function(){
 		$.ajax({
-			url:'/public/index.php/home/user/logout',
+			url:'/home/user/logout',
 			type:'get',
 			success:function(data){
 
 				layer.msg(data.msg,{time:1000},function(){
 		            if(data.status == 1){
-		                window.location.href='/public/index.php/home/index/index';
+		                window.location.href='/home/index/index';
 		            }
 		         })
 				

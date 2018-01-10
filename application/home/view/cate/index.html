@@ -22,7 +22,7 @@
 
 			{empty name='list'}
 				<div class="ym-item" style="text-align:center"> 
-				暂无帖子 <a style="color:#5FB878" href="/public/index.php/home/user/contribute">去发帖</a>
+				暂无帖子 <a style="color:#5FB878" href="/home/user/contribute">去发帖</a>
 				</div>
 			{/empty}
 			{volist name='list' id="vo"}
@@ -31,7 +31,7 @@
 					<img src="{$vo.avatar}">
 					<span>{$vo.nick}</span><span class="layui-badge">vip</span>
 				</div>
-				<a href="/public/index.php/home/post/index/id/{$vo.id}" class="ym-item-bd">
+				<a href="/home/post/index/id/{$vo.id}" class="ym-item-bd">
 					<p>{$vo.content}</p>
 
 					{switch name="vo.type" }
