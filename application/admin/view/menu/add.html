@@ -2,15 +2,15 @@
 {layout name='/layout/iframe'}
 <!-- 内容主体区域 -->
 <fieldset class="layui-elem-field layui-field-title">
-    <legend>分类添加</legend>
+    <legend>菜单添加</legend>
 </fieldset>
-<div class="layui-form layui-form-pane" style="min-height: 400px;">
+<div class="layui-form " style="min-height: 400px;">
     <div class="layui-form-item">
     
-        <label class="layui-form-label">选择分类</label>
+        <label class="layui-form-label">选择菜单</label>
         <div class="layui-input-block">
              <select name="parent_id" lay-verify="required">
-                <option selected  value="0">顶级分类</option>
+                <option selected  value="0">顶级菜单</option>
                 {volist name='list' id='vo'}
                     <option  value="{$vo.id}">{$vo.level|str_repeat= "--",###} {$vo.name}</option>
                 {/volist}
@@ -20,24 +20,18 @@
      <div class="layui-form-item">
         <label class="layui-form-label">名称</label>
         <div class="layui-input-block">
-            <input type="text" name="name" lay-verify="nick" autocomplete="off" placeholder="请输入分类名" class="layui-input">
+            <input type="text" name="name" lay-verify="nick" autocomplete="off" placeholder="请输入菜单名" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">介绍</label>
         <div class="layui-input-block">
-            <input type="text" name="des" value=""autocomplete="off" placeholder="请输入分类介绍" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">icon</label>
-        <div class="layui-input-block">
-            <input type="text" name="icon" value=""autocomplete="off" placeholder="请输入icon地址" class="layui-input">
+            <input type="text" name="des" value=""autocomplete="off" placeholder="请输入菜单介绍" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn" lay-submit="" lay-filter="add">添加分类</button>
+            <button class="layui-btn" lay-submit="" lay-filter="add">添加菜单</button>
         </div>
     </div>
 </div>
@@ -51,20 +45,20 @@ layui.use(['form', 'laydate', 'element'], function() {
     form.verify({
         name: function(value) {
             if (!value) {
-                return '请输入昵称';
+                return '请输入菜单名';
             }
         }
     });
     //监听提交
     form.on('submit(add)', function(data) {
       $.ajax({
-        url:'/admin/cate/add',
+        url:'/admin/menu/add',
         data:data.field,
         type:'post',
         success:function(data){
           layer.msg(data.msg,{time:1000},function(){
             if(data.status == 1){
-              parent.setFrameUrl('/admin/cate/index')
+              // parent.setFrameUrl('/admin/menu/add')
             }
           });
            

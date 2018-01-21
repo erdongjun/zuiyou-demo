@@ -2,13 +2,26 @@
 {layout name='/layout/iframe'}
 <!-- 内容主体区域 -->
 <fieldset class="layui-elem-field layui-field-title">
-    <legend>标题编辑</legend>
+    <legend>权限编辑</legend>
 </fieldset>
 <div class="layui-form " style="min-height: 400px;">
     <div class="layui-form-item">
-        <label class="layui-form-label">标题名称</label>
+        <label class="layui-form-label">选择菜单</label>
         <div class="layui-input-block">
-            <input type="text" name="title" value="{$info.title}" lay-verify="title" autocomplete="off" placeholder="请输入标题名" class="layui-input">
+             <select  name="m_id" lay-verify="required">
+                <option {if condition='0 eq $info.m_id'}selected{/if}  value="0">顶级菜单</option>
+                {volist name='list' id='vo'}
+                   {if condition='$vo.id neq $info.id'}
+                    <option  {if condition='$vo.id eq $info.m_id'}selected{/if}  value="{$vo.id}">{$vo.level|str_repeat= "--",###} {$vo.name}</option>
+                   {/if}
+                {/volist}
+              </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">权限名称</label>
+        <div class="layui-input-block">
+            <input type="text" name="title" value="{$info.title}" lay-verify="title" autocomplete="off" placeholder="请输入权限名" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
@@ -33,7 +46,7 @@ layui.use(['form', 'element'], function() {
     form.verify({
        title: function(value) {
             if (!value) {
-                return '请输入标题';
+                return '请输入权限';
             }
         },
         urls:function(value) {

@@ -8,11 +8,11 @@ use think\Validate;
  * 菜单验证器
  * @package app\admin\validate
  */
-class Cate extends Validate
+class AdminMenu extends Validate
 {
     //定义验证规则
     protected $rule = [
-        'name|菜单名'       => 'require|unique:Cate',
+        'name|菜单名'       => 'require|unique:AdminMenu',
     ];
 
     //定义验证提示

@@ -2,6 +2,7 @@
 namespace app\admin\controller;
 
 use app\admin\model\AdminAccess;
+use app\admin\model\AdminMenu;
 
 /**
  * 权限管理
@@ -20,6 +21,7 @@ class Access extends Base
     // 添加权限
     public function add()
     {	
+
     	if($this->request->isPost()){
             // 验证
             $valid_res = $this->validate($_POST, 'AdminAccess');
@@ -35,6 +37,9 @@ class Access extends Base
             }
             return ['status'=>'1','msg'=>'添加成功'];
     	}
+        $menu = new AdminMenu();
+        $list = $menu ->cateTree();
+        $this->assign('list',$list);
         return $this->fetch();
     }
     // 编辑权限
@@ -62,7 +67,11 @@ class Access extends Base
         if(!$id){
          $this->redirect('/admin/access/index');
         }
+
+        $menu = new AdminMenu();
+        $list = $menu ->cateTree();
         $info = AdminAccess::get($id);
+        $this->assign('list',$list);
     	$this->assign('info',$info);
     	return $this->fetch();
     }
