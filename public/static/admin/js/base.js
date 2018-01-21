@@ -11,12 +11,12 @@ layui.use(['element','layer','form'], function(){
 	// 退出登录
 	$('.logout').click(function(){
 		$.ajax({
-			url:'/public/index.php/admin/login/logout',
+			url:'/admin/login/logout',
 			type:'get',
 			success:function(data){
 				layer.msg(data.msg,{time:1000},function(){
 		            if(data.status == 1){
-		                window.location.href='/public/index.php/admin/index/index';
+		                window.location.href='/admin/index/index';
 		            }
 		         })
 			}

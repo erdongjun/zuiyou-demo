@@ -2,7 +2,7 @@
 {layout name='/layout/iframe'}
 <!-- 内容主体区域 -->
 <fieldset class="layui-elem-field layui-field-title">
-    <legend>管理员列表</legend>
+    <legend>权限列表</legend>
 </fieldset>
 <div class="page-toolbar">
     <div class="page-filter fr">
@@ -23,10 +23,8 @@
         </colgroup>
         <thead>
             <tr>
-                <th>账号</th>
-                <th>角色</th>
-                <th>手机号</th>
-                <th>邮箱</th>
+                <th>标题</th>
+                <th>url链接</th>
                 <th>状态</th>
                 <th>操作</th>
             </tr>
@@ -34,23 +32,21 @@
         <tbody>
         {empty name='list'}
             <tr>
-                <td colspan='6' align='center'>暂无数据</td>
+                <td colspan='4' align='center'>暂无数据</td>
             </tr>
         {/empty}
         {volist name='list' id='vo'}
             <tr>
-                <td>{$vo.name}</td>
-                <td> {eq name="vo['is_admin']" value="1"}超级管理员 {else/}管理员{/eq}</td>
-                <td>{$vo.mobile}</td>
-                <td>{$vo.email}</td>
+                <td>{$vo.title}</td>
+                <td>{$vo.urls}</td>
                 <td>
-                     <input type="checkbox" {eq name='vo["status"]' value="1" }checked=""{/eq} data-id="{$vo.id}" name="status" lay-skin="switch" lay-filter="status" lay-text="ON|OFF">
+                     <input type="checkbox" {eq name='vo["status"]' value="1" }checked=""{/eq} data-id="{$vo.id}" name="open" lay-skin="switch" lay-filter="status" lay-text="ON|OFF">
                 </td>
                 <td>
                     <div class="layui-btn-group">
                         <div class="layui-btn-group">
-                            <a href="/admin/user/edit/id/{$vo.id}" class="layui-btn layui-btn-primary layui-btn-small"><i class="layui-icon">&#xe642;</i></a>
-                            <a data-href="/admin/user/del/id/{$vo.id}" class="layui-btn layui-btn-primary layui-btn-small table-del"><i class="layui-icon">&#xe640;</i></a>
+                            <a href="/admin/access/edit/id/{$vo.id}" class="layui-btn layui-btn-primary layui-btn-small"><i class="layui-icon">&#xe642;</i></a>
+                            <a data-href="/admin/access/del/id/{$vo.id}" class="layui-btn layui-btn-primary layui-btn-small table-del"><i class="layui-icon">&#xe640;</i></a>
                         </div>
                     </div>
                 </td>
@@ -63,11 +59,10 @@
 <script>
 
 
-layui.use(['form', 'element'], function(){
+layui.use(['form','element'], function(){
   var form = layui.form
   ,layer = layui.layer
   , element = layui.element
-  
   //监听指定开关
   form.on('switch(status)', function(self){
     var _data = {
@@ -75,7 +70,7 @@ layui.use(['form', 'element'], function(){
       id:$(this).data('id')
     }
     $.ajax({
-        url:'/admin/user/edit',
+        url:'/admin/access/edit',
         data:_data,
         type:'post',
         success:function(data){
@@ -90,20 +85,24 @@ layui.use(['form', 'element'], function(){
     })
 
   });
-    $('.table-del').click(function(){
-        var url = $(this).attr('data-href')
-        $.ajax({
-            url:url,
-            type:'get',
-            success:function (data) {
-                layer.msg(data.msg,{time:1000},function(){
-                    if(data.status ==1){
-                       parent.setFrameUrl('/admin/user/index')
-                    }
-                })
-            }
-        })
-    })
+  
+  $('.table-del').click(function(){
+      var self = $(this);
+      var url = self.attr('data-href');
+      $.ajax({
+          url:url,
+          type:'get',
+          success:function (data) {
+              layer.msg(data.msg,{time:1000},function(){
+                  if(data.status ==1){
+                     parent.setFrameUrl('/admin/access/index')
+                     //删除当前行
+                     // self.parents('tr').remove();
+                  }
+              })
+          }
+      })
+  })
   
 })
 

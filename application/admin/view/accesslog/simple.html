@@ -1,0 +1,59 @@
+<!-- 引入布局模板 -->
+{layout name='/layout/iframe'}
+<!-- 内容主体区域 -->
+<fieldset class="layui-elem-field layui-field-title">
+    <legend>普通日志</legend>
+</fieldset>
+<div class="page-toolbar">
+    <div class="page-filter fr">
+        <form class="layui-form layui-form-pane" action="/admin.php/admin/user/index.html" method="get">
+            <div class="layui-form-item">
+                <label class="layui-form-label">搜索</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="q" value="" lay-verify="required" placeholder="请输入关键词搜索" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="layui-form">
+    <table class="layui-table mt10" lay-even="" lay-skin="row">
+        <colgroup>
+            <col width="150">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>账号</th>
+                <th>链接</th>
+                <th>ip</th>
+                <th>备注</th>
+                <th>时间</th>
+            </tr>
+        </thead>
+        <tbody>
+        {empty name='list'}
+            <tr>
+                <td colspan='5' align='center'>暂无数据</td>
+            </tr>
+        {/empty}
+        {volist name='list' id='vo'}
+            <tr>
+                <td>{$vo.name}</td>
+                <td>{$vo.target_url}</td>
+                <td>{$vo.ip}</td>
+                <td>{$vo.note}</td>
+                <td>{$vo.create_time}</td>
+            </tr>
+        {/volist}
+        </tbody>
+    </table>
+    {$page}
+</div>
+<script>
+layui.use(['form','element'], function(){
+  var form = layui.form
+  ,layer = layui.layer
+  , element = layui.element
+})
+
+</script>

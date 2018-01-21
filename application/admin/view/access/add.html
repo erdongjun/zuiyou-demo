@@ -1,0 +1,66 @@
+<!-- 引入布局模板 -->
+{layout name='/layout/iframe'}
+<!-- 内容主体区域 -->
+<fieldset class="layui-elem-field layui-field-title">
+    <legend>添加权限</legend>
+</fieldset>
+<div class="layui-form" style="min-height: 400px;">
+    
+     <div class="layui-form-item">
+        <label class="layui-form-label">标题</label>
+        <div class="layui-input-block">
+            <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入权限名称" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">链接</label>
+        <div class="layui-input-block">
+            <input type="text" name="urls" lay-verify="urls" autocomplete="off" placeholder="请输入url链接" class="layui-input">
+        </div>
+    </div>
+    
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit="" lay-filter="add">添加</button>
+        </div>
+    </div>
+</div>
+<script>
+layui.use(['form','element'], function() {
+    var form = layui.form,
+        layer = layui.layer,
+        element = layui.element;
+
+    //自定义验证规则
+    form.verify({
+        title: function(value) {
+            if (!value) {
+                return '请输入标题';
+            }
+        },
+        urls:function(value) {
+            if (!value) {
+                return '请输入url链接';
+            }
+        },
+    });
+    //监听提交
+    form.on('submit(add)', function(data) {
+        var _data = data.field;
+      $.ajax({
+        url:'/admin/access/add',
+        data:_data,
+        type:'post',
+        success:function(data){
+          layer.msg(data.msg,{time:1000},function(){
+            if(data.status == 1){
+              parent.setFrameUrl('/admin/access/add')
+            }
+          });
+           
+        }
+      })
+    });
+
+})
+</script>

@@ -1,8 +1,12 @@
 <?php
 namespace app\admin\controller;
 
-use  app\admin\model\AdminUser as AdminUser;
+
 use think\Controller; 
+use think\Request;
+use  app\admin\model\AdminUser;
+use  app\admin\model\AccessLog;
+
 
 class Login extends Controller
 {
@@ -12,7 +16,11 @@ class Login extends Controller
     }
     public function login()
     {
+
         if($this->request->isPost()){
+            $request = Request::instance();
+
+
             $data = $this->request->post();
             // 数据验证
             $result = $this->validate($data, 'AdminUser.login');
@@ -20,17 +28,28 @@ class Login extends Controller
             if($result !== true) {
                 return ['status'=>'0','msg'=>$result];
             };
+
             $map['name'] = $data['name'];
             $user = AdminUser::where($map)->find();
             if (!$user) {
-                return ['status'=>'0','msg'=>'用户不存在或被禁用！'];
+                return ['status'=>'0','msg'=>'管理员不存在或被禁用！'];
             }
             // 密码校验
             if ($user['password'] != md5($data['password']) ) {
                 return ['status'=>'0','msg'=>'密码不正确'];
             }else{
-                session('admin_uid', $user['uid']);
-                session('admin_nick', $user['nick']);
+                session('admin_id', $user['id']);
+                session('admin_nick', $user['name']);
+                AccessLog::create([
+                    'uid'  =>  $user['id'],
+                    'type' =>  1,
+                    'name' =>  $user['name'],
+                    'target_url' =>  '/admin/login/login',
+                    'query_params' => json_encode( $request->param()),
+                    'ua' =>  $_SERVER['HTTP_USER_AGENT'],
+                    'note' =>  '账号登陆',
+                    'ip' =>  $request->ip(),
+                ]);
                 return ['status'=>'1','msg'=>'登录成功'];
             }
         }
@@ -38,7 +57,7 @@ class Login extends Controller
     }
     public function logout()
     {
-        session('admin_uid', null);
+        session('admin_id', null);
         session('admin_nick', null);
         return ['status'=>'1','msg'=>'退出成功'];
     }

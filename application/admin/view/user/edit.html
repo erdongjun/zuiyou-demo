@@ -2,25 +2,26 @@
 {layout name='/layout/iframe'}
 <!-- 内容主体区域 -->
 <fieldset class="layui-elem-field layui-field-title">
-    <legend>修改管理员</legend>
+    <legend>编辑管理员</legend>
 </fieldset>
-<div class="layui-form layui-form-pane">
+<div class="layui-form">
     <div class="layui-form-item">
         <label class="layui-form-label">账号</label>
         <div class="layui-input-block">
-            <input type="text" name="name" readonly  value="{$info.name}" lay-verify="name" autocomplete="off" placeholder="请输入账号" class="layui-input">
+            <input type="text" name="name" disabled  value="{$info.name}" lay-verify="name" autocomplete="off" placeholder="请输入账号" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">密码</label>
         <div class="layui-input-block">
-            <input type="password" name="password"  lay-verify="password" value="" autocomplete="off" placeholder="请输入密码" class="layui-input">
+            <input type="password" name="password"  value="" lay-verify="password" autocomplete="off" placeholder="请输入密码" class="layui-input">
         </div>
     </div>
-     <div class="layui-form-item">
-        <label class="layui-form-label">昵称</label>
+  
+    <div class="layui-form-item">
+        <label class="layui-form-label">邮箱</label>
         <div class="layui-input-block">
-            <input type="text" name="nick"  lay-verify="nick"  value="{$info.nick}" autocomplete="off" placeholder="请输入昵称" class="layui-input">
+            <input type="text" name="email" lay-verify="email"  value="{$info.email}" autocomplete="off" placeholder="请输入邮箱" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
@@ -30,8 +31,25 @@
         </div>
     </div>
     <div class="layui-form-item">
+        <label class="layui-form-label">所属角色</label>
         <div class="layui-input-block">
-            <button class="layui-btn" lay-submit="" lay-filter="add">添加</button>
+            {eq name='info.is_admin' value="1" }
+                <input type="checkbox" checked title="超级管理员" disabled lay-skin="primary">
+            {else/}
+            {volist name='list' id='vo' key='k'}
+            <input type="checkbox" name="role_ids[{$k}]" title="{$vo.name}" value="{$vo.id}" 
+                {volist name='role_ids' id='vb'}
+                    {eq name='vb.role_id' value="$vo.id" }checked{/eq}
+                {/volist}
+            lay-skin="primary">
+            {/volist}
+            {/eq}
+
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit="" lay-filter="add">保存</button>
         </div>
     </div>
 </div>
@@ -41,32 +59,16 @@ layui.use(['form', 'laydate', 'element'], function() {
         layer = layui.layer,
         element = layui.element;
 
+        
+
     //自定义验证规则
     form.verify({
-        name: function(value) {
-            if (value.length < 5) {
-                return '请输入用户名且大于5个字符';
-            }
-        },
-        nick: function(value) {
-            if (!value) {
-                return '请输入昵称';
-            }
-        },
         password: [/(.+){6,12}$/, '密码必须6到12位'],
-    });
-
-    //监听指定开关
-    form.on('switch(switchTest)', function(data) {
-        // layer.msg('开关checked：'+ (this.checked ? 'true' : 'false'), {
-        //   offset: '6px'
-        // });
-        // layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
     });
     //监听提交
     form.on('submit(add)', function(data) {
         var _data = data.field;
-        _data.uid = {$info.uid};
+        _data.id = {$info.id};
       $.ajax({
         url:'/admin/user/edit',
         data:_data,

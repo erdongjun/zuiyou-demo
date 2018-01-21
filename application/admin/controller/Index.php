@@ -5,7 +5,7 @@ namespace app\admin\controller;
 use  app\admin\model\AdminUser as AdminUser;
 
 
-class Index extends Admin
+class Index extends Base
 {
     public function index()
     {

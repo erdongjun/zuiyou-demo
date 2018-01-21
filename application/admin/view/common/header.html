@@ -63,10 +63,8 @@
                 </ul>
                 <!-- 系统管理 -->
                 <ul class="layui-nav layui-nav-tree dk-nav-tree layui-hide">
-                    <li class="layui-nav-item"><a onclick="setFrameUrl('/admin/system/index')" href="javascript:;"><i class="fa fa-cog"></i>系统信息</a></li>
-
                     <li class="layui-nav-item">
-                        <a class="" href="javascript:;"><i class="fa fa-cc"></i>网站设置</a>
+                        <a class="" href="javascript:;"><i class="fa fa-cog"></i>网站设置</a>
                         <dl class="layui-nav-child">
                             <dd><a href="javascript:;"><i class="fa fa-cc"></i>基本设置</a></dd>
                             <dd><a href="javascript:;"><i class="fa fa-cc"></i>API管理</a></dd>
@@ -75,27 +73,40 @@
                         </dl>
                     </li>
                     <li class="layui-nav-item">
-                        <a class="" href="javascript:;"><i class="fa fa-cc"></i>权限管理</a>
+                        <a class="" href="javascript:;"><i class="fa fa-bars"></i>菜单管理</a>
                         <dl class="layui-nav-child">
-                            <dd><a href="javascript:;"><i class="fa fa-cc"></i>新增权限</a></dd>
-                            <dd><a href="javascript:;"><i class="fa fa-cc"></i>权限列表</a></dd>
+                            <dd><a href="javascript:;" onclick="setFrameUrl('/admin/cate/index')"><i class="fa fa-list-ul"></i>菜单列表</a></dd>
+                            <dd><a href="javascript:;" onclick="setFrameUrl('/admin/cate/add')"><i class="fa fa-user-plus"></i>添加菜单</a></dd>
                         </dl>
                     </li>
                     <li class="layui-nav-item">
-                        <a class="" href="javascript:;"><i class="fa fa-cc"></i>账号管理</a>
+                        <a class="" href="javascript:;"><i class="fa fa-user"></i>账号管理</a>
                         <dl class="layui-nav-child">
-                            <dd><a href="javascript:;"><i class="fa fa-cc"></i>账号列表</a></dd>
-                            <dd><a href="javascript:;"><i class="fa fa-cc"></i>新增账号</a></dd>
-                            <dd><a href="javascript:;"><i class="fa fa-cc"></i>修改密码</a></dd>
+                            <dd><a href="javascript:;" onclick="setFrameUrl('/admin/user/index')"><i class="fa fa-list-ul"></i>账号列表</a></dd>
+                            <dd><a href="javascript:;" onclick="setFrameUrl('/admin/user/add')"><i class="fa fa-user-plus"></i>添加账号</a></dd>
                         </dl>
                     </li>
                     <li class="layui-nav-item">
-                        <a class="" href="javascript:;"><i class="fa fa-cc"></i>安全管理</a>
+                        <a class="" href="javascript:;"><i class="fa fa-road"></i>权限管理</a>
                         <dl class="layui-nav-child">
-                            <dd><a href="javascript:;"><i class="fa fa-cc"></i>登录记录</a></dd>
-                            <dd><a href="javascript:;"><i class="fa fa-cc"></i>请求日志</a></dd>
-                            <dd><a href="javascript:;"><i class="fa fa-cc"></i>操作记录</a></dd>
-                            <dd><a href="javascript:;"><i class="fa fa-cc"></i>邮件日志</a></dd>
+                            <dd><a href="javascript:;" onclick="setFrameUrl('/admin/access/index')"><i class="fa fa-list-ul"></i>权限列表</a></dd>
+                             <dd><a href="javascript:;" onclick="setFrameUrl('/admin/access/add')"><i class="fa fa-plus-square"></i>添加权限</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;"><i class="fa  fa-user-secret"></i>角色管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;" onclick="setFrameUrl('/admin/role/index')"><i class="fa fa-list-ul"></i>角色列表</a></dd>
+                            <dd><a href="javascript:;" onclick="setFrameUrl('/admin/role/add')"><i class="fa fa-plus-square"></i>添加角色</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a class="" href="javascript:;"><i class="fa fa-tasks"></i>安全管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;"  onclick="setFrameUrl('/admin/accesslog/index')"><i class="fa fa-location-arrow"></i>登陆日志</a></dd>
+                            <dd><a href="javascript:;"   onclick="setFrameUrl('/admin/accesslog/simple')"><i class="fa fa-location-arrow"></i>普通日志</a></dd>
+                            <dd><a href="javascript:;"  onclick="setFrameUrl('/admin/accesslog/action')"><i class="fa fa-location-arrow"></i>操作日志</a></dd>
+                            <dd><a href="javascript:;"><i class="fa fa-envelope"></i>邮件日志</a></dd>
                         </dl>
                     </li>
                 </ul>
@@ -163,21 +174,21 @@
                             <dd class="dk-nav-child">
                                 <a href="javascript:;"><i class="fa fa-folder"></i>分类管理</a>
                                 <dl>
-                                    <dd><a href="javascript:;"><i class="fa fa-caret-right"></i>分类列表</a></dd>
-                                    <dd><a href="javascript:;"><i class="fa fa-caret-right"></i>分类添加</a></dd>
+                                    <dd><a href="javascript:;"><i class="fa fa-list-ul"></i>分类列表</a></dd>
+                                    <dd><a href="javascript:;"><i class="fa fa-plus-square"></i>添加分类</a></dd>   
                                 </dl>
                             </dd>
                             <dd class="dk-nav-child">
                                 <a href="javascript:;"><i class="fa fa-folder"></i>文章管理</a>
                                 <dl>
-                                    <dd><a href="javascript:;"><i class="fa fa-caret-right"></i>文章列表</a></dd>
-                                    <dd><a href="javascript:;"><i class="fa fa-caret-right"></i>文章添加</a></dd>
+                                    <dd><a href="javascript:;"><i class="fa fa-list-ul"></i>文章列表</a></dd>
+                                    <dd><a href="javascript:;"><i class="fa fa-plus-square"></i>添加文章</a></dd>  
                                 </dl>
                             </dd>
                             <dd class="dk-nav-child">
                                 <a href="javascript:;"><i class="fa fa-folder"></i>模块设置</a>
                                 <dl>
-                                    <dd><a href="javascript:;"><i class="fa fa-caret-right"></i>模块配置</a></dd>
+                                    <dd><a href="javascript:;"><i class="fa fa-cog"></i>模块配置</a></dd>
                                 </dl>
                             </dd>
                         </dl>
@@ -240,7 +251,7 @@
                         </dl>
                     </li>
                     <li class="layui-nav-item">
-                        <a class="" href="javascript:;"><i class="fa fa-user-secret"></i>原创模块</a>
+                        <a class="" href="javascript:;"><i class="fa fa-users"></i>原创模块</a>
                         <dl class="layui-nav-child">
                             <dd class="dk-nav-child">
                                 <a href="javascript:;"><i class="fa fa-folder"></i>作家管理</a>

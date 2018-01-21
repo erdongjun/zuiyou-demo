@@ -1,0 +1,71 @@
+<!-- 引入布局模板 -->
+{layout name='/layout/iframe'}
+<!-- 内容主体区域 -->
+<fieldset class="layui-elem-field layui-field-title">
+    <legend>添加角色</legend>
+</fieldset>
+<div class="layui-form" style="min-height: 400px;">
+    
+     <div class="layui-form-item">
+        <label class="layui-form-label">角色名称</label>
+        <div class="layui-input-block">
+            <input type="text" name="name" lay-verify="name" autocomplete="off" placeholder="请输入角色名称" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">状态</label>
+        <div class="layui-input-block">
+             <input type="checkbox" checked  name="status" lay-skin="switch" lay-filter="status" lay-text="ON|OFF">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">权限设置</label>
+        <div class="layui-input-block">
+            {volist name='list' id='vo' key='k'}
+            <input type="checkbox" name="access_ids[{$k}]" title="{$vo.title}" value="{$vo.id}" lay-skin="primary">
+            {/volist}
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit="" lay-filter="add">添加</button>
+        </div>
+    </div>
+</div>
+<script>
+layui.use(['form','element'], function() {
+    var form = layui.form,
+        layer = layui.layer,
+        element = layui.element;
+
+    //自定义验证规则
+    form.verify({
+        name: function(value) {
+            if (!value) {
+                return '请输入角色名称';
+            }
+        }
+    });
+    //监听提交
+    form.on('submit(add)', function(data) {
+
+        var _data = data.field;
+        var checked = $('input[name=status]').is(':checked')?1:0;
+        _data['status']= checked;
+      $.ajax({
+        url:'/admin/role/add',
+        data:_data,
+        type:'post',
+        success:function(data){
+          layer.msg(data.msg,{time:1000},function(){
+            if(data.status == 1){
+              parent.setFrameUrl('/admin/role/add')
+            }
+          });
+           
+        }
+      })
+    });
+
+})
+</script>

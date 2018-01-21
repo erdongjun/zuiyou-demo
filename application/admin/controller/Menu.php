@@ -5,9 +5,9 @@ use app\admin\model\Cate as AdminCate;
 use think\Request;
 use think\Validate;
 
-class Cate extends Base
+class Menu extends Base
 {
-	// 分类列表
+	// 菜单列表
     public function index()
     {
     	$cate = new AdminCate();
@@ -17,7 +17,7 @@ class Cate extends Base
     	$this->assign('list',$list);
         return $this->fetch();
     }
-    // 添加分类
+    // 添加菜单
     public function add()
     {	
         $cate = new AdminCate();
@@ -32,7 +32,7 @@ class Cate extends Base
             if (!AdminCate::create($data)) {
                 return ['status'=>'0','msg'=>$this->getError()];
             }
-            return ['status'=>'1','msg'=>'添加分类成功'];
+            return ['status'=>'1','msg'=>'添加菜单成功'];
     	}
 
         $list = $cate ->cateTree();
@@ -40,7 +40,7 @@ class Cate extends Base
 
         return $this->fetch();
     }
-    // 编辑分类
+    // 编辑菜单
 
     public function edit()
     {
@@ -75,7 +75,7 @@ class Cate extends Base
     	}
     	return $this->fetch();
     }
-    // 删除分类
+    // 删除菜单
     public function del()
     {
     	$id = $this->request->param('id');
@@ -83,7 +83,7 @@ class Cate extends Base
 
         foreach ($list as $k => $v) {
             if($v['parent_id'] == $id){
-                return ['status'=>'0','msg'=>'该分类下存在子分类,不能被删除!'];
+                return ['status'=>'0','msg'=>'该菜单下存在子菜单,不能被删除!'];
             }
         }
         $user = AdminCate::get($id );

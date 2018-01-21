@@ -1,0 +1,122 @@
+<!-- 引入布局模板 -->
+{layout name='/layout/iframe'}
+<!-- 内容主体区域 -->
+<fieldset class="layui-elem-field layui-field-title">
+    <legend>分类列表</legend>
+</fieldset>
+<div class="page-toolbar">
+    <div class="page-filter fr">
+        <form class="layui-form layui-form-pane" action="/admin.php/admin/user/index.html" method="get">
+            <div class="layui-form-item">
+                <label class="layui-form-label">搜索</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="q" value="" lay-verify="required" placeholder="请输入关键词搜索" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </form>
+    </div>
+    <form class="page-list-form">
+        <div class="layui-btn-group fl">
+            <a href="/admin/cate/add.html" class="layui-btn layui-btn-primary"><i class="aicon ai-tianjia"></i>添加</a>
+            <a data-href="/admin.php/admin/user/status/table/admin_user/val/1.html" class="layui-btn layui-btn-primary j-page-btns"><i class="aicon ai-qiyong"></i>启用</a>
+            <a data-href="/admin.php/admin/user/status/table/admin_user/val/0.html" class="layui-btn layui-btn-primary j-page-btns"><i class="aicon ai-jinyong1"></i>禁用</a>
+            <a data-href="/admin.php/admin/user/deluser.html" class="layui-btn layui-btn-primary j-page-btns confirm"><i class="aicon ai-jinyong"></i>删除</a>
+        </div>
+    </form>
+</div>
+<div class="layui-form">
+    <table class="layui-table mt10" lay-even="" lay-skin="row">
+        <colgroup>
+            <col width="50">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>
+                    <input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose">
+                </th>
+                <th>分类id</th>
+                <th>分类名</th>
+                <th>icon</th>
+                <th>介绍</th>
+                <th>更新时间</th>
+                <th>创建时间</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+        {volist name='list' id='vo'}
+            <tr>
+                <td>
+                    <input type="checkbox" name="cate" value="{$vo.id}" lay-skin="primary" >
+                </td>
+                <td>{$vo.id}</td>
+                <td>{$vo.level|str_repeat= "--",###} {$vo.name}</td>
+                <td><img class="layui-nav-img" style="border-radius:3px;" src="{$vo.icon}" alt=""></td>
+                <td>{$vo.des}</td>
+                <td>{$vo.update_time}</td>
+                <td>{$vo.create_time}</td>
+                <td>
+                    <div class="layui-btn-group">
+                        <div class="layui-btn-group">
+                            <a href="/admin/cate/edit/id/{$vo.id}" class="layui-btn layui-btn-primary layui-btn-small"><i class="layui-icon"></i></a>
+                            <a href="/admin/cate/edit/id/{$vo.id}" class="layui-btn layui-btn-primary layui-btn-small" title="查看操作日志"><i class="layui-icon"></i></a>
+                            <a data-href="/admin/cate/del/id/{$vo.id}" class="layui-btn layui-btn-primary layui-btn-small table-del"><i class="layui-icon"></i></a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        {/volist}
+        </tbody>
+    </table>
+</div>
+
+<script>
+
+layui.use(['form', 'layedit', 'laydate','element'], function(){
+  var form = layui.form
+  ,layer = layui.layer
+  , element = layui.element;
+ 
+  //自定义验证规则
+  form.verify({
+    title: function(value){
+      if(value.length < 5){
+        return '标题至少得5个字符啊';
+      }
+    }
+    ,pass: [/(.+){6,12}$/, '密码必须6到12位']
+    ,content: function(value){
+      layedit.sync(editIndex);
+    }
+  });
+  
+
+  
+  //监听提交
+  form.on('submit(demo1)', function(data){
+    layer.alert(JSON.stringify(data.field), {
+      title: '最终的提交信息'
+    })
+    return false;
+  });
+    $('.table-del').click(function(){
+        var url = $(this).attr('data-href')
+        $.ajax({
+            url:url,
+            type:'get',
+            success:function (data) {
+                layer.msg(data.msg,{time:1000},function(){
+                    if(data.status ==1){
+                       parent.setFrameUrl('/admin/cate/index')
+                    }
+                })
+            }
+        })
+    })
+  
+})
+
+
+
+
+</script>
