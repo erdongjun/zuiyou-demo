@@ -28,7 +28,7 @@ class  Base extends Controller
 			'login/logout',
 			'index/index',
 			'system/noaccess',
-			'system/index'
+			'system/index',
 		];
 		return $ignore_urls;
 	} 

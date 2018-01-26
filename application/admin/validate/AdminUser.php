@@ -16,7 +16,7 @@ class AdminUser extends Validate
         'password|密码'  => 'require|length:6,20',
         'email' => 'email|unique:AdminUser',
         'mobile|手机号'   => 'requireWith:mobile|regex:/^1[34578]\d{9}$/|unique:AdminUser',
-        'verify|验证码'=>'require|captcha'
+        // 'verify|验证码'=>'require|captcha'
     ];
 
     //定义验证提示

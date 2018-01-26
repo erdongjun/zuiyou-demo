@@ -23,6 +23,6 @@ class AdminMenu extends Validate
     //定义验证场景
     protected $scene = [
         //更新
-        'update'  =>  ['name'],
+        'edit'  =>  ['name'],
     ];
 }

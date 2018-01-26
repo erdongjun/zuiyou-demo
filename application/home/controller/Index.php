@@ -1,32 +1,45 @@
 <?php
 namespace app\home\controller;
-use think\Db;
+
+use app\admin\model\Article;
+use app\admin\model\ArticleCate;
+
+
+
 class Index extends Home
 {
     public function index()
-    {
-        $list = Db::table('ym_cate')
-    			->alias('c')
-    			->join('ym_post p','c.id = p.cate_id')
-    			->join('ym_user u','p.uid = u.uid')
-    			->field('p.*,nick,avatar')
-    			->paginate(10);
-    	// 处理后的图片数组
-    	$arr =[];
-    	foreach ($list as $v) {
-    		if($v['type']==1){
-    			$imgs = explode(',',$v['resource']);
-    			$v['resource'] = $imgs;
-    		};
-    		$arr[]=$v;
-    	}
-    	$this->assign('page',$list->render());
-    	$this->assign('list',$arr);
-        // dump($arr);
+    {   
+        $cate = new ArticleCate();
+        $cate_list = $cate ->cateTree();
+        $list = Article::where('status',1)->order('id desc')->limit(10)->select();
+        $this->assign('list',$list);
+        $this->assign('cate_list',$cate_list);
         return $this->fetch();
     }
-    public function test()
+    public function cate()
     {
+        $cate = new ArticleCate();
+        $cate_list = $cate ->cateTree();
+        $this->assign('cate_list',$cate_list);
+        return $this->fetch();
+    }
+    public function article()
+    {
+        $id = $this->request->param('id');
+        $info = ArticleCate::get($id);
+        $list = Article::where(['status'=>1,'c_id'=>$id])->order('id desc')->paginate(10);
+        $this->assign('page',$list->render());
+        $this->assign('list',$list);
+        $this->assign('info',$info);
+        return $this->fetch();
+    }
+    public function detail()
+    {
+        $id = $this->request->param('id');
+        $info = Article::get($id);
+        $this->assign('info',$info);
+        
         return $this->fetch();
     }
 }

@@ -16,7 +16,7 @@ class Access extends Base
         $list = AdminAccess::order('id desc')->paginate(10);
         $this->assign('page',$list->render());
         $this->assign('list',$list);
-        return $this->fetch();
+        return $this->fetch('Access/index');
     }
     // 添加权限
     public function add()
@@ -40,7 +40,7 @@ class Access extends Base
         $menu = new AdminMenu();
         $list = $menu ->cateTree();
         $this->assign('list',$list);
-        return $this->fetch();
+        return $this->fetch('Access/index');
     }
     // 编辑权限
     public function edit()
@@ -73,7 +73,7 @@ class Access extends Base
         $info = AdminAccess::get($id);
         $this->assign('list',$list);
     	$this->assign('info',$info);
-    	return $this->fetch();
+    	return $this->fetch('Access/edit');
     }
 
 

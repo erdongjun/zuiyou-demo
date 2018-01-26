@@ -1,0 +1,127 @@
+<!-- 引入布局模板 -->
+{layout name='/layout/iframe'}
+<!-- 内容主体区域 -->
+<fieldset class="layui-elem-field layui-field-title">
+    <legend>菜单列表</legend>
+</fieldset>
+<div class="page-toolbar">
+    <div class="page-filter fr">
+        <form class="layui-form layui-form-pane" action="/admin.php/admin/user/index.html" method="get">
+            <div class="layui-form-item">
+                <label class="layui-form-label">搜索</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="q" value="" lay-verify="required" placeholder="请输入关键词搜索" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+        </form>
+    </div>
+    
+</div>
+<div class="layui-form">
+    <table class="layui-table mt10" lay-even="" lay-skin="row">
+        <colgroup>
+            <col width="150">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>文章id</th>
+                <th>标题</th>
+                <th>状态</th>
+                <th>创建时间</th>
+                <th>更新时间</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+        {empty name='list'}
+            <tr>
+                <td colspan='6' align='center'>暂无数据</td>
+            </tr>
+        {/empty}
+        {volist name='list' id='vo'}
+            <tr>
+                <td>{$vo.id}</td>
+                <td>{$vo.title}</td>
+                <td>
+                     <input type="checkbox" {eq name='vo["status"]' value="1" }checked=""{/eq} data-id="{$vo.id}" name="status" lay-skin="switch" lay-filter="status" lay-text="ON|OFF">
+                </td>
+                <td>{$vo.create_time}</td>
+                <td>{$vo.update_time}</td>
+                <td>
+                    <div class="layui-btn-group">
+                        <div class="layui-btn-group">
+                           <a href="/admin/article/edit/id/{$vo.id}" class="layui-btn layui-btn-primary layui-btn-small"><i class="layui-icon">&#xe642;</i></a>
+                            <a data-href="/admin/article/del/id/{$vo.id}" class="layui-btn layui-btn-primary layui-btn-small table-del"><i class="layui-icon">&#xe640;</i></a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        {/volist}
+        </tbody>
+    </table>
+</div>
+
+<script>
+
+layui.use(['form', 'layedit', 'laydate','element'], function(){
+  var form = layui.form
+  ,layer = layui.layer
+  , element = layui.element;
+ 
+  //自定义验证规则
+  form.verify({
+    title: function(value){
+      if(value.length < 5){
+        return '标题至少得5个字符啊';
+      }
+    }
+    ,pass: [/(.+){6,12}$/, '密码必须6到12位']
+    ,content: function(value){
+      layedit.sync(editIndex);
+    }
+  });
+  
+form.on('switch(status)', function(self){
+    var _data = {
+      status:this.checked ? '1' : '0',
+      id:$(this).data('id')
+    }
+    $.ajax({
+        url:'/admin/article/edit',
+        data:_data,
+        type:'post',
+        success:function(data){
+          layer.msg(data.msg,{time:1000},function(){
+            if(data.status != 1){
+              $(self.elem).attr('checked', !self.elem.checked);
+              form.render();
+            }
+          });
+           
+        }
+    })
+
+  });
+  
+ 
+    $('.table-del').click(function(){
+        var url = $(this).attr('data-href')
+        $.ajax({
+            url:url,
+            type:'get',
+            success:function (data) {
+                layer.msg(data.msg,{time:1000},function(){
+                    if(data.status ==1){
+                       parent.setFrameUrl('/admin/article/cateindex')
+                    }
+                })
+            }
+        })
+    })
+  
+})
+
+
+
+
+</script>

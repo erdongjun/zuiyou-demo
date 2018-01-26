@@ -1,48 +1,31 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="keywords" content="[keywords]" />
-    <title>夜猫趣</title>
-    <link rel="stylesheet" type="text/css" href="/static/lib/webuploader/webuploader.css">
-    <link rel="stylesheet" href="/static/lib/layui/css/layui.css">
-    <link rel="stylesheet" href="/static/base/css/global.css">
-    <link rel="stylesheet" href="/static/home/css/index.css">
-
-    <script src="/static/lib/jquery.js"></script>
-    <script src="/static/lib//layui/layui.js"></script>
-    <script src="/static/home/js/index.js"></script>
-    <script type="text/javascript" src="/static/lib/webuploader//webuploader.js"></script>
-</head>
-<body style="background: #F0F0F0">
-    <!-- 顶部导航条 -->
-    <div class="header">
-        <div class="layui-main">
-            <img class="header-logo" src="/static/base/img/biu.jpg" alt="layui">
-            <div class="header-search layui-form">
-              	<input type="text" name="title" placeholder="搜索" autocomplete="off" class="layui-input"> 
-			</div>
-            <ul class="layui-nav header-nav" lay-filter="">
-                <li class="layui-nav-item"><a href="/home/index/index">首页</a></li>
-                <li class="layui-nav-item"><a href="/home/cate/lis">话题</a></li>
-                <li class="layui-nav-item"><a href="/home/user/contribute">投稿</a></li>
-                <li class="layui-nav-item">
-                    {empty name='Think.session.user_uid'}
-                         <a href="/home/user/login" >登录</a>
-                        {else/}
-                        <a href="">
-                        <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
-                            {$Think.session.user_nick?$Think.session.user_nick:$Think.session.user_uid}
-                        </a>
-                        <dl class="layui-nav-child">
-                          <dd><a href="javascript:;">修改信息</a></dd>
-                          <dd><a href="javascript:;">安全管理</a></dd>
-                          <dd><a href="javascript:;" class="logout">退出</a></dd>
-                        </dl>
-                    {/empty}
-				</li>
-            </ul>
-        </div>
+<nav id="sidebar" class="behavior_1">
+    <div class="wrap">
+        <ul class="buttons">
+            <li>
+                <a href="/" title="首页"> <i class="fa fa-home"></i> <span>首页</span></a>
+            </li>
+            <li>
+                <a href="/home/index/cate" title=""> <i class="fa fa-file-text"></i> <span>小说专区</span></a>
+            </li>
+            <!-- <li>
+                <a href="/home/pic/index"> <i class="fa fa-picture-o"></i> <span>图片专区</span></a>
+            </li>
+            <li>
+                <a href="/home/video/index"> <i class="fa fa-video-camera"></i> <span>短视频</span></a>
+            </li>
+            <li>
+                <a href="" title="关于"> <i class="fa fa-user"></i> <span>个人中心</span></a>
+            </li> -->
+        </ul>
     </div>
+</nav>
+<div id="header">
+    <div class="btn-bar"><i></i></div>
+    <h1><a href="/">蚂蚁小说阅读网</a></h1>
+    <a class="me" href="javascript:history.back();">
+        <img src="/static/blog/img/ant2.png">
+    🐜
+    </a>
+
+</div>
+<div id="sidebar-mask"></div>

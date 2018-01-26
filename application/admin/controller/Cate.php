@@ -58,12 +58,9 @@ class Cate extends Base
     	$this->assign('info',$data);
 
     	if($this->request->isPost()){
-    		$post_data = $this->request->post();
-
-    		$result = $this->validate($post_data, 'Cate.update');
-
+    		$result = $this->validate($_POST, 'Cate.update');
     		if( $result === true){
-                    if(AdminCate::update($post_data)){
+                    if(AdminCate::update($_POST)){
     	    			return ['status'=>'1','msg'=>'更新成功'];
     	    		}else{
     	    			return ['status'=>'0','msg'=>$this->getError()];

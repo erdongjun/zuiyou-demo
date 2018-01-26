@@ -5,7 +5,7 @@ namespace app\admin\validate;
 use think\Validate;
 
 /**
- * 用户验证器
+ * 权限验证器
  * @package app\admin\validate
  */
 class AdminAccess extends Validate

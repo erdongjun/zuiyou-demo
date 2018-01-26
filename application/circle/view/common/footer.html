@@ -1,0 +1,39 @@
+
+<!-- 主区域右侧 -->
+	<div class="content-right">
+		<img src="/static/base/img/biu.jpg">
+	</div>
+</div>
+<!-- 底部固定区域 -->
+<div class="layui-footer layui-main">
+    © 2017 - yemaoqu.com - 
+</div>
+
+<script>
+//JavaScript代码区域
+layui.use(['element','layer'], function(){
+  var element = layui.element;
+  var layer = layui.layer;
+
+	// 退出登录
+	$('.logout').click(function(){
+		$.ajax({
+			url:'/home/user/logout',
+			type:'get',
+			success:function(data){
+
+				layer.msg(data.msg,{time:1000},function(){
+		            if(data.status == 1){
+		                window.location.href='/home/index/index';
+		            }
+		         })
+				
+			}
+		})
+	})
+});
+
+</script>
+
+</body>
+</html>

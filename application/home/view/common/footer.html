@@ -1,39 +1,8 @@
-
-<!-- 主区域右侧 -->
-	<div class="content-right">
-		<img src="/static/base/img/biu.jpg">
-	</div>
-</div>
-<!-- 底部固定区域 -->
-<div class="layui-footer layui-main">
-    © 2017 - yemaoqu.com - 
-</div>
-
-<script>
-//JavaScript代码区域
-layui.use(['element','layer'], function(){
-  var element = layui.element;
-  var layer = layui.layer;
-
-	// 退出登录
-	$('.logout').click(function(){
-		$.ajax({
-			url:'/home/user/logout',
-			type:'get',
-			success:function(data){
-
-				layer.msg(data.msg,{time:1000},function(){
-		            if(data.status == 1){
-		                window.location.href='/home/index/index';
-		            }
-		         })
-				
-			}
-		})
-	})
-});
-
-</script>
-
+<footer id="footer" class="inner">
+	 © 2016&nbsp;-&nbsp;Powered by&nbsp;
+    <a target="_blank" rel="nofollow" class="external" href="/">dak小说阅读网</a>
+</footer>
+<script type="text/javascript" src="/static/lib/jquery.js"></script>
+<script type="text/javascript" src="/static/blog/js/index.js"></script>
 </body>
 </html>

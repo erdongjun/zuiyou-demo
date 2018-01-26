@@ -1,0 +1,21 @@
+<include file="Layout/meta" />
+<include file="Layout/header" />
+<div id="main" style="margin-top: 30px;">
+   <article class="post archive">
+        <h1 class="title">分类</h1>
+        <div>
+            <foreach name='list' item='vo'>
+                 <div class="entry-content">
+                    <h3>{$vo.cateanme} ({$vo['sublist'] |count})</h3>
+                    <ul>
+                        <foreach name='vo.sublist' item='vb'>
+                             <li> <a href="/Home/Index/article/id/{$vb.id}">{$vb.title}</a>&nbsp; <span class="date">{$vb.time}</span> </li>
+                        </foreach>
+                       
+                    </ul>
+                </div>
+            </foreach>
+        </div>
+    </article>
+</div>
+<include file="Layout/footer" />

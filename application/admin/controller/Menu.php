@@ -2,7 +2,9 @@
 namespace app\admin\controller;
 
 use app\admin\model\AdminMenu;
-
+/**
+ * 后台菜单栏
+ */
 class Menu extends Base
 {
 	// 菜单列表
@@ -23,13 +25,10 @@ class Menu extends Base
             if($valid_res !== true) {
                 return ['status'=>'0','msg'=>$valid_res];
             }
-
-
             $AdminMenuModel = new AdminMenu($_POST);
 
             $data_res = $AdminMenuModel->allowField(true)->save();
-            // dump($data_res);
-            // exit();
+
             if (!$data_res) {
                 return ['status'=>'0','msg'=>$this->getError()];
             }
@@ -46,25 +45,14 @@ class Menu extends Base
     public function edit()
     {
 
-        $menu = new AdminMenu();
-
-        $list = $menu ->cateTree();
-
-
-    	$id = $this->request->param('id');
-    	$data = AdminMenu::get($id);
-        // dump($data);die;
-
-        $this->assign('list',$list);
-    	$this->assign('info',$data);
+       
 
     	if($this->request->isPost()){
-    		$post_data = $this->request->post();
 
-    		$result = $this->validate($post_data, 'AdminMenu.update');
+    		$result = $this->validate($_POST, 'AdminMenu.edit');
 
     		if( $result === true){
-                    if(AdminMenu::update($post_data)){
+                    if(AdminMenu::update($_POST)){
     	    			return ['status'=>'1','msg'=>'更新成功'];
     	    		}else{
     	    			return ['status'=>'0','msg'=>$this->getError()];
@@ -74,19 +62,24 @@ class Menu extends Base
     		}
     		
     	}
+        $menu = new AdminMenu();
+        $list = $menu ->cateTree();
+        $id = $this->request->param('id');
+        $data = AdminMenu::get($id);
+
+        $this->assign('list',$list);
+        $this->assign('info',$data);
     	return $this->fetch();
     }
     // 删除菜单
     public function del()
     {
     	$id = $this->request->param('id');
-    	$list = AdminMenu::select();
-
-        foreach ($list as $k => $v) {
-            if($v['parent_id'] == $id){
-                return ['status'=>'0','msg'=>'该菜单下存在子菜单,不能被删除!'];
-            }
+    	$list = AdminMenu::where('parent_id',$id)->select();
+        if($list){
+            return ['status'=>'0','msg'=>'该菜单下存在子菜单,不能被删除!'];
         }
+
         $user = AdminMenu::get($id );
 
     	if($user->delete()){

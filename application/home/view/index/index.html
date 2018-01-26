@@ -1,58 +1,23 @@
 <!-- 引入布局模板 -->
 {layout name='/layout/common'}
-<!-- 主区域代码 -->
-<div class="layui-main ym-main layui-clear">
-	<!-- 主区域左侧 -->
-	<div class="content-left">
-		<div class="ym-list">
-		{volist name='list' id="vo"}
-
-				<div class="ym-item">
-				<div class="ym-item-tit">
-					<img src="{$vo.avatar}">
-					<span>{$vo.nick}</span><span class="layui-badge">vip</span>
-				</div>
-				<a href="/home/post/index/id/{$vo.id}" class="ym-item-bd">
-					<p>{$vo.content}</p>
-
-					{switch name="vo.type" }
-					    {case value="1"}
-							<div class="imgbox">
-							{volist name='vo.resource' id="vb"}
-								<img src="{$vb}">
-							{/volist}
-							</div>
-					    {/case}
-					    {case value="2"}
-								<div class="videobox">
-									<video src="{$vo.resource}" controls="" autobuffer=""></video>
-								</div>
-					    {/case}
-					    {case value="3"}
-					    	<div class="audiobox">
-									<audio src="{$vo.resource}" controls="" autobuffer=""></audio>
-								</div>
-
-					    {/case}
-					    {default /}
-					{/switch}
-				</a>
-			</div>
-			{/volist}
-		</div>
-		{$page}
+<!-- 内容部分 -->
+<div id="main">
+	<div class="c_nav">
 	</div>
-	
-<script>
-// 分页
-layui.use('laypage', function(){
-  var laypage = layui.laypage;
-  
-  //执行一个laypage实例
-  laypage.render({
-    elem: 'pagebox' //注意，这里的 test1 是 ID，不用加 # 号
-    ,count: 50 //数据总数，从服务端得到
-  });
-});
-
-</script> 
+    <section class="c_section">
+	    <div class="c_cate">
+			{foreach name='cate_list' item='vo'}
+	        	<a href="/home/index/article/id/{$vo.id}" class="c_cate_item">{$vo.name}</a>
+	        {/foreach}
+		</div>
+		<h2>最新小说</h2>
+		<div class="c_list">
+			{foreach name='list' item='vo'}
+		        <p>
+		            <a href="/home/index/detail/id/{$vo.id}.html"></i>{$vo.title}</a>
+		            <span class="date">2018-01-17</span>
+		        </p>
+        	{/foreach}
+		</div>
+    </section>
+</div>
