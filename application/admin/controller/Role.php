@@ -17,7 +17,7 @@ class Role extends Base
         $list = AdminRole::order('id desc')->paginate(10);
         $this->assign('page',$list->render());
         $this->assign('list',$list);
-        return $this->fetch();
+        return $this->fetch('role/index');
     }
     // 添加角色
     public function add()
@@ -61,7 +61,7 @@ class Role extends Base
         //取出所有权限列表
         $list = AdminAccess::where('status',1)->order('id','desc')->select();
         $this->assign('list',$list);
-        return $this->fetch();
+        return $this->fetch('role/add');
     }
     // 编辑角色
     public function edit()
@@ -131,7 +131,7 @@ class Role extends Base
         $this->assign('list',$list);
         $this->assign('access_ids',$access_ids);
     	$this->assign('info',$info);
-    	return $this->fetch();
+    	return $this->fetch('role/edit');
     }
     // 删除分类
     public function del()

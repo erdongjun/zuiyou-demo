@@ -13,7 +13,7 @@ class Menu extends Base
     	$menu = new AdminMenu();
         $list = $menu ->cateTree();
     	$this->assign('list',$list);
-        return $this->fetch();
+        return $this->fetch('menu/index');
     }
     // 添加菜单
     public function add()
@@ -38,15 +38,12 @@ class Menu extends Base
         $list = $menu ->cateTree();
         $this->assign('list',$list);
 
-        return $this->fetch();
+        return $this->fetch('menu/add');
     }
     // 编辑菜单
 
     public function edit()
     {
-
-       
-
     	if($this->request->isPost()){
 
     		$result = $this->validate($_POST, 'AdminMenu.edit');
@@ -69,7 +66,7 @@ class Menu extends Base
 
         $this->assign('list',$list);
         $this->assign('info',$data);
-    	return $this->fetch();
+    	return $this->fetch('menu/edit');
     }
     // 删除菜单
     public function del()

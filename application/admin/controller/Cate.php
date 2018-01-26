@@ -15,7 +15,7 @@ class Cate extends Base
         $this->assign('list',$list);
     	// dump($list);die;
     	$this->assign('list',$list);
-        return $this->fetch();
+        return $this->fetch('cate/index');
     }
     // 添加分类
     public function add()
@@ -38,7 +38,7 @@ class Cate extends Base
         $list = $cate ->cateTree();
         $this->assign('list',$list);
 
-        return $this->fetch();
+        return $this->fetch('cate/add');
     }
     // 编辑分类
 
@@ -70,7 +70,7 @@ class Cate extends Base
     		}
     		
     	}
-    	return $this->fetch();
+    	return $this->fetch('cate/edit');
     }
     // 删除分类
     public function del()

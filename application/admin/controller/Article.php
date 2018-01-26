@@ -20,7 +20,7 @@ class Article extends Base
         $this->assign('page',$list->render());
         $this->assign('list',$list);
 
-        return $this->fetch();
+        return $this->fetch('article/index');
     }
     // 添加文章
     public function add()
@@ -45,7 +45,7 @@ class Article extends Base
         $list = $cate ->cateTree();
         $this->assign('list',$list);
 
-        return $this->fetch();
+        return $this->fetch('article/add');
     }
     // 编辑文章
     public function edit()
@@ -78,7 +78,7 @@ class Article extends Base
         $info = ArticleModel::get($id);
         $this->assign('info',$info);
         $this->assign('list',$list);
-        return $this->fetch();
+        return $this->fetch('article/edit');
     }
     // 删除文章
     public function del()
@@ -105,15 +105,15 @@ class Article extends Base
 
 
     // 分类列表
-    public function cateIndex()
+    public function cate_index()
     {
         $cate = new ArticleCate();
         $list = $cate ->cateTree();
         $this->assign('list',$list);
-        return $this->fetch();
+        return $this->fetch('article/cate_index');
     }
     // 添加分类
-    public function cateAdd()
+    public function cate_add()
     {   
         if($this->request->isPost()){
             // 验证
@@ -134,11 +134,11 @@ class Article extends Base
         $list = $cate ->cateTree();
         $this->assign('list',$list);
 
-        return $this->fetch();
+        return $this->fetch('article/cate_add');
     }
     // 编辑分类
 
-    public function cateEdit()
+    public function cate_edit()
     {
 
         $cate = new ArticleCate();
@@ -163,7 +163,7 @@ class Article extends Base
             }
             
         }
-        return $this->fetch();
+        return $this->fetch('article/cate_edit');
     }
     // 删除分类
     public function cateDel()

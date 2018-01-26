@@ -15,14 +15,14 @@ class Index extends Home
         $list = Article::where('status',1)->order('id desc')->limit(10)->select();
         $this->assign('list',$list);
         $this->assign('cate_list',$cate_list);
-        return $this->fetch();
+        return $this->fetch('index/index');
     }
     public function cate()
     {
         $cate = new ArticleCate();
         $cate_list = $cate ->cateTree();
         $this->assign('cate_list',$cate_list);
-        return $this->fetch();
+        return $this->fetch('index/cate');
     }
     public function article()
     {
@@ -32,7 +32,7 @@ class Index extends Home
         $this->assign('page',$list->render());
         $this->assign('list',$list);
         $this->assign('info',$info);
-        return $this->fetch();
+        return $this->fetch('index/article');
     }
     public function detail()
     {
@@ -40,6 +40,6 @@ class Index extends Home
         $info = Article::get($id);
         $this->assign('info',$info);
         
-        return $this->fetch();
+        return $this->fetch('index/detail');
     }
 }

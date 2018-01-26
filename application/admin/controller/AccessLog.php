@@ -15,7 +15,7 @@ class AccessLog extends Base
 		$list = AdminAccessLog::where('type','1')->order('id desc')->paginate(10);
         $this->assign('page',$list->render());
         $this->assign('list',$list);
-        return $this->fetch();
+        return $this->fetch('accessLog/index');
 	}
 	//普通日志
 	public function simple()
@@ -23,7 +23,7 @@ class AccessLog extends Base
 		$list = AdminAccessLog::where('type','0')->order('id desc')->paginate(10);
         $this->assign('page',$list->render());
         $this->assign('list',$list);
-        return $this->fetch();
+        return $this->fetch('accessLog/simple');
 	}
 	//操作数据库日志
 	public function action()
@@ -31,7 +31,6 @@ class AccessLog extends Base
 		$list = AdminAccessLog::where('type','2')->order('id desc')->paginate(10);
         $this->assign('page',$list->render());
         $this->assign('list',$list);
-        // dump($list);exit();
-        return $this->fetch();
+        return $this->fetch('accessLog/action');
 	}
 }

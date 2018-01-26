@@ -18,7 +18,7 @@ class User extends Base
     	$list = AdminUser::order('id asc')->paginate(10);
         $this->assign('page',$list->render());
         $this->assign('list',$list);
-        return $this->fetch();
+        return $this->fetch('user/index');
     }
     // 添加管理员
     public function add()
@@ -60,7 +60,7 @@ class User extends Base
         //取出所有的角色列表
         $list = AdminRole::where('status',1)->order('id','desc')->select();
         $this->assign('list',$list);
-        return $this->fetch();
+        return $this->fetch('user/add');
     }
     // 编辑管理员
 
@@ -137,7 +137,7 @@ class User extends Base
         $this->assign('list',$list);
         $this->assign('role_ids',$role_ids);
 
-        return $this->fetch();
+        return $this->fetch('user/edit');
     }
     // 删除管理员
 
