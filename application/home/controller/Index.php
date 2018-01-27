@@ -3,6 +3,8 @@ namespace app\home\controller;
 
 use app\admin\model\Article;
 use app\admin\model\ArticleCate;
+use app\admin\model\Link;
+use app\admin\model\Cate;
 
 
 
@@ -42,5 +44,34 @@ class Index extends Home
         $this->assign('info',$info);
         
         return $this->fetch('index/detail');
+    }
+    // 网址导航
+    public function link()
+    {
+       $cates = Cate::all([
+                'parent_id' => 0,
+                'type' => 1
+            ]);
+
+
+
+       $links = Link::all(['status'=>1]);
+
+       foreach ($cates as $cate) {
+            $list = [];
+            foreach ($links as $link) {
+                if($cate['id'] == $link['c_id']){
+                    $list[]  = $link;
+                }
+            }
+
+            $cate['link_list'] = $list;
+       }
+       // dump($cates);exit();
+
+
+        // $cate_list = $cate ->cateTree(1);
+        $this->assign('cate_list',$cates);
+        return $this->fetch('index/link');
     }
 }

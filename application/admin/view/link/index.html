@@ -2,7 +2,7 @@
 {layout name='/layout/iframe'}
 <!-- 内容主体区域 -->
 <fieldset class="layui-elem-field layui-field-title">
-    <legend>分类列表</legend>
+    <legend>菜单列表</legend>
 </fieldset>
 <div class="page-toolbar">
     <div class="page-filter fr">
@@ -20,32 +20,36 @@
 <div class="layui-form">
     <table class="layui-table mt10" lay-even="" lay-skin="row">
         <colgroup>
-            <col width="150">
+            <col width="100">
         </colgroup>
         <thead>
             <tr>
-                <th>分类ID</th>
-                <th>分类名</th>
-                <th>简介</th>
+                <th>友链id</th>
+                <th>标题</th>
+                <th>链接</th>
+                <th>状态</th>
                 <th>操作</th>
             </tr>
         </thead>
         <tbody>
         {empty name='list'}
             <tr>
-                <td colspan='4' align='center'>暂无数据</td>
+                <td colspan='5' align='center'>暂无数据</td>
             </tr>
         {/empty}
         {volist name='list' id='vo'}
             <tr>
                 <td>{$vo.id}</td>
-                <td>{$vo.level|str_repeat= "--",###} {$vo.name}</td>
-                <td>{$vo.des}</td>
+                <td>{$vo.title}</td>
+                <td>{$vo.link}</td>
+                <td>
+                     <input type="checkbox" {eq name='vo["status"]' value="1" }checked=""{/eq} data-id="{$vo.id}" name="status" lay-skin="switch" lay-filter="status" lay-text="ON|OFF">
+                </td>
                 <td>
                     <div class="layui-btn-group">
                         <div class="layui-btn-group">
-                           <a href="/admin/article/cate_edit/id/{$vo.id}" class="layui-btn layui-btn-primary layui-btn-small"><i class="layui-icon">&#xe642;</i></a>
-                            <a data-href="/admin/article/cate_del/id/{$vo.id}" class="layui-btn layui-btn-primary layui-btn-small table-del"><i class="layui-icon">&#xe640;</i></a>
+                           <a href="/admin/link/edit/id/{$vo.id}" class="layui-btn layui-btn-primary layui-btn-small"><i class="layui-icon">&#xe642;</i></a>
+                            <a data-href="/admin/link/del/id/{$vo.id}" class="layui-btn layui-btn-primary layui-btn-small table-del"><i class="layui-icon">&#xe640;</i></a>
                         </div>
                     </div>
                 </td>
@@ -53,6 +57,7 @@
         {/volist}
         </tbody>
     </table>
+    {$page}
 </div>
 
 <script>
@@ -75,15 +80,29 @@ layui.use(['form', 'layedit', 'laydate','element'], function(){
     }
   });
   
-
-  
-  //监听提交
-  form.on('submit(demo1)', function(data){
-    layer.alert(JSON.stringify(data.field), {
-      title: '最终的提交信息'
+form.on('switch(status)', function(self){
+    var _data = {
+      status:this.checked ? '1' : '0',
+      id:$(this).data('id')
+    }
+    $.ajax({
+        url:'/admin/link/edit',
+        data:_data,
+        type:'post',
+        success:function(data){
+          layer.msg(data.msg,{time:1000},function(){
+            if(data.status != 1){
+              $(self.elem).attr('checked', !self.elem.checked);
+              form.render();
+            }
+          });
+           
+        }
     })
-    return false;
+
   });
+  
+ 
     $('.table-del').click(function(){
         var url = $(this).attr('data-href')
         $.ajax({
@@ -92,7 +111,7 @@ layui.use(['form', 'layedit', 'laydate','element'], function(){
             success:function (data) {
                 layer.msg(data.msg,{time:1000},function(){
                     if(data.status ==1){
-                       parent.setFrameUrl('/admin/article/cate_index')
+                       parent.setFrameUrl('/admin/link/index')
                     }
                 })
             }

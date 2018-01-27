@@ -1,0 +1,16 @@
+<!-- 引入布局模板 -->
+{layout name='/layout/common'}
+<!-- 内容部分 -->
+<div id="main">
+    <section class="c_section c_websit">
+    	{foreach name='cate_list' item='vo'}
+	    	<div class="c_websit_top">{$vo.name}</div>
+		    <div class="c_cate">
+		    	{foreach name='vo.link_list' item='vb'}
+		        	<a href="/home/index/article/id/{$vo.id}" class="c_cate_item">{$vb.title}</a>
+	    		{/foreach}
+
+			</div>
+	    {/foreach}
+    </section>
+</div>

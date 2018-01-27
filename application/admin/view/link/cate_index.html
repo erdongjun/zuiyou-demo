@@ -44,8 +44,8 @@
                 <td>
                     <div class="layui-btn-group">
                         <div class="layui-btn-group">
-                           <a href="/admin/article/cate_edit/id/{$vo.id}" class="layui-btn layui-btn-primary layui-btn-small"><i class="layui-icon">&#xe642;</i></a>
-                            <a data-href="/admin/article/cate_del/id/{$vo.id}" class="layui-btn layui-btn-primary layui-btn-small table-del"><i class="layui-icon">&#xe640;</i></a>
+                           <a href="/admin/link/cate_edit/id/{$vo.id}" class="layui-btn layui-btn-primary layui-btn-small"><i class="layui-icon">&#xe642;</i></a>
+                            <a data-href="/admin/link/cate_del/id/{$vo.id}" class="layui-btn layui-btn-primary layui-btn-small table-del"><i class="layui-icon">&#xe640;</i></a>
                         </div>
                     </div>
                 </td>
@@ -92,7 +92,7 @@ layui.use(['form', 'layedit', 'laydate','element'], function(){
             success:function (data) {
                 layer.msg(data.msg,{time:1000},function(){
                     if(data.status ==1){
-                       parent.setFrameUrl('/admin/article/cate_index')
+                       parent.setFrameUrl('/admin/link/cate_index')
                     }
                 })
             }
