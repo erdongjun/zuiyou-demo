@@ -37,6 +37,7 @@ class Index extends Home
     public function detail()
     {
         $id = $this->request->param('id');
+        Article::where('id',$id)->setInc('read_num');
         $info = Article::get($id);
         $this->assign('info',$info);
         
