@@ -15,7 +15,7 @@ class Article extends Base
      // 文章列表
     public function index()
     {
-        $list = ArticleModel::order('id desc')->paginate(10);
+        $list = ArticleModel::order('id desc')->paginate(20);
         // dump($list);exit();
         $this->assign('page',$list->render());
         $this->assign('list',$list);
@@ -94,16 +94,6 @@ class Article extends Base
 
 
 
-
-
-
-
-
-
-
-
-
-
     // 分类列表
     public function cate_index()
     {
@@ -166,7 +156,7 @@ class Article extends Base
         return $this->fetch('article/cate_edit');
     }
     // 删除分类
-    public function cateDel()
+    public function cate_del()
     {
         $id = $this->request->param('id');
         $list = ArticleCate::where('parent_id',$id)->select();
@@ -182,4 +172,31 @@ class Article extends Base
             return ['status'=>'1','msg'=>$this->getError()];
         }
     }
+    //采集发布页
+    public function cadd()
+    {   
+        if($this->request->isPost()){
+            // 验证
+            $valid_res = $this->validate($_POST, 'Article');
+            if($valid_res !== true) {
+                return ['status'=>'0','msg'=>$valid_res];
+            }
+            $ArticleModelModel = new ArticleModel($_POST);
+
+            $data_res = $ArticleModelModel->allowField(true)->save();
+
+            if (!$data_res) {
+                return ['status'=>'0','msg'=>'出错了'];
+            }
+            return ['status'=>'1','msg'=>'添加成功'];
+        }
+
+        $cate = new ArticleCate();
+        $list = $cate ->cateTree();
+        $this->assign('list',$list);
+
+        return $this->fetch('article/cadd');
+    }
+
+
 }

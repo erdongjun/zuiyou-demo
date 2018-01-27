@@ -23,6 +23,7 @@ class  Base extends Controller
 	//忽略页面
 	public function getIgnore(){
 		$ignore_urls = [
+			'login/cindex',
 			'login/index',
 			'login/login',
 			'login/logout',

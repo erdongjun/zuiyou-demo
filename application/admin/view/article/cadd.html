@@ -1,0 +1,20 @@
+<!-- 引入布局模板 -->
+{layout name='/layout/iframe'}
+
+<script type="text/javascript" src="/static/lib//ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="/static/lib/ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript" src="/static/lib/ueditor/lang/zh-cn/zh-cn.js"></script>
+<!-- 内容主体区域 -->
+<fieldset class="layui-elem-field layui-field-title">
+    <legend>文章添加</legend>
+</fieldset>
+<form action="/admin/article/cadd" method="post">
+    <input type="hidden" name="uid"  value="{$Think.session.admin_id}">
+    <input type="hidden" name="author_name"  value="{$Think.session.admin_nick}">
+    <input type="hidden" name="status"  value="0">
+    <input type="hidden" name="c_id"  value="103">
+    <input type="text" name="title" placeholder="请输入文章名">
+    <textarea  name="content"></textarea>
+    <button type="submit">submit</button>
+</form>
+

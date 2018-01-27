@@ -58,13 +58,13 @@ layui.use(['form', 'laydate', 'element'], function() {
         // return;
 
       $.ajax({
-        url:'/admin/article/cateedit',
+        url:'/admin/article/cate_edit',
         data:_data,
         type:'post',
         success:function(data){
           layer.msg(data.msg,{time:1000},function(){
             if(data.status == 1){
-              parent.setFrameUrl('/admin/article/cateindex')
+              parent.setFrameUrl('/admin/article/cate_index')
             }
           });
            
