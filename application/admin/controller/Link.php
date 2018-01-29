@@ -45,6 +45,8 @@ class Link extends Base
 
         return $this->fetch('link/add');
     }
+
+    
     // 编辑友链
     public function edit()
     {
