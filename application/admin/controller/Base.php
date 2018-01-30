@@ -140,5 +140,4 @@ class  Base extends Controller
 		return $link_list;
 	}
 
-
 }

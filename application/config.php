@@ -238,4 +238,11 @@ return [
         'var_page'  => 'page',
         'list_rows' => 15,
     ],
+    //七牛上传配置
+    'qiniu' => [
+        'accesskey' => 'lo5_CRPJTZCQGOVStGPjsQnSDsFagVrLe5LisztW',
+        'secretkey' => '9-AQHYbSqr4gTUDGLYlAzszTBlJnywXPWzy0QSqN',
+        'bucket' => 'public',
+        'domain' => 'http://p3b8rkbsk.bkt.clouddn.com/',
+    ],
 ];

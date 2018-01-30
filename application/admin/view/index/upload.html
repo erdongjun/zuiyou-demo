@@ -1,0 +1,11 @@
+<!-- 引入布局模板 -->
+{layout name='/layout/iframe'}
+<!-- 内容主体区域 -->
+		<fieldset class="layui-elem-field layui-field-title">
+		  <legend>系统信息</legend>
+		</fieldset>
+		<form  enctype="multipart/form-data" action="/admin/index/upload" method="post">
+			<input type="file" name="image">
+			<input name="token" type="hidden" value="{$token}>">
+			<button type="submit"> submit</button>
+		</form>
