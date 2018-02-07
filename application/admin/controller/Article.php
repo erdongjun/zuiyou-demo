@@ -17,9 +17,9 @@ class Article extends Base
     {
         $filterstatus = $this->request->param('filterstatus');
         if(isset($filterstatus)){
-            $list = ArticleModel::where('status',$filterstatus)->order('id desc')->paginate(20);
+            $list = ArticleModel::where('status',$filterstatus)->order('update_time desc')->paginate(20);
         }else{
-            $list = ArticleModel::order('id desc')->paginate(20);
+            $list = ArticleModel::order('update_time desc')->paginate(20);
         }
         $this->assign('page',$list->render());
         $this->assign('list',$list);
@@ -95,11 +95,41 @@ class Article extends Base
                 $result = true;
             }
             if( $result === true){
-                if(ArticleModel::update($_POST)){
-                    return ['status'=>'1','msg'=>'更新成功'];
-                }else{
-                    return ['status'=>'0','msg'=>$this->getError()];
+                if(isset($_POST['batch'])){
+                    //批量
+                    $list=[];
+                    $status = $_POST['status'];
+                    $idArr = explode(',', $_POST['ids']);
+                    foreach ($idArr as $v) {
+                        $list[] =[
+                            'id' => $v,
+                            'status' =>$status
+                        ];
+                    };
+                    $ArticleM = new ArticleModel;
+                    if($ArticleM->saveAll($list)){
+                        return ['status'=>'1','msg'=>'更新成功'];
+                    }else{
+                        return ['status'=>'0','msg'=>$this->getError()];
+                    }
+
+
+
+                }else {
+                    //单个
+                    if(ArticleModel::update($_POST)){
+                        return ['status'=>'1','msg'=>'更新成功'];
+                    }else{
+                        return ['status'=>'0','msg'=>$this->getError()];
+                    }
+
+
+
                 }
+
+                
+
+
             }else{
                 return ['status'=>'0','msg'=>$result];
             }
@@ -116,14 +146,27 @@ class Article extends Base
     }
     // 删除文章
     public function del()
-    {
-        $id = $this->request->param('id');
-        $user = ArticleModel::get($id);
-        if($user->delete()){
-            return ['status'=>'1','msg'=>'删除成功'];
+    {   
+
+        if($this->request->isPost()){
+            //批量删除
+            $res = ArticleModel::destroy($_POST['ids']);
+            if($res){
+                return ['status'=>'1','msg'=>'删除成功'];
+            }else{
+                return ['status'=>'0','msg'=>$this->getError()];
+            }
+
         }else{
-            return ['status'=>'1','msg'=>$this->getError()];
-        }
+            // 单个删除
+            $id = $this->request->param('id');
+            $res = ArticleModel::destroy($id);
+            if($res){
+                return ['status'=>'1','msg'=>'删除成功'];
+            }else{
+                return ['status'=>'0','msg'=>$this->getError()];
+            }
+         }
     }
 
 
@@ -203,7 +246,7 @@ class Article extends Base
         if($user->delete()){
             return ['status'=>'1','msg'=>'删除成功'];
         }else{
-            return ['status'=>'1','msg'=>$this->getError()];
+            return ['status'=>'0','msg'=>$this->getError()];
         }
     }
 }

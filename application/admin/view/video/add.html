@@ -1,0 +1,81 @@
+<!-- 引入布局模板 -->
+{layout name='/layout/iframe'}
+
+<!-- 内容主体区域 -->
+<fieldset class="layui-elem-field layui-field-title">
+    <legend>视频添加</legend>
+</fieldset>
+<div class="layui-form " style="min-height: 400px;">
+    <div class="layui-form-item">
+        <label class="layui-form-label">选择分类</label>
+        <div class="layui-input-block">
+             <select name="c_id" lay-verify="required">
+                {volist name='list' id='vo'}
+                    <option  value="{$vo.id}">{$vo.level|str_repeat= "--",###} {$vo.name}</option>
+                {/volist}
+              </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">标题</label>
+        <div class="layui-input-block">
+            <input type="text" name="title" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">是否推荐</label>
+        <div class="layui-input-block">
+            <input type="checkbox" name="is_recommend" lay-verify="is_recommend" lay-skin="switch" lay-filter="status" lay-text="ON|OFF">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">推荐图</label>
+        <div class="layui-input-block">
+            <input type="text" name="recommend_url" lay-verify="recommend_url" autocomplete="off" placeholder="推荐图链接" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">封面图</label>
+        <div class="layui-input-block">
+            <input type="text" name="cover_url" lay-verify="cover_url" autocomplete="off" placeholder="封面图链接" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">视频链接</label>
+        <div class="layui-input-block">
+            <input type="text"  lay-verify="required"  name="url" lay-verify="url" autocomplete="off" placeholder="视频链接" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit="" lay-filter="add">添加</button>
+        </div>
+    </div>
+</div>
+<script>
+
+
+layui.use(['form', 'element'], function() {
+    var form = layui.form,
+        layer = layui.layer,
+        element = layui.element;
+
+    //监听提交
+    form.on('submit(add)', function(data) {
+      $.ajax({
+        url:'/admin/video/add',
+        data:data.field,
+        type:'post',
+        success:function(data){
+          layer.msg(data.msg,{time:1000},function(){
+            if(data.status == 1){
+              parent.setFrameUrl('/admin/video/add')
+            }
+          });
+           
+        }
+      })
+    });
+
+})
+</script>

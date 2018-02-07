@@ -2,10 +2,17 @@
 {layout name='/layout/iframe'}
 <!-- 内容主体区域 -->
 <fieldset class="layui-elem-field layui-field-title">
-    <legend>菜单列表</legend>
+    <legend>文章列表</legend>
 </fieldset>
 <div class="page-toolbar">
-    <div class="page-filter fr">
+     <form class="page-list-form fl">
+        <div class="layui-btn-group fl">
+            <a data-href="/admin/article/edit" data-type='1' class="layui-btn layui-btn-primary j-page-btns batch_able"><i class="aicon ai-qiyong "></i>启用</a>
+            <a data-href="/admin/article/edit" data-type='0' class="layui-btn layui-btn-primary j-page-btns  batch_able"><i class="aicon ai-jinyong1"></i>禁用</a>
+            <a data-href="/admin/article/del" class="layui-btn layui-btn-primary j-page-btns confirm batch_del"><i class="aicon ai-jinyong"></i>删除</a>
+        </div>
+    </form>
+    <div class="page-filter fr" style="display: none">
         <form class="layui-form layui-form-pane" action="/admin.php/admin/user/index.html" method="get">
             <div class="layui-form-item">
                 <label class="layui-form-label">搜索</label>
@@ -15,21 +22,27 @@
             </div>
         </form>
     </div>
+   
 </div>
 <div class="layui-form">
     <table class="layui-table mt10" lay-even="" lay-skin="row">
         <colgroup>
-            <col width="150">
+            <col width="50">
+            <col width="80">
+            <col width="250">
         </colgroup>
         <thead>
             <tr>
-                <th>文章id</th>
+                <th>
+                    <input type="checkbox" name="all_id" lay-skin="primary" lay-filter="allChoose">
+                </th>
+                <th>ID</th>
                 <th>标题</th>
                 <th class="layui-form">
                     <select name="filterstatus" value='{$filterstatus}'  lay-filter="filterstatus">
-                        <option  value="">全部</option>
-                        <option  value="1">开启</option>
-                        <option value="0">关闭</option>
+                        <option {eq name="filterstatus" value=""}selected{/eq} value="">全部</option>
+                        <option {eq name="filterstatus" value="1"}selected{/eq} value="1">开启</option>
+                        <option {eq name="filterstatus" value="0"}selected{/eq} value="0">关闭</option>
                     </select>
                 </th>
                 <th>创建时间</th>
@@ -44,6 +57,9 @@
             </tr>
             {/empty} {volist name='list' id='vo'}
             <tr>
+                <td>
+                    <input type="checkbox" name="item_id" data-id="{$vo.id}"  lay-filter="itemChoose" lay-skin="primary" >
+                </td>
                 <td>{$vo.id}</td>
                 <td>{$vo.title}</td>
                 <td>
@@ -71,19 +87,7 @@ layui.use(['form', 'layedit', 'laydate', 'element'], function() {
         layer = layui.layer,
         element = layui.element;
 
-    //自定义验证规则
-    form.verify({
-        title: function(value) {
-            if (value.length < 5) {
-                return '标题至少得5个字符啊';
-            }
-        },
-        pass: [/(.+){6,12}$/, '密码必须6到12位'],
-        content: function(value) {
-            layedit.sync(editIndex);
-        }
-    });
-
+    //文章是否显示设置
     form.on('switch(status)', function(self) {
         var _data = {
             status: this.checked ? '1' : '0',
@@ -105,13 +109,12 @@ layui.use(['form', 'layedit', 'laydate', 'element'], function() {
         })
 
     });
-
+    //选择列表显示状态
     form.on('select(filterstatus)', function(data) {
-        // console.log()
         parent.setFrameUrl('/admin/article/index/filterstatus/'+data.value)
     });
 
-
+    //单个删除文章
     $('.table-del').click(function() {
         var url = $(this).attr('data-href')
         $.ajax({
@@ -125,7 +128,105 @@ layui.use(['form', 'layedit', 'laydate', 'element'], function() {
                 })
             }
         })
-    })
+    });
+
+    //批量删除文章
+    $('.batch_del').click(function() {
+        var url = $(this).attr('data-href');
+        var idArr =[];
+        var ids = ''
+        var checkedEl = $('table').find('tbody input[name="item_id"]:checked');
+        var len = checkedEl.length;
+        if(len==0){
+            layer.msg('请先勾选!')
+            return false;
+        }
+        checkedEl.each(function(index, item){
+            var id = $(item).data('id');
+            idArr.push(id);
+        })
+        ids = idArr.join(',');
+        $.ajax({
+            url: url,
+            type: 'post',
+            data:{
+                ids:ids
+            },
+            success: function(data) {
+                layer.msg(data.msg, { time: 1000 }, function() {
+                    if (data.status == 1) {
+                        parent.setFrameUrl('/admin/article/index')
+                    }
+                })
+            }
+        })
+    });
+
+    //批量设置文章状态
+    $('.batch_able').click(function() {
+        var url = $(this).attr('data-href');
+        var status = $(this).attr('data-type');
+        var idArr =[];
+        var ids = ''
+        var checkedEl = $('table').find('tbody input[name="item_id"]:checked');
+        var len = checkedEl.length;
+        if(len==0){
+            layer.msg('请先勾选!')
+            return false;
+        }
+        checkedEl.each(function(index, item){
+            var id = $(item).data('id');
+            idArr.push(id);
+        })
+        ids = idArr.join(',');
+
+        $.ajax({
+            url: url,
+            type: 'post',
+            data:{
+                status:status,
+                ids:ids,
+                batch:1,
+            },
+            success: function(data) {
+                layer.msg(data.msg, { time: 1000 }, function() {
+                    if (data.status == 1) {
+                        parent.setFrameUrl('/admin/article/index')
+                    }
+                })
+            }
+        })
+    });
+
+    
+    //全选
+    form.on('checkbox(allChoose)', function(data){
+        var child = $(data.elem).parents('table').find('tbody input[name="item_id"]');
+        child.each(function(index, item){
+            item.checked = data.elem.checked;
+        });
+        form.render('checkbox');
+    });
+    // 单选
+    form.on('checkbox(itemChoose)',function(data){
+        var sib = $(data.elem).parents('table').find('tbody input[name="item_id"]:checked').length;
+        var total = $(data.elem).parents('table').find('tbody input[name="item_id"]').length;
+
+        console.log(total,sib)
+        if(sib == total){
+            $(data.elem).parents('table').find('thead input[name="all_id"]').prop("checked",true);
+            form.render();
+        }else{
+            $(data.elem).parents('table').find('thead input[name="all_id"]').prop("checked",false);
+            form.render();
+        }
+    }); 
+    //批量启用
+    
+    //批量禁用 
+
+
+
 
 })
 </script>

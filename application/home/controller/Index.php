@@ -74,4 +74,8 @@ class Index extends Home
         $this->assign('cate_list',$cates);
         return $this->fetch('index/link');
     }
+
+    public function test(){
+        return $this->fetch('index/test');
+    }
 }
