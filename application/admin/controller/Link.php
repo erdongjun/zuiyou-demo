@@ -164,8 +164,12 @@ class Link extends Base
     {
         $id = $this->request->param('id');
         $list = Cate::where(['type'=>1,'parent_id'=>$id])->select();
+        $linklist = LinkModel::where(['c_id'=>$id])->select();
         if($list){
             return ['status'=>'0','msg'=>'该分类下存在子分类,不能被删除!'];
+        }
+        if($linklist){
+            return ['status'=>'0','msg'=>'该分类下存在友链,不能被删除!'];
         }
 
         $user = Cate::get($id);

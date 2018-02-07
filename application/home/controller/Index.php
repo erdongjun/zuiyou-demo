@@ -2,9 +2,13 @@
 namespace app\home\controller;
 
 use app\admin\model\Article;
-use app\admin\model\ArticleCate;
-use app\admin\model\Link;
+use app\admin\model\Video;
+
+
+// 友链
 use app\admin\model\Cate;
+use app\admin\model\Link;
+
 
 
 
@@ -12,11 +16,10 @@ class Index extends Home
 {
     public function index()
     {   
-        $cate = new ArticleCate();
-        $cate_list = $cate ->cateTree();
-        $list = Article::where('status',1)->order('update_time desc')->limit(20)->select();
-        $this->assign('list',$list);
-        $this->assign('cate_list',$cate_list);
+        $article_list = Article::where('status',1)->order('update_time desc')->limit(20)->select();
+        $video_list = Video::where('status',1)->order('update_time desc')->limit(20)->select();
+        $this->assign('article_list',$article_list);
+        $this->assign('video_list',$video_list);
         return $this->fetch('index/index');
     }
     public function cate()

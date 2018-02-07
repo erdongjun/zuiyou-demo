@@ -112,9 +112,6 @@ class Article extends Base
                     }else{
                         return ['status'=>'0','msg'=>$this->getError()];
                     }
-
-
-
                 }else {
                     //单个
                     if(ArticleModel::update($_POST)){
@@ -122,14 +119,7 @@ class Article extends Base
                     }else{
                         return ['status'=>'0','msg'=>$this->getError()];
                     }
-
-
-
                 }
-
-                
-
-
             }else{
                 return ['status'=>'0','msg'=>$result];
             }

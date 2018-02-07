@@ -16,7 +16,7 @@
         <div class="layui-input-block">
             <select name="c_id" lay-verify="required">
                 {volist name='list' id='vo'}
-                    <option  value="{$vo.id}">{$vo.level|str_repeat= "--",###} {$vo.name}</option>
+                    <option {eq name='info.c_id' value="$vo.id" }selected{/eq}  value="{$vo.id}">{$vo.level|str_repeat= "--",###} {$vo.name}</option>
                 {/volist}
               </select>
         </div>

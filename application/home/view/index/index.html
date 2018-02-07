@@ -4,21 +4,32 @@
 <div id="main">
 	<div class="c_nav">
 	</div>
-    <section class="c_section">
-	    <div class="c_cate">
-			{foreach name='cate_list' item='vo'}
-	        	<a href="/home/index/article/id/{$vo.id}" class="c_cate_item">{$vo.name}</a>
-	        {/foreach}
-		</div>
-		<h2>最新小说</h2>
+	<section class="c_section">
+		<h2>最新视频</h2>
 		<div class="c_list">
-			{foreach name='list' item='vo'}
+			{foreach name='video_list' item='vo'}
 		        <p>
-		            <a href="/home/index/detail/id/{$vo.id}.html"></i>{$vo.title}</a>
+		            <a href="/home/video/detail/id/{$vo.id}.html"></i>{$vo.title}</a>
 		            <span class="date">{$vo.update_time}</span>
 		        </p>
         	{/foreach}
+        	<p style="text-align:center">
+        		<a href="/home/video/index">查看更多</a>
+        	</p>
 		</div>
-		
+    </section>
+    <section class="c_section">
+		<h2>最新小说</h2>
+		<div class="c_list">
+			{foreach name='article_list' item='vo'}
+		        <p>
+		            <a href="/home/article/detail/id/{$vo.id}.html"></i>{$vo.title}</a>
+		            <span class="date">{$vo.update_time}</span>
+		        </p>
+        	{/foreach}
+        	<p style="text-align:center">
+        		<a href="/home/article/index">查看更多</a>
+        	</p>
+		</div>
     </section>
 </div>

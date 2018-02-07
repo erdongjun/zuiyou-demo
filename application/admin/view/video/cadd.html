@@ -1,0 +1,44 @@
+<!-- 引入布局模板 -->
+{layout name='/layout/iframe'}
+
+<script type="text/javascript" src="/static/lib//ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="/static/lib/ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript" src="/static/lib/ueditor/lang/zh-cn/zh-cn.js"></script>
+<!-- 内容主体区域 -->
+<fieldset class="layui-elem-field layui-field-title">
+    <legend>视频添加</legend>
+</fieldset>
+<form action="/admin/video/cadd" method="post">
+    <input type="hidden" name="c_id"  value="103">
+    <div class="layui-form-item">
+        <label class="layui-form-label">标题</label>
+        <div class="layui-input-block">
+            <input type="text" name="title" lay-verify="required" autocomplete="off" placeholder="请输入标题" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">是否推荐</label>
+        <div class="layui-input-block">
+            <input type="checkbox" name="is_recommend" lay-verify="is_recommend" lay-skin="switch" lay-filter="status" lay-text="ON|OFF">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">推荐图</label>
+        <div class="layui-input-block">
+            <input type="text" name="recommend_url" lay-verify="recommend_url" autocomplete="off" placeholder="推荐图链接" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">封面图</label>
+        <div class="layui-input-block">
+            <input type="text" name="cover_url" lay-verify="cover_url" autocomplete="off" placeholder="封面图链接" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">视频链接</label>
+        <div class="layui-input-block">
+            <input type="text"  lay-verify="required"  name="url" lay-verify="url" autocomplete="off" placeholder="视频链接" class="layui-input">
+        </div>
+    </div>
+    <button type="submit">submit</button>
+</form>

@@ -52,7 +52,6 @@ class Video extends Base
 
         if($this->request->isPost()){
 
-
             if(!isset($_POST['status'])){
                 
                 $result = $this->validate($_POST, 'Video.edit');
@@ -106,7 +105,6 @@ class Video extends Base
     }
     // 添加分类
     public function cate_add()
-
     {   
         if($this->request->isPost()){
             // 验证
@@ -163,8 +161,12 @@ class Video extends Base
     {
         $id = $this->request->param('id');
         $list = Cate::where(['type'=>2,'parent_id'=>$id])->select();
+        $videolist = VideoModel::where(['c_id'=>$id])->select();
         if($list){
             return ['status'=>'0','msg'=>'该分类下存在子分类,不能被删除!'];
+        }
+        if($videolist){
+            return ['status'=>'0','msg'=>'该分类下存在视频,不能被删除!'];
         }
 
         $user = Cate::get($id);
@@ -180,18 +182,21 @@ class Video extends Base
     {   
         if($this->request->isPost()){
             // 验证
-            $valid_res = $this->validate($_POST, 'Link');
+            $valid_res = $this->validate($_POST, 'Video');
             if($valid_res !== true) {
-                return ['status'=>'0','msg'=>$valid_res];
+                $this->error('出错了');
+
             }
             $link = new VideoModel($_POST);
 
             $data_res = $link->allowField(true)->save();
 
             if (!$data_res) {
-                return ['status'=>'0','msg'=>'出错了'];
+                $this->error('出错了');
+
             }
-            return ['status'=>'1','msg'=>'添加成功'];
+            $this->success('新增成功');
+            
         }
 
         $cate = new Cate();
@@ -200,6 +205,5 @@ class Video extends Base
 
         return $this->fetch('video/cadd');
     }
-
 
 }

@@ -1,0 +1,48 @@
+    <!-- 引入布局模板 -->
+{layout name='/layout/common'}
+<!-- 内容部分 -->
+<div id="main">
+    <section class="c_section">
+        <div class="c_cate">
+            {foreach name='cate_list' item='vo'}
+                <a href="/home/video/index/id/{$vo.id}.html" class="c_cate_item">{$vo.name}</a>
+            {/foreach}
+        </div>
+    </section>
+    <div class="c_nav">
+        <a href="/">首页</a>
+        <i class="fa fa-angle-right"></i>
+        <a href="/home/video/index.html">视频专区</a>
+        {foreach name='cate_list' item='vo'}
+        {eq name='vo.id' value='$info.c_id'}
+        <i class="fa fa-angle-right"></i>
+        <a href="/home/video/index/id/{$vo.id}.html">{$vo.name}</a>
+        {/eq}
+        {/foreach}
+    </div>
+    <section id="page-post">
+        <article class="post detail">
+            <div class="meta">
+                <div>  
+                    <span class="author"></span> 
+                    <span>发布于</span>
+                    <span class="date">{$info.create_time}</span>
+                </div>
+            </div>
+            <h1 class="title">{$info.title}</h1>
+            <div class="entry-content" id="wrapper">
+            </div>
+        </article>
+    </section>
+</div>
+
+<script type="text/javascript" src="/static/lib/ckplayer/ckplayer.js" charset="utf-8"></script>
+<script type="text/javascript">
+var videoObject = {
+        container: '#wrapper',//“#”代表容器的ID，“.”或“”代表容器的class
+        variable: 'player',//该属性必需设置，值等于下面的new chplayer()的对象
+        video:'{$info.url}'//视频地址
+ };
+ var player=new ckplayer(videoObject);
+</script>
+
