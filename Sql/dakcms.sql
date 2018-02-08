@@ -3,18 +3,12 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: 2018-01-25 13:54:46
+-- Generation Time: 2018-02-08 09:14:33
 -- 服务器版本： 5.6.35
 -- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `dakcms`
@@ -38,198 +32,6 @@ CREATE TABLE `dak_access_log` (
   `note` varchar(1000) NOT NULL DEFAULT '' COMMENT 'json格式备注字段',
   `create_time` int(11) NOT NULL DEFAULT '0' COMMENT '记录时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户操作记录表';
-
---
--- 转存表中的数据 `dak_access_log`
---
-
-INSERT INTO `dak_access_log` (`id`, `type`, `uid`, `name`, `target_url`, `query_params`, `ua`, `ip`, `note`, `create_time`) VALUES
-(101, 2, 1, 'admin', '/admin/access/add', '{\"title\":\"asd\",\"urls\":\"asd\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '添加权限', 1516470073),
-(102, 1, 1, 'admin', '/admin/login/login', '{\"name\":\"admin\",\"password\":\"xifan123\",\"verify\":\"d3by\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '账号登陆', 1516470089),
-(103, 1, 1, 'admin', '/admin/login/login', '{\"name\":\"admin\",\"password\":\"xifan123\",\"verify\":\"bhlk\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '账号登陆', 1516541149),
-(104, 2, 1, 'admin', '/admin/user/del', '{\"id\":\"6\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516542310),
-(105, 2, 1, 'admin', '/admin/user/del', '{\"id\":\"7\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516542313),
-(106, 2, 1, 'admin', '/admin/user/del', '{\"id\":\"8\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516542315),
-(107, 2, 1, 'admin', '/admin/user/del', '{\"id\":\"9\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516542317),
-(108, 2, 1, 'admin', '/admin/user/del', '{\"id\":\"10\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516542319),
-(109, 2, 1, 'admin', '/admin/user/del', '{\"id\":\"11\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516542321),
-(110, 2, 1, 'admin', '/admin/user/del', '{\"id\":\"12\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516542324),
-(111, 2, 1, 'admin', '/admin/user/del', '{\"id\":\"5\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516542326),
-(112, 2, 1, 'admin', '/admin/user/del', '{\"id\":\"15\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516542331),
-(113, 2, 1, 'admin', '/admin/user/del', '{\"id\":\"16\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516542333),
-(114, 2, 1, 'admin', '/admin/user/del', '{\"id\":\"14\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516542336),
-(115, 2, 1, 'admin', '/admin/access/del', '{\"id\":\"18\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '删除权限', 1516542364),
-(116, 2, 1, 'admin', '/admin/access/del', '{\"id\":\"17\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '删除权限', 1516542365),
-(117, 2, 1, 'admin', '/admin/access/del', '{\"id\":\"16\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '删除权限', 1516542367),
-(118, 2, 1, 'admin', '/admin/cate/add', '{\"parent_id\":\"0\",\"name\":\"\\u7cfb\\u7edf\\u7ba1\\u7406\",\"des\":\"\\u4e00\\u7ea7\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516543932),
-(119, 2, 1, 'admin', '/admin/cate/add', '{\"parent_id\":\"0\",\"name\":\"\\u7cfb\\u7edf\\u7ba1\\u7406\",\"des\":\"\\u4e00\\u7ea7\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516543934),
-(120, 2, 1, 'admin', '/admin/cate/add', '{\"parent_id\":\"0\",\"name\":\"\\u7cfb\\u7edf\\u7ba1\\u7406\",\"des\":\"\\u4e00\\u7ea7\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516543935),
-(121, 2, 1, 'admin', '/admin/cate/add', '{\"parent_id\":\"0\",\"name\":\"\\u7cfb\\u7edf\\u7ba1\\u7406\",\"des\":\"\\u4e00\\u7ea7\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516543948),
-(122, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"0\",\"name\":\"\\u7cfb\\u7edf\\u7ba1\\u7406\",\"des\":\"\\u4e00\\u7ea7\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516543960),
-(123, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"0\",\"name\":\"\\u7cfb\\u7edf\\u7ba1\\u7406\",\"des\":\"\\u4e00\\u7ea7\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516543967),
-(124, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"0\",\"name\":\"\\u7cfb\\u7edf\\u7ba1\\u7406\",\"des\":\"\\u4e00\\u7ea7\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516544055),
-(125, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"0\",\"name\":\"\\u7cfb\\u7edf\\u7ba1\\u7406\",\"des\":\"\\u4e00\\u7ea7\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516544096),
-(126, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"0\",\"name\":\"\\u7cfb\\u7edf\\u7ba1\\u7406\",\"des\":\"\\u4e00\\u7ea7\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516544249),
-(127, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"0\",\"name\":\"\\u7cfb\\u7edf\\u7ba1\\u7406\",\"des\":\"\\u4e00\\u7ea7\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516544269),
-(128, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"0\",\"name\":\"\\u7cfb\\u7edf\\u7ba1\\u7406\",\"des\":\"\\u4e00\\u7ea7\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516544343),
-(129, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"0\",\"name\":\"\\u7cfb\\u7edf\\u7ba1\\u7406\",\"des\":\"\\u4e00\\u7ea7\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516544348),
-(130, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"0\",\"name\":\"\\u7cfb\\u7edf\\u7ba1\\u7406\",\"des\":\"\\u4e00\\u7ea7\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516544368),
-(131, 2, 1, 'admin', '/admin/menu/edit', '{\"parent_id\":\"0\",\"name\":\"\\u7cfb\\u7edf\\u7ba1\\u7406\",\"des\":\"\\u4e00\\u7ea7\",\"id\":\"64\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516544454),
-(132, 2, 1, 'admin', '/admin/menu/del', '{\"id\":\"64\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516544520),
-(133, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"0\",\"name\":\"das\",\"des\":\"\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516544560),
-(134, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"0\",\"name\":\"das\",\"des\":\"\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516544572),
-(135, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"0\",\"name\":\"das\",\"des\":\"\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516544588),
-(136, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"0\",\"name\":\"das\",\"des\":\"1\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516544593),
-(137, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"0\",\"name\":\"das\",\"des\":\"1\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516544597),
-(138, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"0\",\"name\":\"das\",\"des\":\"\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516544600),
-(139, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"0\",\"name\":\"das\",\"des\":\"\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516544606),
-(140, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"0\",\"name\":\"das1\",\"des\":\"\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516544608),
-(141, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"0\",\"name\":\"sc\",\"des\":\"\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516545346),
-(142, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"0\",\"name\":\"sc\",\"des\":\"\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516545457),
-(143, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"0\",\"name\":\"sv\",\"des\":\"\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516545489),
-(144, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"0\",\"name\":\"sd\",\"des\":\"\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516545508),
-(145, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"0\",\"name\":\"sd\",\"des\":\"\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516545524),
-(146, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"0\",\"name\":\"sd\",\"des\":\"\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516545534),
-(147, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"0\",\"name\":\"sd1\",\"des\":\"\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516545537),
-(148, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"0\",\"name\":\"sd1\",\"des\":\"\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516545567),
-(149, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"0\",\"name\":\"sd11\",\"des\":\"\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516545571),
-(150, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"0\",\"name\":\"1\",\"des\":\"\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516545616),
-(151, 2, 1, 'admin', '/admin/menu/del', '{\"id\":\"72\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516545624),
-(152, 2, 1, 'admin', '/admin/menu/del', '{\"id\":\"71\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516545652),
-(153, 2, 1, 'admin', '/admin/menu/del', '{\"id\":\"70\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516545654),
-(154, 2, 1, 'admin', '/admin/menu/del', '{\"id\":\"68\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516545656),
-(155, 2, 1, 'admin', '/admin/menu/del', '{\"id\":\"67\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516545658),
-(156, 2, 1, 'admin', '/admin/menu/del', '{\"id\":\"66\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516545660),
-(157, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"0\",\"name\":\"1212\",\"des\":\"\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516545665),
-(158, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"0\",\"name\":\"\\u6c14\\u6e29\\u6c14\\u6e29\",\"des\":\"\\u5927\\u58f0\\u9053\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516545695),
-(159, 2, 1, 'admin', '/admin/menu/del', '{\"id\":\"69\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516545711),
-(160, 2, 1, 'admin', '/admin/menu/del', '{\"id\":\"73\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516545713),
-(161, 2, 1, 'admin', '/admin/menu/del', '{\"id\":\"65\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516545716),
-(162, 2, 1, 'admin', '/admin/menu/del', '{\"id\":\"74\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516545734),
-(163, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"0\",\"name\":\"\\u7cfb\\u7edf\\u7ba1\\u7406\",\"des\":\"\\u4e00\\u7ea7\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516545777),
-(164, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"75\",\"name\":\"\\u83dc\\u5355\\u7ba1\\u7406\",\"des\":\"\\u4e8c\\u7ea7\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516545791),
-(165, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"75\",\"name\":\"\\u8d26\\u53f7\\u7ba1\\u7406\",\"des\":\"\\u4e8c\\u7ea7\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516545823),
-(166, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"75\",\"name\":\"\\u7f51\\u7ad9\\u8bbe\\u7f6e\",\"des\":\"\\u4e8c\\u7ea7\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516545854),
-(167, 2, 1, 'admin', '/admin/menu/del', '{\"id\":\"76\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516545907),
-(168, 2, 1, 'admin', '/admin/menu/del', '{\"id\":\"77\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516545909),
-(169, 2, 1, 'admin', '/admin/menu/del', '{\"id\":\"78\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516545910),
-(170, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"75\",\"name\":\"\\u7f51\\u7ad9\\u8bbe\\u7f6e\",\"des\":\"\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516545931),
-(171, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"75\",\"name\":\"\\u8d26\\u53f7\\u7ba1\\u7406\",\"des\":\"\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516545978),
-(172, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"75\",\"name\":\"\\u6743\\u9650\\u7ba1\\u7406\",\"des\":\"\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516545989),
-(173, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"75\",\"name\":\"\\u89d2\\u8272\\u7ba1\\u7406\",\"des\":\"\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516545999),
-(174, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"75\",\"name\":\"\\u5b89\\u5168\\u7ba1\\u7406\",\"des\":\"\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516546010),
-(175, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"0\",\"name\":\"\\u6a21\\u5757\\u7ba1\\u7406\",\"des\":\"\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516546025),
-(176, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"0\",\"name\":\"\\u7528\\u6237\\u7ba1\\u7406\",\"des\":\"\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516546047),
-(177, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"0\",\"name\":\"\\u8fd0\\u8425\\u7ba1\\u7406\",\"des\":\"\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516546056),
-(178, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"0\",\"name\":\"\\u6570\\u636e\\u7ba1\\u7406\",\"des\":\"\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516546068),
-(179, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"84\",\"name\":\"\\u5708\\u5b50\\u6a21\\u5757\",\"des\":\"\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516546102),
-(180, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"84\",\"name\":\"\\u5c0f\\u8bf4\\u6a21\\u5757\",\"des\":\"\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516546108),
-(181, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"84\",\"name\":\"\\u6587\\u7ae0\\u6a21\\u5757\",\"des\":\"\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516546113),
-(182, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"84\",\"name\":\"\\u56fe\\u96c6\\u6a21\\u5757\",\"des\":\"\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516546124),
-(183, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"84\",\"name\":\"\\u5e94\\u7528\",\"des\":\"\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516546129),
-(184, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"84\",\"name\":\"\\u539f\\u521b\\u6a21\\u5757\",\"des\":\"\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516546139),
-(185, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"84\",\"name\":\"\\u53cb\\u94fe\\u6a21\\u5757\",\"des\":\"\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516546148),
-(186, 2, 1, 'admin', '/admin/menu/edit', '{\"parent_id\":\"84\",\"name\":\"\\u5e94\\u7528\\u6a21\\u5757\",\"des\":\"\",\"id\":\"92\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516546190),
-(187, 2, 1, 'admin', '/admin/menu/edit', '{\"parent_id\":\"75\",\"name\":\"\\u7f51\\u7ad9\\u8bbe\\u7f6e\",\"des\":\"11\",\"id\":\"79\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516546252),
-(188, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"75\",\"name\":\"\\u83dc\\u5355\\u7ba1\\u7406\",\"des\":\"\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516546785),
-(189, 2, 1, 'admin', '/admin/access/add', '{\"m_id\":\"95\",\"title\":\"\\u83dc\\u5355\\u5217\\u8868\",\"urls\":\"menu\\/index\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '添加权限', 1516546814),
-(190, 2, 1, 'admin', '/admin/access/edit', '{\"m_id\":\"95\",\"title\":\"\\u83dc\\u5355\\u5217\\u8868\",\"urls\":\"menu\\/index\",\"id\":\"19\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '编辑权限', 1516547078),
-(191, 2, 1, 'admin', '/admin/access/edit', '{\"m_id\":\"82\",\"title\":\"\\u83dc\\u5355\\u5217\\u8868\",\"urls\":\"menu\\/index\",\"id\":\"19\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '编辑权限', 1516547087),
-(192, 2, 1, 'admin', '/admin/access/edit', '{\"m_id\":\"95\",\"title\":\"\\u83dc\\u5355\\u5217\\u8868\",\"urls\":\"menu\\/index\",\"id\":\"19\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '编辑权限', 1516547094),
-(193, 2, 1, 'admin', '/admin/access/edit', '{\"m_id\":\"81\",\"title\":\"\\u5220\\u9664\\u6743\\u9650\",\"urls\":\"access\\/del\",\"id\":\"6\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '编辑权限', 1516547117),
-(194, 2, 1, 'admin', '/admin/access/edit', '{\"m_id\":\"81\",\"title\":\"\\u7f16\\u8f91\\u6743\\u9650\",\"urls\":\"access\\/edit\",\"id\":\"5\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '编辑权限', 1516547126),
-(195, 2, 1, 'admin', '/admin/access/edit', '{\"m_id\":\"81\",\"title\":\"\\u6dfb\\u52a0\\u6743\\u9650\",\"urls\":\"access\\/add\",\"id\":\"4\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '编辑权限', 1516547146),
-(196, 2, 1, 'admin', '/admin/access/edit', '{\"m_id\":\"81\",\"title\":\"\\u6743\\u9650\\u5217\\u8868\",\"urls\":\"access\\/index\",\"id\":\"1\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '编辑权限', 1516547164),
-(197, 2, 1, 'admin', '/admin/access/add', '{\"m_id\":\"95\",\"title\":\"\\u6dfb\\u52a0\\u83dc\\u5355\",\"urls\":\"menu\\/add\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '添加权限', 1516547244),
-(198, 2, 1, 'admin', '/admin/access/add', '{\"m_id\":\"95\",\"title\":\"\\u4fee\\u6539\\u83dc\\u5355\",\"urls\":\"menu\\/edit\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '添加权限', 1516547280),
-(199, 2, 1, 'admin', '/admin/access/add', '{\"m_id\":\"95\",\"title\":\"\\u5220\\u9664\\u83dc\\u5355\",\"urls\":\"menu\\/del\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '添加权限', 1516547292),
-(200, 2, 1, 'admin', '/admin/menu/edit', '{\"parent_id\":\"75\",\"name\":\"\\u7f51\\u7ad9\\u8bbe\\u7f6e\",\"des\":\"2\",\"id\":\"79\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '修改菜单', 1516547317),
-(201, 2, 1, 'admin', '/admin/access/edit', '{\"m_id\":\"81\",\"title\":\"\\u4fee\\u6539\\u6743\\u9650\",\"urls\":\"access\\/edit\",\"id\":\"5\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '编辑权限', 1516547402),
-(202, 2, 1, 'admin', '/admin/access/add', '{\"m_id\":\"80\",\"title\":\"\\u8d26\\u53f7\\u5217\\u8868\",\"urls\":\"user\\/index\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '添加权限', 1516547429),
-(203, 2, 1, 'admin', '/admin/access/add', '{\"m_id\":\"80\",\"title\":\"\\u6dfb\\u52a0\\u8d26\\u53f7\",\"urls\":\"user\\/add\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '添加权限', 1516547440),
-(204, 2, 1, 'admin', '/admin/access/add', '{\"m_id\":\"80\",\"title\":\"\\u4fee\\u6539\\u8d26\\u53f7\",\"urls\":\"user\\/edit\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '添加权限', 1516547452),
-(205, 2, 1, 'admin', '/admin/access/add', '{\"m_id\":\"80\",\"title\":\"\\u5220\\u9664\\u8d26\\u53f7\",\"urls\":\"user\\/del\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '添加权限', 1516547462),
-(206, 2, 1, 'admin', '/admin/access/add', '{\"m_id\":\"80\",\"title\":\"\\u5220\\u9664\\u8d26\\u53f7\",\"urls\":\"user\\/del\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '添加权限', 1516547466),
-(207, 2, 1, 'admin', '/admin/access/add', '{\"m_id\":\"82\",\"title\":\"\\u89d2\\u8272\\u5217\\u8868\",\"urls\":\"role\\/index\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '添加权限', 1516547496),
-(208, 2, 1, 'admin', '/admin/access/add', '{\"m_id\":\"82\",\"title\":\"\\u6dfb\\u52a0\\u89d2\\u8272\",\"urls\":\"role\\/add\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '添加权限', 1516547508),
-(209, 2, 1, 'admin', '/admin/access/add', '{\"m_id\":\"82\",\"title\":\"\\u4fee\\u6539\\u89d2\\u8272\",\"urls\":\"role\\/edit\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '添加权限', 1516547517),
-(210, 2, 1, 'admin', '/admin/access/add', '{\"m_id\":\"82\",\"title\":\"\\u5220\\u9664\\u89d2\\u8272\",\"urls\":\"role\\/del\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '添加权限', 1516547527),
-(211, 2, 1, 'admin', '/admin/access/add', '{\"m_id\":\"83\",\"title\":\"\\u767b\\u9646\\u65e5\\u5fd7\",\"urls\":\"accesslog\\/index\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '添加权限', 1516547610),
-(212, 2, 1, 'admin', '/admin/access/add', '{\"m_id\":\"83\",\"title\":\"\\u666e\\u901a\\u65e5\\u5fd7\",\"urls\":\"accesslog\\/simple\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '添加权限', 1516547628),
-(213, 2, 1, 'admin', '/admin/access/add', '{\"m_id\":\"83\",\"title\":\"\\u64cd\\u4f5c\\u65e5\\u5fd7\",\"urls\":\"accesslog\\/action\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '添加权限', 1516547658),
-(214, 1, 1, 'admin', '/admin/login/login', '{\"name\":\"admin\",\"password\":\"xifan123\",\"verify\":\"ll87\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '账号登陆', 1516791530),
-(215, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"0\",\"name\":\"\\u524d\\u7aef\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '添加菜单', 1516793215),
-(216, 2, 1, 'admin', '/admin/menu/del', '{\"id\":\"96\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '删除菜单', 1516793425),
-(217, 2, 1, 'admin', '/admin/menu/del', '{\"id\":\"96\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '删除菜单', 1516793481),
-(218, 2, 1, 'admin', '/admin/menu/del', '{\"id\":\"96\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '删除菜单', 1516793487),
-(219, 2, 1, 'admin', '/admin/menu/del', '{\"id\":\"96\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '删除菜单', 1516793488),
-(220, 2, 1, 'admin', '/admin/menu/del', '{\"id\":\"96\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '删除菜单', 1516793488),
-(221, 2, 1, 'admin', '/admin/menu/add', '{\"parent_id\":\"0\",\"name\":\"sad\",\"des\":\"\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '添加菜单', 1516798290),
-(222, 2, 1, 'admin', '/admin/menu/edit', '{\"parent_id\":\"0\",\"name\":\"saddqw\",\"des\":\"\",\"id\":\"97\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '修改菜单', 1516798298),
-(223, 2, 1, 'admin', '/admin/menu/edit', '{\"parent_id\":\"0\",\"name\":\"saddqw\",\"des\":\"\",\"id\":\"97\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '修改菜单', 1516798299),
-(224, 2, 1, 'admin', '/admin/menu/edit', '{\"parent_id\":\"0\",\"name\":\"saddqw\",\"des\":\"\",\"id\":\"97\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '修改菜单', 1516798300),
-(225, 2, 1, 'admin', '/admin/menu/edit', '{\"parent_id\":\"0\",\"name\":\"saddqw\",\"des\":\"\",\"id\":\"97\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '修改菜单', 1516798305),
-(226, 2, 1, 'admin', '/admin/menu/edit', '{\"parent_id\":\"0\",\"name\":\"saddqw\",\"des\":\"\",\"id\":\"97\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '修改菜单', 1516798336),
-(227, 2, 1, 'admin', '/admin/article/add', '{\"uid\":\"1\",\"author_name\":\"admin\",\"c_id\":\"97\",\"title\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"des\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"content\":\"<p>\\u963f\\u8428\\u5fb7\\u6492\\u591a<\\/p>\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516801348),
-(228, 2, 1, 'admin', '/admin/article/edit', '{\"status\":\"0\",\"id\":\"1\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516802046),
-(229, 2, 1, 'admin', '/admin/article/edit', '{\"status\":\"0\",\"id\":\"1\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516802170),
-(230, 2, 1, 'admin', '/admin/article/edit', '{\"status\":\"1\",\"id\":\"1\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516802196),
-(231, 2, 1, 'admin', '/admin/article/edit', '{\"status\":\"0\",\"id\":\"1\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516802230),
-(232, 2, 1, 'admin', '/admin/article/edit', '{\"status\":\"1\",\"id\":\"1\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516802230),
-(233, 2, 1, 'admin', '/admin/article/edit', '{\"status\":\"0\",\"id\":\"1\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516802305),
-(234, 2, 1, 'admin', '/admin/article/edit', '{\"status\":\"1\",\"id\":\"1\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516802307),
-(235, 2, 1, 'admin', '/admin/article/edit', '{\"status\":\"0\",\"id\":\"1\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516802330),
-(236, 2, 1, 'admin', '/admin/article/edit', '{\"status\":\"1\",\"id\":\"1\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516802331),
-(237, 2, 1, 'admin', '/admin/article/edit', '{\"status\":\"0\",\"id\":\"1\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516802332),
-(238, 2, 1, 'admin', '/admin/article/edit', '{\"status\":\"0\",\"id\":\"1\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516802351),
-(239, 2, 1, 'admin', '/admin/article/edit', '{\"status\":\"1\",\"id\":\"1\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516802386),
-(240, 2, 1, 'admin', '/admin/article/edit', '{\"status\":\"0\",\"id\":\"1\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516802387),
-(241, 2, 1, 'admin', '/admin/article/edit', '{\"status\":\"1\",\"id\":\"1\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516802448),
-(242, 2, 1, 'admin', '/admin/article/edit', '{\"uid\":\"1\",\"author_name\":\"admin\",\"c_id\":\"100\",\"title\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"des\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"content\":\"<p>\\u963f\\u8428\\u5fb7\\u6492\\u591a<\\/p>\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516803099),
-(243, 2, 1, 'admin', '/admin/article/edit', '{\"uid\":\"1\",\"author_name\":\"admin\",\"c_id\":\"100\",\"title\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"des\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"content\":\"<p>\\u963f\\u8428\\u5fb7\\u6492\\u591a<\\/p>\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516803106),
-(244, 2, 1, 'admin', '/admin/article/edit', '{\"uid\":\"1\",\"author_name\":\"admin\",\"c_id\":\"100\",\"title\":\"\\u963f\\u8428\\u5fb7\\u64921\",\"des\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"content\":\"<p>\\u963f\\u8428\\u5fb7\\u6492\\u591a<\\/p>\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516803141),
-(245, 2, 1, 'admin', '/admin/article/edit', '{\"uid\":\"1\",\"author_name\":\"admin\",\"c_id\":\"100\",\"title\":\"\\u963f\\u8428\\u5fb7\\u64921\",\"des\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"content\":\"<p>\\u963f\\u8428\\u5fb7\\u6492\\u591a<\\/p>\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516803142),
-(246, 2, 1, 'admin', '/admin/article/edit', '{\"uid\":\"1\",\"author_name\":\"admin\",\"c_id\":\"100\",\"title\":\"\\u963f\\u8428\\u5fb7\\u64921\",\"des\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"content\":\"<p>\\u963f\\u8428\\u5fb7\\u6492\\u591a<\\/p>\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516803143),
-(247, 2, 1, 'admin', '/admin/article/edit', '{\"uid\":\"1\",\"author_name\":\"admin\",\"c_id\":\"100\",\"title\":\"\\u963f\\u8428\\u5fb7\\u64921\",\"des\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"content\":\"<p>\\u963f\\u8428\\u5fb7\\u6492\\u591a<\\/p>\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516803150),
-(248, 2, 1, 'admin', '/admin/article/edit', '{\"uid\":\"1\",\"author_name\":\"admin\",\"c_id\":\"100\",\"title\":\"\\u963f\\u8428\\u5fb7\\u64921\",\"des\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"content\":\"<p>\\u963f\\u8428\\u5fb7\\u6492\\u591a<\\/p>\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516803182),
-(249, 2, 1, 'admin', '/admin/article/edit', '{\"uid\":\"1\",\"author_name\":\"admin\",\"c_id\":\"97\",\"title\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"des\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"content\":\"<p>\\u963f\\u8428\\u5fb7\\u6492\\u591a<\\/p>\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516803218),
-(250, 2, 1, 'admin', '/admin/article/edit', '{\"uid\":\"1\",\"author_name\":\"admin\",\"c_id\":\"97\",\"title\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"des\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"content\":\"<p>\\u963f\\u8428\\u5fb7\\u6492\\u591a<\\/p>\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516803274),
-(251, 2, 1, 'admin', '/admin/article/edit', '{\"uid\":\"1\",\"author_name\":\"admin\",\"c_id\":\"97\",\"title\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"des\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"content\":\"<p>\\u963f\\u8428\\u5fb7\\u6492\\u591a<\\/p>\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516803335),
-(252, 2, 1, 'admin', '/admin/article/edit', '{\"uid\":\"1\",\"author_name\":\"admin\",\"c_id\":\"97\",\"title\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"des\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"content\":\"<p>\\u963f\\u8428\\u5fb7\\u6492\\u591a<\\/p>\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516803335),
-(253, 2, 1, 'admin', '/admin/article/edit', '{\"uid\":\"1\",\"author_name\":\"admin\",\"c_id\":\"97\",\"title\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"des\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"content\":\"<p>\\u963f\\u8428\\u5fb7\\u6492\\u591a<\\/p>\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516803337),
-(254, 2, 1, 'admin', '/admin/article/edit', '{\"uid\":\"1\",\"author_name\":\"admin\",\"c_id\":\"97\",\"title\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"des\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"content\":\"<p>\\u963f\\u8428\\u5fb7\\u6492\\u591a<\\/p>\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516803340),
-(255, 2, 1, 'admin', '/admin/article/edit', '{\"uid\":\"1\",\"author_name\":\"admin\",\"c_id\":\"97\",\"title\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"des\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"content\":\"<p>\\u963f\\u8428\\u5fb7\\u6492\\u591a<\\/p>\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516803411),
-(256, 2, 1, 'admin', '/admin/article/edit', '{\"uid\":\"1\",\"author_name\":\"admin\",\"c_id\":\"97\",\"title\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"des\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"content\":\"<p>\\u963f\\u8428\\u5fb7\\u6492\\u591a<\\/p>\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516803411),
-(257, 2, 1, 'admin', '/admin/article/edit', '{\"uid\":\"1\",\"author_name\":\"admin\",\"c_id\":\"97\",\"title\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"des\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"content\":\"<p>\\u963f\\u8428\\u5fb7\\u6492\\u591a<\\/p>\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516842661),
-(258, 2, 1, 'admin', '/admin/article/edit', '{\"uid\":\"1\",\"author_name\":\"admin\",\"c_id\":\"97\",\"title\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"des\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"content\":\"<p>\\u963f\\u8428\\u5fb7\\u6492\\u591a<\\/p>\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516842683),
-(259, 2, 1, 'admin', '/admin/article/edit', '{\"uid\":\"1\",\"author_name\":\"admin\",\"c_id\":\"97\",\"title\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"des\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"content\":\"<p>\\u963f\\u8428\\u5fb7\\u6492\\u591a<\\/p>\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516842686),
-(260, 2, 1, 'admin', '/admin/article/edit', '{\"uid\":\"1\",\"author_name\":\"admin\",\"c_id\":\"97\",\"title\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"des\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"content\":\"<p>\\u963f\\u8428\\u5fb7\\u6492\\u591a<\\/p>\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516842687),
-(261, 2, 1, 'admin', '/admin/article/edit', '{\"uid\":\"1\",\"author_name\":\"admin\",\"c_id\":\"97\",\"title\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"des\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"content\":\"<p>\\u963f\\u8428\\u5fb7\\u6492\\u591a<\\/p>\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516842690),
-(262, 2, 1, 'admin', '/admin/article/edit', '{\"uid\":\"1\",\"author_name\":\"admin\",\"c_id\":\"97\",\"title\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"des\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"content\":\"<p>\\u963f\\u8428\\u5fb7\\u6492\\u591a<\\/p>\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516842730),
-(263, 2, 1, 'admin', '/admin/article/edit', '{\"uid\":\"1\",\"author_name\":\"admin\",\"c_id\":\"97\",\"title\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"des\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"content\":\"<p>\\u963f\\u8428\\u5fb7\\u6492\\u591a<\\/p>\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516842768),
-(264, 2, 1, 'admin', '/admin/article/edit', '{\"uid\":\"1\",\"author_name\":\"admin\",\"c_id\":\"97\",\"title\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"des\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"content\":\"<p>\\u963f\\u8428\\u5fb7\\u6492\\u591a<\\/p>\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516842778),
-(265, 2, 1, 'admin', '/admin/article/edit', '{\"uid\":\"1\",\"author_name\":\"admin\",\"c_id\":\"97\",\"title\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"des\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"content\":\"<p>\\u963f\\u8428\\u5fb7\\u6492\\u591a<\\/p>\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516842795),
-(266, 2, 1, 'admin', '/admin/article/edit', '{\"uid\":\"1\",\"author_name\":\"admin\",\"c_id\":\"97\",\"title\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"des\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"content\":\"<p>\\u963f\\u8428\\u5fb7\\u6492\\u591a<\\/p>\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516842827),
-(267, 2, 1, 'admin', '/admin/article/edit', '{\"uid\":\"1\",\"author_name\":\"admin\",\"c_id\":\"97\",\"title\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"des\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"content\":\"<p>\\u963f\\u8428\\u5fb7\\u6492\\u591a<\\/p>\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516842856),
-(268, 2, 1, 'admin', '/admin/article/edit', '{\"uid\":\"1\",\"author_name\":\"admin\",\"c_id\":\"97\",\"title\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"des\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"content\":\"<p>\\u963f\\u8428\\u5fb7\\u6492\\u591a<\\/p>\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516842865),
-(269, 2, 1, 'admin', '/admin/article/edit', '{\"uid\":\"1\",\"author_name\":\"admin\",\"c_id\":\"97\",\"title\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"des\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"content\":\"<p>\\u963f\\u8428\\u5fb7\\u6492\\u591a<\\/p>\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516842893),
-(270, 2, 1, 'admin', '/admin/article/edit', '{\"uid\":\"1\",\"author_name\":\"admin\",\"c_id\":\"97\",\"title\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"des\":\"\\u963f\\u8428\\u5fb7\\u6492\",\"content\":\"<p>\\u963f\\u8428\\u5fb7\\u6492\\u591a<\\/p>\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516843166),
-(271, 2, 1, 'admin', '/admin/article/add', '{\"uid\":\"1\",\"author_name\":\"admin\",\"c_id\":\"101\",\"title\":\"121\",\"des\":\"12\",\"content\":\"<p>12121<\\/p>\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516843208),
-(272, 2, 1, 'admin', '/admin/article/add', '{\"uid\":\"1\",\"author_name\":\"admin\",\"c_id\":\"101\",\"title\":\"121\",\"des\":\"12\",\"content\":\"<p>12121<\\/p>\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516843211),
-(273, 2, 1, 'admin', '/admin/article/add', '{\"uid\":\"1\",\"author_name\":\"admin\",\"c_id\":\"97\",\"title\":\"\\u963f\\u8428\\u5fb7\",\"des\":\"\\u963f\\u8428\\u5fb7\",\"content\":\"<p>\\u963f\\u8428\\u5fb7V\\u578b<\\/p>\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516843245),
-(274, 2, 1, 'admin', '/admin/article/edit', '{\"status\":\"0\",\"id\":\"3\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516843254),
-(275, 2, 1, 'admin', '/admin/article/edit', '{\"status\":\"0\",\"id\":\"4\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516843275),
-(276, 2, 1, 'admin', '/admin/article/edit', '{\"status\":\"1\",\"id\":\"4\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516843278);
-INSERT INTO `dak_access_log` (`id`, `type`, `uid`, `name`, `target_url`, `query_params`, `ua`, `ip`, `note`, `create_time`) VALUES
-(277, 2, 1, 'admin', '/admin/article/edit', '{\"uid\":\"1\",\"author_name\":\"admin\",\"c_id\":\"97\",\"title\":\"121\\u8428\\u9876\\u9876\\u6492\",\"des\":\"12\",\"content\":\"<p>12121<\\/p>\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516843303),
-(278, 2, 1, 'admin', '/admin/article/edit', '{\"uid\":\"1\",\"id\":\"4\",\"author_name\":\"admin\",\"c_id\":\"97\",\"title\":\"\\u963f\\u8428\\u5fb7\",\"des\":\"\\u963f\\u8428\\u5fb7\",\"content\":\"<p>\\u963f\\u8428\\u5fb7V\\u578b<\\/p>\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516843348),
-(279, 2, 1, 'admin', '/admin/article/edit', '{\"uid\":\"1\",\"id\":\"4\",\"author_name\":\"admin\",\"c_id\":\"97\",\"title\":\"\\u963f\\u8428\\u5fb7\",\"des\":\"\\u963f\\u8428\\u5fb7\",\"content\":\"<p>\\u963f\\u8428\\u5fb7V\\u578b<\\/p>\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516845764),
-(280, 2, 1, 'admin', '/admin/article/edit', '{\"uid\":\"1\",\"id\":\"4\",\"author_name\":\"admin\",\"c_id\":\"97\",\"title\":\"\\u963f\\u8428\\u5fb7\",\"des\":\"\\u963f\\u8428\\u5fb7\",\"content\":\"<p>\\u963f\\u8428\\u5fb7V\\u578b<\\/p>\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516845768),
-(281, 2, 1, 'admin', '/admin/article/edit', '{\"uid\":\"1\",\"id\":\"4\",\"author_name\":\"admin\",\"c_id\":\"97\",\"title\":\"\\u963f\\u8428\\u5fb7\",\"des\":\"\\u963f\\u8428\\u5fb7\",\"content\":\"<p>\\u963f\\u8428\\u5fb7V\\u578b<\\/p>\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516845771),
-(282, 2, 1, 'admin', '/admin/article/edit', '{\"uid\":\"1\",\"id\":\"4\",\"author_name\":\"admin\",\"c_id\":\"97\",\"title\":\"\\u963f\\u8428\\u5fb7\",\"des\":\"\\u963f\\u8428\\u5fb7\",\"content\":\"<p>\\u963f\\u8428\\u5fb7V\\u578b<\\/p>\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '', 1516845797),
-(283, 1, 1, 'admin', '/admin/login/login', '{\"name\":\"admin\",\"password\":\"xifan123\",\"verify\":\"ytlr\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '账号登陆', 1516872871),
-(284, 1, 1, 'admin', '/admin/login/login', '{\"name\":\"admin\",\"password\":\"xifan123\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '账号登陆', 1516879020),
-(285, 1, 1, 'admin', '/admin/login/login', '{\"name\":\"admin\",\"password\":\"xifan123\"}', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36', '127.0.0.1', '账号登陆', 1516879039);
 
 -- --------------------------------------------------------
 
@@ -447,23 +249,18 @@ CREATE TABLE `dak_article` (
   `status` tinyint(11) NOT NULL DEFAULT '1' COMMENT '文章是否显示',
   `content` text NOT NULL COMMENT '内容',
   `update_time` int(11) NOT NULL DEFAULT '0' COMMENT '更新时间',
-  `create_time` int(11) NOT NULL DEFAULT '0' COMMENT '创建时间'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `create_time` int(11) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `read_num` int(11) NOT NULL DEFAULT '0' COMMENT '已阅读人数'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='文章';
 
 --
 -- 转存表中的数据 `dak_article`
 --
 
-INSERT INTO `dak_article` (`id`, `uid`, `author_name`, `title`, `des`, `c_id`, `status`, `content`, `update_time`, `create_time`) VALUES
-(1, 1, 'admin', '阿萨德撒', '阿萨德撒', 97, 1, '<p>阿萨德撒多</p>', 1516802448, 1516801348),
-(2, 1, 'admin', '121', '12', 101, 1, '<p>12121</p>', 1516843208, 1516843208),
-(3, 1, 'admin', '121', '12', 101, 1, '<p>12121</p>', 1516843211, 1516843211),
-(4, 1, 'admin', '阿萨德', '阿萨德', 97, 1, '<p>阿萨德V型</p>', 1516845797, 1516843245),
-(5, 0, '佚名', '完呢', NULL, 97, 1, '人死了大叔阿斯顿撒旦撒大1', 1516873260, 1516873260),
-(6, 1, '佚名', '完呢', NULL, 97, 1, '人死了大叔阿斯顿撒旦撒大1', 1516873326, 1516873326),
-(7, 1, '佚名', '完呢', NULL, 97, 1, '人死了大叔阿斯顿撒旦撒大1', 1516873380, 1516873380),
-(8, 1, '佚名', '完呢', NULL, 97, 1, '人死了大叔阿斯顿撒旦撒大1', 1516873408, 1516873408),
-(9, 1, '佚名', '完呢', NULL, 97, 1, '人死了大叔阿斯顿撒旦撒大1', 1516873452, 1516873452);
+INSERT INTO `dak_article` (`id`, `uid`, `author_name`, `title`, `des`, `c_id`, `status`, `content`, `update_time`, `create_time`, `read_num`) VALUES
+(14, 1, 'admin', '历史架空', '1212', 98, 1, '<p>1212</p>', 1518008900, 1517998866, 0),
+(15, 1, 'admin', '玄幻小说', '121', 97, 1, '<p>1212</p>', 1518008760, 1517998873, 4),
+(16, 1, 'admin', '言情小说', '', 100, 1, '<p>12121</p>', 1518008749, 1518008749, 2);
 
 -- --------------------------------------------------------
 
@@ -487,7 +284,79 @@ CREATE TABLE `dak_article_cate` (
 INSERT INTO `dak_article_cate` (`id`, `name`, `parent_id`, `des`, `create_time`, `update_time`) VALUES
 (97, '玄幻小说', 0, '', 1516793400, 1516873889),
 (98, '历史架空', 0, '', 1516793410, 1516873902),
-(99, '男生小说', 0, '', 1516793418, 1516873921);
+(100, '都市言情', 0, '', 1517025750, 1517025750);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `dak_cate`
+--
+
+CREATE TABLE `dak_cate` (
+  `id` int(11) NOT NULL COMMENT '链接分类id',
+  `type` int(11) NOT NULL DEFAULT '0' COMMENT '分类的类型:0=>其他类型,1=>友情链接, 2=> 视频分类',
+  `name` varchar(20) NOT NULL DEFAULT '' COMMENT '分类名称',
+  `parent_id` int(50) NOT NULL DEFAULT '0' COMMENT '所属父级分类',
+  `des` varchar(50) DEFAULT NULL COMMENT '分类描述',
+  `create_time` int(50) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` int(20) NOT NULL DEFAULT '0' COMMENT '更新时间'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='链接分类表';
+
+--
+-- 转存表中的数据 `dak_cate`
+--
+
+INSERT INTO `dak_cate` (`id`, `type`, `name`, `parent_id`, `des`, `create_time`, `update_time`) VALUES
+(111, 1, '视频', 0, '', 1517043969, 1517043969),
+(116, 2, '电影', 0, '', 1518000431, 1518000431),
+(118, 2, '电视剧', 0, '', 1518000712, 1518000712);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `dak_link`
+--
+
+CREATE TABLE `dak_link` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `title` varchar(50) NOT NULL DEFAULT '' COMMENT '链接名称',
+  `c_id` int(11) NOT NULL COMMENT '所属链接分类id',
+  `link` varchar(200) DEFAULT NULL COMMENT '链接地址',
+  `status` tinyint(11) NOT NULL DEFAULT '1' COMMENT '链接是否显示',
+  `update_time` int(11) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  `create_time` int(11) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `read_num` int(11) NOT NULL DEFAULT '0' COMMENT '点击查看人数'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='友情链接';
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `dak_video`
+--
+
+CREATE TABLE `dak_video` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `c_id` int(11) NOT NULL COMMENT '分类id',
+  `title` varchar(100) NOT NULL DEFAULT '' COMMENT '视频标题',
+  `recommend_url` varchar(200) DEFAULT '' COMMENT '推荐图',
+  `is_recommend` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否推荐,默认不推荐',
+  `cover_url` varchar(200) DEFAULT '' COMMENT '封面图',
+  `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '显示 默认1',
+  `url` varchar(200) NOT NULL DEFAULT '' COMMENT '视频地址',
+  `update_time` int(11) DEFAULT NULL,
+  `create_time` int(11) DEFAULT NULL,
+  `read_num` int(11) NOT NULL DEFAULT '0' COMMENT '查看人数'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `dak_video`
+--
+
+INSERT INTO `dak_video` (`id`, `c_id`, `title`, `recommend_url`, `is_recommend`, `cover_url`, `status`, `url`, `update_time`, `create_time`, `read_num`) VALUES
+(1, 116, '她被撞亡身份未知，市民满地找手机', 'http://image2.pearvideo.com/cont/20180207/cont-1275131-10989884.png', 0, 'http://image2.pearvideo.com/cont/20180207/cont-1275131-10989884.png', 1, 'http://video.pearvideo.com/mp4/short/20180207/cont-1275063-11549419-hd.mp4', 1518006389, 1518002587, 20),
+(4, 116, '121', '1212', 0, '1212', 1, '1212121', 1518006384, 1518005093, 2),
+(5, 103, '2121', '1212', 0, '1212', 1, '1212', 1518013603, 1518013603, 1),
+(6, 103, 'sdaslknkdknasdm', 'asdasd', 0, 'asdas', 1, 'asdasd', 1518013628, 1518013628, 1);
 
 --
 -- Indexes for dumped tables
@@ -549,6 +418,24 @@ ALTER TABLE `dak_article_cate`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `dak_cate`
+--
+ALTER TABLE `dak_cate`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `dak_link`
+--
+ALTER TABLE `dak_link`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `dak_video`
+--
+ALTER TABLE `dak_video`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- 在导出的表使用AUTO_INCREMENT
 --
 
@@ -556,7 +443,7 @@ ALTER TABLE `dak_article_cate`
 -- 使用表AUTO_INCREMENT `dak_access_log`
 --
 ALTER TABLE `dak_access_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=286;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- 使用表AUTO_INCREMENT `dak_admin_access`
 --
@@ -591,12 +478,24 @@ ALTER TABLE `dak_admin_user_role`
 -- 使用表AUTO_INCREMENT `dak_article`
 --
 ALTER TABLE `dak_article`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- 使用表AUTO_INCREMENT `dak_article_cate`
 --
 ALTER TABLE `dak_article_cate`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '文章分类id', AUTO_INCREMENT=105;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '文章分类id', AUTO_INCREMENT=101;
+--
+-- 使用表AUTO_INCREMENT `dak_cate`
+--
+ALTER TABLE `dak_cate`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '链接分类id', AUTO_INCREMENT=122;
+--
+-- 使用表AUTO_INCREMENT `dak_link`
+--
+ALTER TABLE `dak_link`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+--
+-- 使用表AUTO_INCREMENT `dak_video`
+--
+ALTER TABLE `dak_video`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
