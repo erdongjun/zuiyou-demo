@@ -1,5 +1,10 @@
     <!-- 引入布局模板 -->
 {layout name='/layout/common'}
+<style type="text/css">
+video{
+    display: block;
+}
+</style>
 <!-- 内容部分 -->
 <div id="main">
     <section class="c_section">
@@ -35,14 +40,8 @@
         </article>
     </section>
 </div>
-
 <script type="text/javascript" src="/static/lib/ckplayer/ckplayer.js" charset="utf-8"></script>
 <script type="text/javascript">
-var videoObject = {
-        container: '#wrapper',//“#”代表容器的ID，“.”或“”代表容器的class
-        variable: 'player',//该属性必需设置，值等于下面的new chplayer()的对象
-        video:'{$info.url}'//视频地址
- };
- var player=new ckplayer(videoObject);
+var videoObject = { container: '#wrapper', variable: 'player', video:'{$info.url}' }; var player=new ckplayer(videoObject);
 </script>
 
