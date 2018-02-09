@@ -62,6 +62,9 @@ layui.use(['form', 'layedit', 'laydate','element'], function(){
   ,layer = layui.layer
   , element = layui.element;
     $('.table-del').click(function(){
+        if(!window.confirm('确定删除吗?')){
+            return;
+        }
         var url = $(this).attr('data-href')
         $.ajax({
             url:url,

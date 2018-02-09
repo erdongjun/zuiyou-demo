@@ -104,6 +104,9 @@ form.on('switch(status)', function(self){
   
  
     $('.table-del').click(function(){
+        if(!window.confirm('确定删除吗?')){
+            return;
+        }
         var url = $(this).attr('data-href')
         $.ajax({
             url:url,

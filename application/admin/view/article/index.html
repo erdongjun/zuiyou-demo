@@ -5,7 +5,7 @@
     <legend>文章列表</legend>
 </fieldset>
 <div class="page-toolbar">
-     <form class="page-list-form fl">
+    <form class="page-list-form fl">
         <div class="layui-btn-group fl">
             <a data-href="/admin/article/edit" data-type='1' class="layui-btn layui-btn-primary j-page-btns batch_able"><i class="aicon ai-qiyong "></i>启用</a>
             <a data-href="/admin/article/edit" data-type='0' class="layui-btn layui-btn-primary j-page-btns  batch_able"><i class="aicon ai-jinyong1"></i>禁用</a>
@@ -53,7 +53,7 @@
         <tbody>
             {empty name='list'}
             <tr>
-                <td colspan='6' align='center'>暂无数据</td>
+                <td colspan='7' align='center'>暂无数据</td>
             </tr>
             {/empty} {volist name='list' id='vo'}
             <tr>
@@ -116,6 +116,9 @@ layui.use(['form', 'layedit', 'laydate', 'element'], function() {
 
     //单个删除文章
     $('.table-del').click(function() {
+        if(!window.confirm('确定删除吗?')){
+            return;
+        }
         var url = $(this).attr('data-href')
         $.ajax({
             url: url,
@@ -132,6 +135,9 @@ layui.use(['form', 'layedit', 'laydate', 'element'], function() {
 
     //批量删除文章
     $('.batch_del').click(function() {
+        if(!window.confirm('确定删除吗?')){
+            return;
+        }
         var url = $(this).attr('data-href');
         var idArr =[];
         var ids = ''

@@ -87,6 +87,9 @@ layui.use(['form','element'], function(){
   });
   
   $('.table-del').click(function(){
+    if(!window.confirm('确定删除吗?')){
+            return;
+        }
       var self = $(this);
       var url = self.attr('data-href');
       $.ajax({

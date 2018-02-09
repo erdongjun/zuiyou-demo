@@ -25,7 +25,8 @@
         "topthink/think-mongo": "1.7",
         "topthink/think-captcha": "^1.0",
         "topthink/think-angular": "^1.0",
-        "qiniu/php-sdk": "^7.2"
+        "qiniu/php-sdk": "^7.2",
+        "phpmailer/phpmailer": "^6.0"
     },
     "extra": {
         "think-path": "thinkphp"
