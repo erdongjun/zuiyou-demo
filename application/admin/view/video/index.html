@@ -26,6 +26,7 @@
 <div class="layui-form">
     <table class="layui-table mt10" lay-even="" lay-skin="row">
         <colgroup>
+            <col width="80">
             <col width="100">
         </colgroup>
         <thead>
@@ -84,6 +85,8 @@ layui.use(['form', 'layedit', 'laydate','element'], function(){
   var form = layui.form
   ,layer = layui.layer
   , element = layui.element;
+    var currUrl = location.pathname;
+  
   
     form.on('switch(status)', function(self){
         var _data = {
@@ -123,7 +126,7 @@ layui.use(['form', 'layedit', 'laydate','element'], function(){
             success:function (data) {
                 layer.msg(data.msg,{time:1000},function(){
                     if(data.status ==1){
-                       parent.setFrameUrl('/admin/video/index')
+                       parent.setFrameUrl(currUrl)
                     }
                 })
             }
@@ -157,7 +160,7 @@ layui.use(['form', 'layedit', 'laydate','element'], function(){
             success: function(data) {
                 layer.msg(data.msg, { time: 1000 }, function() {
                     if (data.status == 1) {
-                        parent.setFrameUrl('/admin/video/index')
+                        parent.setFrameUrl(currUrl)
                     }
                 })
             }
@@ -192,7 +195,7 @@ layui.use(['form', 'layedit', 'laydate','element'], function(){
             success: function(data) {
                 layer.msg(data.msg, { time: 1000 }, function() {
                     if (data.status == 1) {
-                        parent.setFrameUrl('/admin/video/index')
+                        parent.setFrameUrl(currUrl)
                     }
                 })
             }

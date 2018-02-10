@@ -87,6 +87,8 @@ layui.use(['form', 'layedit', 'laydate', 'element'], function() {
         layer = layui.layer,
         element = layui.element;
 
+    var currUrl = location.pathname;
+
     //文章是否显示设置
     form.on('switch(status)', function(self) {
         var _data = {
@@ -126,7 +128,7 @@ layui.use(['form', 'layedit', 'laydate', 'element'], function() {
             success: function(data) {
                 layer.msg(data.msg, { time: 1000 }, function() {
                     if (data.status == 1) {
-                        parent.setFrameUrl('/admin/article/index')
+                        parent.setFrameUrl(currUrl)
                     }
                 })
             }
@@ -161,7 +163,7 @@ layui.use(['form', 'layedit', 'laydate', 'element'], function() {
             success: function(data) {
                 layer.msg(data.msg, { time: 1000 }, function() {
                     if (data.status == 1) {
-                        parent.setFrameUrl('/admin/article/index')
+                        parent.setFrameUrl(currUrl)
                     }
                 })
             }
@@ -197,7 +199,7 @@ layui.use(['form', 'layedit', 'laydate', 'element'], function() {
             success: function(data) {
                 layer.msg(data.msg, { time: 1000 }, function() {
                     if (data.status == 1) {
-                        parent.setFrameUrl('/admin/article/index')
+                        parent.setFrameUrl(currUrl)
                     }
                 })
             }
