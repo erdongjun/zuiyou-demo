@@ -3,9 +3,9 @@
 namespace app\home\model;
 
 use think\Model;
-
 class User extends Model
 {
+		
 		// 定义时间戳字段名
 	    protected $createTime = 'create_time';
 	    protected $updateTime = 'update_time';
@@ -13,23 +13,27 @@ class User extends Model
 	    // 自动写入时间戳
 	    protected $autoWriteTimestamp = true;
 
+	    // 自动完成
+	    protected $insert = ['ip','email_code'];
+
 	    // 对密码进行加密
 	    public function setPasswordAttr($value)
 	    {
-	        return MD5($value);
+	        return md5($value);
 	    }
-	    // 写入时，将权限ID转成JSON格式
-	    public function setAuthAttr($value)
+	    // 注册时ip
+	    protected function setIpAttr()
 	    {
-	        if (empty($value)) return '';
-	        return json_encode($value);
+	        return request()->ip();
+	    }
+	    //邮箱验证码 email_code
+	    public function setEmailCodeAttr()
+	    {
+	        return createEmailCode();
 	    }
 
-	    // 获取最后登陆ip
-	    public function setLastLoginIpAttr()
-	    {
-	        return get_client_ip();
-	    }
+
+
 	    
 
 }

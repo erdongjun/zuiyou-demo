@@ -1,0 +1,19 @@
+<!-- 引入布局模板 -->
+{layout name='/layout/common'}
+<!-- 内容部分 -->
+<div id="main">
+	<section class="c_section c_websit">
+	    <div class="c_websit_top">个人中心</div>
+	    <div>
+	    	{eq name='status' value='0'}
+	    		账号激活失败,请检查后再次激活或者重新注册新账号
+	    		<a href="/home/user/register.html">去注册</a>
+	    	{else /}
+	    	    账号激活成功
+	    		<a href="/home/user/login.html">去登录</a>
+	    	{/eq}
+	    	
+	    </div>
+    </section>
+	
+</div>

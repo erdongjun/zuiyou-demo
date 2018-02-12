@@ -1,0 +1,39 @@
+<!-- 引入布局模板 -->
+{layout name='/layout/common'}
+<!-- 内容部分 -->
+<div id="main">
+	<section class="c_section c_websit">
+	    <div class="c_websit_top">个人中心</div>
+	    <div class="c_wrap">
+	    	{empty name='info'}
+	    	<a href="/home/user/register.html">暂未登录 ,去登录</a>
+	    	{else /}
+	    	<div class="c_wrap_item">
+	    		<span class="c_wrap_item_l">邮箱:</span>
+	    		{$info.email}
+	    	</div>
+	    	<div class="c_wrap_item">
+	    		<span class="c_wrap_item_l">类型:</span>
+	    		{$info.is_vip}
+	    	</div>
+	    	<div class="c_wrap_item">
+	    		<span class="c_wrap_item_l">到期时间:</span>
+	    		{$info.member_end_time|date='Y-m-d h:i:s',###}
+	    	</div>
+	    	<div class="c_wrap_item">
+	    		<span class="c_wrap_item_l">邀请码:</span>
+	    		{$info.id}
+	    	</div>
+	    	<div class="c_wrap_item">
+	    		<span class="c_wrap_item_l">推广人数:</span>
+	    		{$info.invited_num}
+	    	</div>
+			
+			
+	    	
+	    	
+	    	{/empty}
+	    </div>
+    </section>
+	
+</div>

@@ -2,131 +2,128 @@
 namespace app\home\controller;
 
 use app\home\model\User as UserModel;
-use app\home\model\Post as Post;
-use app\admin\model\Cate as Cate;
 use think\validate;
 use think\Request;
+
 
 class User extends Home
 {
 	//用户信息
     public function index()
     {
-        return $this->fetch();
-    }
-    public function test()
-    {
-        return $this->fetch();
+        if(session('user_uid')){
+            $user = UserModel::get(session('user_uid'));
+            $uid = $user['id'];
+            $user['invited_num'] =count(UserModel::where('used_invite_code',$uid)->select()) ;
+            $this->assign('info',$user);
+        }
+
+
+        return $this->fetch('user/index');
     }
     //用户登录
     public function login()
     {
-
-        if($this->request->isPost()){
-            $data = $this->request->post();
+        if(request()->isPost()){
+            $data = $_POST;
             // 数据验证
             $result = $this->validate($data, 'User.login');
-
             if($result !== true) {
                 return ['status'=>'0','msg'=>$result];
             };
-            $map['username'] = $data['username'];
+            $map['email'] = $data['email'];
             $user = UserModel::where($map)->find();
             if (!$user) {
-                return ['status'=>'0','msg'=>'用户不存在或被禁用！'];
+                return ['status'=>'0','msg'=>'该用户不存在！'];
+            }
+            if ($user['status']!==1) {
+                return ['status'=>'0','msg'=>'该用户未激活,请邮箱激活后登录！'];
             }
             // 密码校验
             if ($user['password'] != md5($data['password']) ) {
                 return ['status'=>'0','msg'=>'密码不正确'];
             }else{
-                session('user_uid', $user['uid']);
-                session('user_nick', $user['nick']);
+                session('user_uid', $user['id']);
+                session('user_email', $user['email']);
                 return ['status'=>'1','msg'=>'登录成功'];
             }
         }
-        return $this->fetch();
+        return $this->fetch('user/login');
     }
     //用户注册
     public function register()
     {
-
+        // phpinfo();
     	if($this->request->isPost()){
     		$data = $this->request->post();
             // 验证
-            $result = $this->validate($data, 'User.add');
+            $result = $this->validate($data, 'User.res');
             if($result !== true) {
-                return ['status'=>'0','msg'=>$result];
+                return json(['status'=>'0','msg'=>$result]) ;
             }
-            if (!UserModel::create($data)) {
-                return ['status'=>'0','msg'=>$this->getError()];
+            $user = UserModel::create($_POST);
+            if (!$user) {
+                return json(['status'=>'0','msg'=>$this->getError()]);
             }
-            return ['status'=>'1','msg'=>'注册成功'];
+            $email_code = $user->email_code;
+            $email = $user->email;
+            $uid = $user->id;
+            //发送邮箱验证码
+            $link = "http://localhost:7888/home/user/active.html?uid=".$uid."&email_code=".$email_code;
+
+            $content = '恭喜你网站注册成功,账户激活,请点击链接<a href='.$link.'>'.$link.'</a>进行激活';
+
+            $res = sendMail($email,'恭喜你网站注册成功,账户激活链接',$content );
+            if ($res !==true) {
+                // UserModel:destroy($uid);
+                return json(['status'=>'0','msg'=>'邮箱不存在!']);
+            }
+            return json(['status'=>'1','msg'=>'注册成功,请登录邮箱验证后登录']);
     	}
-        return $this->fetch();
+        return $this->fetch('user/register');
+    }
+    //邮箱激活
+    public function active(){
+        $uid = input('uid');
+        $email_code = input('email_code');
+
+        $user = UserModel::get($uid);
+        //先判断当前用户是否已激活
+        if($user['status'] === 1){
+            //判断是否已登录
+            if(session('user_uid')){
+                //已登录跳转到个人中心
+                $this->redirect('User/index');
+            }else{
+                //跳转到登录页
+                $this->redirect('User/login');
+            }
+        }else{
+            //未激活或封号
+            if($email_code  !== $user['email_code'] ){
+                //激活失败
+                $this->assign('status',0);
+            }else {
+
+                if($user['used_invite_code']){
+                    $curr_time = strtotime("+1 hours");
+                }else{
+                    $curr_time =time();
+                }
+                UserModel::update(['id' => $uid, 'status' => 1,'member_end_time'=>$curr_time]);
+                //激活成功
+                $this->assign('status',1);
+            }
+        }
+        return $this->fetch('user/active');
+
     }
     //用户退出
      public function logout()
     {
         session('user_uid', null);
-        session('user_nick', null);
+        session('user_email', null);
         return ['status'=>'1','msg'=>'退出成功'];
     }
-    //用户投稿
-    public function contribute()
-    {
-
-        if(!session('user_uid')){
-            $this->redirect('User/login');
-        }
-        $cate = new Cate();
-
-        $list = $cate->getTree();
-
-
-        $this->assign('list',$list);
-        if($this->request->isPost()){
-
-            $post_data = $this->request->post();
-            // dump($$post_data('title'));die;
-            $data=[];
-            $data['title'] = $post_data['title'];
-            $data['cate_id'] = $post_data['cate_id'];
-            $data['content'] = $post_data['content'];
-            $data['type'] = $post_data['type'];
-            if($post_data['parent_id']){
-                $data['parent_id'] = $post_data['parent_id'];
-            }else{
-                $data['parent_id'] =0;
-
-            }
-            $data['uid'] = session('user_uid');
-
-
-            if($post_data['type']==0){
-                // 文字
-                $data['resource'] ='';
-            }
-            if($post_data['type']==1){
-                //图片
-                $imgStr = implode(',',$post_data['img']);
-                $data['resource'] =$imgStr;
-            }
-            if($post_data['type']==2){
-                //视频
-                $data['resource'] = $post_data['video'];
-            }
-            if($post_data['type']==3){
-                //音频
-                $data['resource'] = $post_data['audio'];
-            }
-            if (!Post::create($data)) {
-                return ['status'=>'0','msg'=>$this->getError()];
-            }
-            return ['status'=>'1','msg'=>'发布成功'];
-
-
-            // dump($post_data);die;
-        }
-        return $this->fetch();
-    }
+   
 }

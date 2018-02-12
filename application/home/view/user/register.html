@@ -1,0 +1,58 @@
+<!-- 引入布局模板 -->
+{layout name='/layout/common'}
+<!-- 内容部分 -->
+<div id="main">
+	<section class="c_section c_websit">
+	    <div class="c_websit_top">用户注册</div>
+	    <form class="c_form" action="" method="POST">
+			<div class="c_form_item">
+				<div class="c_form_l">邮箱:</div>
+				<div class="c_form_r">
+					<input class="c_form_input" type="text" name="email" placeholder="请输入邮箱">
+				</div>
+			</div>
+			<div class="c_form_item">
+				<div class="c_form_l">密码:</div>
+				<div class="c_form_r">
+					<input class="c_form_input" type="password" name="password" placeholder="请输入密码长度6-12位">
+				</div>
+			</div>
+			<div class="c_form_item">
+				<div class="c_form_l">邀请码:
+					<p style="font-size: 12px;margin: 0;">(使用邀请码可免费获得1个小时会员,无限制浏览视频数量)</p>
+				</div>
+				<div class="c_form_r">
+					<input class="c_form_input" type="text" name="used_invite_code" placeholder="使用邀请码">
+				</div>
+			</div>
+			<div class="c_form_item">
+				<div class="c_form_l">&nbsp;</div>
+				<div class="c_form_r">
+					<span class="c_form_submit" id="submitBtn"  type="submit">注册</span>
+				</div>
+			</div>
+		</form>
+    </section>
+</div>
+
+<script type="text/javascript">
+	$(function(){
+		// 用户注册
+		$('#submitBtn').click(function () {
+			var _data = $('.c_form').serialize();
+			$.ajax({
+				url:'/home/user/register',
+				type:'post',
+				data:$('.c_form').serialize(),
+				success:function(data){
+					layer.msg(data.msg);
+					if(data.status==1){
+						location.href='/home/user/index.html';
+					}
+				}
+			})
+		})
+	})
+</script>
+
+
