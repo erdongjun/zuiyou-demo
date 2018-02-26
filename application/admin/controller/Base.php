@@ -60,7 +60,8 @@ class  Base extends Controller
 		if(in_array($action,['del','edit','add']) && $isAjax){
 			$type = 2;
 		}
-		if($type !== 0){
+		if(false){
+			//敏感操作日志
 			AccessLog::create([
 			    'uid'  =>  $uid,
 			    'type' =>  $type,

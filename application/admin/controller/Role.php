@@ -4,6 +4,7 @@ namespace app\admin\controller;
 use app\admin\model\AdminRole;
 use app\admin\model\AdminAccess;
 use app\admin\model\AdminRoleAccess;
+use app\admin\model\AdminMenu;
 
 /**
  * 角色管理
@@ -60,6 +61,25 @@ class Role extends Base
     	}
         //取出所有权限列表
         $list = AdminAccess::where('status',1)->order('id','desc')->select();
+
+       $menu_list = AdminMenu::all();
+        // $tree = $menu_list->getTree();
+
+        foreach ($menu_list as $v ){
+            $arr = [];
+            foreach ($list as $v1 ){
+
+                if($v['id']==$v1['m_id']){
+                    $arr[] = $v1;
+                }  
+            }
+            $v['son']=$arr ;
+
+        }
+       // dump($menu_list);
+
+
+        $this->assign('menu_list',$menu_list);
         $this->assign('list',$list);
         return $this->fetch('role/add');
     }

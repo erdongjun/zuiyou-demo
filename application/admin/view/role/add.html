@@ -21,6 +21,8 @@
     <div class="layui-form-item">
         <label class="layui-form-label">权限设置</label>
         <div class="layui-input-block">
+        </div>
+        <div class="layui-input-block">
             {volist name='list' id='vo' key='k'}
             <input type="checkbox" name="access_ids[{$k}]" title="{$vo.title}" value="{$vo.id}" lay-skin="primary">
             {/volist}
